@@ -1,0 +1,17 @@
+@startuml
+left to right direction
+
+actor "Data Scientist" as DS
+rectangle "Population Reporting System" {
+
+  usecase "Produce report on population\nby continent" as UC23
+  usecase "Produce report on population\nby region" as UC24
+  usecase "Produce report on population\nby country" as UC25
+
+}
+
+DS --> UC23
+DS --> UC24
+DS --> UC25
+
+@enduml

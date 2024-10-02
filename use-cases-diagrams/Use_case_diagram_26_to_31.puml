@@ -1,0 +1,21 @@
+@startuml
+left to right direction
+actor "Data Scientist" as DS
+
+rectangle "Use Cases" {
+    (Produce a report on the population of the world) as UC26
+    (Produce a report on the population of a continent) as UC27
+    (Produce a report on the population of a region) as UC28
+    (Produce a report on the population of a country) as UC29
+    (Produce a report on the population of a district) as UC30
+    (Produce a report on the population of a city) as UC31
+}
+
+DS --> UC26
+DS --> UC27
+DS --> UC28
+DS --> UC29
+DS --> UC30
+DS --> UC31
+
+@enduml
