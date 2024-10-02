@@ -70,22 +70,61 @@ public class App
         }
     }
 
-    public ArrayList<Country> getAllCountriesInWorld()
+    public String allCountriesInWorld()
+    {
+        String query = "SELECT Code, Name, Continent, Region, Population, Capital "
+                            + "FROM country "
+                            + "ORDER BY Population DESC";
+        return query;
+
+    }
+
+    public String topPopulatedCountriesInWorld(int number)
+    {
+        String query = "SELECT Code, Name, Continent, Region, Population, Capital "
+                + "FROM country "
+                + "ORDER BY Population DESC"
+                + " LIMIT " + number;
+        return query;
+
+    }
+
+    /**
+     * sort countries in a continent by largest population to smallest
+     * @param continent The continent to print.
+     */
+    public String allCountriesInContinent(String continent)
+    {
+        String query =
+                    "SELECT Code, Name, Continent, Region, Population, Capital "
+                            + "FROM country "
+                            + "WHERE Continent = " + continent + " "
+                            + "ORDER BY Population DESC";
+        return query;
+    }
+
+    public String allCountriesInRegion(String region)
+    {
+        String query =
+                "SELECT Code, Name, Continent, Region, Population, Capital "
+                        + "FROM country "
+                        + "WHERE Continent = " + region;
+        return query;
+    }
+
+    public ArrayList<Country> getAllCountries(String query)
     {
         try
         {
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
-            String strSelect =
-                    "SELECT Code, Name, Continent, Region, Population, Capital "
-                            + "FROM country "
-                            + "ORDER BY Population DESC";
+            String strSelect = query;
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
 
             // Extract country information
-            ArrayList<Country> countries = new ArrayList<Country>();
+            ArrayList<Country> countries = new ArrayList<>();
 
             while (rset.next())
             {
@@ -116,7 +155,8 @@ public class App
     public void printCountries(ArrayList<Country> countries)
     {
         // Print header for country information
-        System.out.println(String.format("%-5s %-50s %-20s %-30s %-15s %-5s", "Code", "Name", "Continent", "Region", "Population", "Capital"));
+        System.out.println(String.format("%-5s %-50s %-20s %-30s %-15s %-5s",
+                                    "Code", "Name", "Continent", "Region", "Population", "Capital"));
 
         // Loop over all countries in the list
         for (Country cty : countries)
@@ -136,12 +176,27 @@ public class App
         // Connect to database
         a.connect();
 
+        // division line between prints
+        String line = "=".repeat(125);
+
         // Extract country information
-        ArrayList<Country> countries = a.getAllCountriesInWorld();
+        ArrayList<Country> countriesInWorld = a.getAllCountries(a.allCountriesInWorld());
+        System.out.println("All countries in the world by largest population to smallest");
+        a.printCountries(countriesInWorld);
+        System.out.println(line);
 
-        // Print country information by largest population to smallest
-        a.printCountries(countries);
+//        ArrayList<Country> countriesInContinent = a.getAllCountries(a.allCountriesInContinent("Asia"));
+//        a.printCountries(countriesInContinent);
+//        System.out.println(line);
 
+//        ArrayList<Country> countriesInRegion = a.getAllCountries(a.allCountriesInRegion("Southeast Asia"));
+//        a.printCountries(countriesInRegion);
+//        System.out.println(line);
+
+        ArrayList<Country> populatedCountriesInWorld = a.getAllCountries(a.topPopulatedCountriesInWorld(5));
+        System.out.println("Top N populated countries in the world");
+        a.printCountries(populatedCountriesInWorld);
+        System.out.println(line);
 
 
         // Disconnect from database
