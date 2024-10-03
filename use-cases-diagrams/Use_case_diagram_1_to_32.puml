@@ -1,0 +1,27 @@
+@startuml
+left to right direction
+
+actor "Data Scientist" as DS
+
+rectangle "Global Population Report System" {
+    usecase "Produce a report on all the countries in the\n world, a continent, a region organised by largest population to smallest" as UC1to3
+    usecase "Produce a report on the top N populated \n countries in the world, a continent, a region  where N is provided by the user" as UC4to6
+    usecase "Produce a report on all the cities in the\n world, a continent, a region, a country, a district  \n organised by largest population to smallest" as UC7to11
+    usecase "Produce a report on the top N populated cities in \n the world, a continent, a region, a country, a district where N is provided by user" as UC12to16
+    usecase "Produce a report on all the capital cities in the world, a continent, a region \n organised by largest population to smallest" as UC17to19
+    usecase "Produce a report on the top N populated capital cities in \n the world, a continent, a region where N is provided by the user" as UC20to22
+    usecase "Produce a report on the population of people, people living in \n cities, and people not living in cities in each continent, region, country" as UC23to25
+    usecase "Produce a report on the population of \n the world, a continent, a region, a country, a district, a city" as UC26to31
+    usecase "Produce a report on the number of people who speak \nChinese, English, Hindi, Spanish, Arabic languages \n from greatest number to smallest, including the percentage \nof the world population" as UC32
+}
+
+DS -- UC1to3
+DS -- UC4to6
+DS -- UC7to11
+DS -- UC12to16
+DS -- UC17to19
+DS -- UC20to22
+DS -- UC23to25
+DS -- UC26to31
+DS -- UC32
+@enduml
