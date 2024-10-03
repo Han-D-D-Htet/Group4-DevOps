@@ -2,6 +2,7 @@ package com.napier.sem;
 
 import java.sql.*;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 public class App
@@ -41,7 +42,7 @@ public class App
             }
             catch (SQLException sqle)
             {
-                System.out.println("Failed to connect to database attempt " + Integer.toString(i));
+                System.out.println("Failed to connect to database attempt " + i);
                 System.out.println(sqle.getMessage());
             }
             catch (InterruptedException ie)
@@ -70,23 +71,26 @@ public class App
         }
     }
 
+    /**
+     * sort countries in world by largest population to smallest
+     */
     public String allCountriesInWorld()
     {
-        String query = "SELECT Code, Name, Continent, Region, Population, Capital "
+        return "SELECT Code, Name, Continent, Region, Population, Capital "
                             + "FROM country "
                             + "ORDER BY Population DESC";
-        return query;
-
     }
 
+    /**
+     * top N populated countries in the world
+     * @param number The number of countries to print.
+     */
     public String topPopulatedCountriesInWorld(int number)
     {
-        String query = "SELECT Code, Name, Continent, Region, Population, Capital "
+        return "SELECT Code, Name, Continent, Region, Population, Capital "
                 + "FROM country "
                 + "ORDER BY Population DESC"
                 + " LIMIT " + number;
-        return query;
-
     }
 
     /**
@@ -95,37 +99,70 @@ public class App
      */
     public String allCountriesInContinent(String continent)
     {
-        String query =
-                    "SELECT Code, Name, Continent, Region, Population, Capital "
-                            + "FROM country "
-                            + "WHERE Continent = '" + continent + "' "
-                            + "ORDER BY Population DESC";
-        return query;
+        return "SELECT Code, Name, Continent, Region, Population, Capital "
+                + "FROM country "
+                + "WHERE Continent = '" + continent + "' "
+                + "ORDER BY Population DESC";
     }
 
+    /**
+     * top N populated countries in a continent
+     * @param number the number of countries
+     * @param continent the continent
+     */
+    public String topPopulatedCountriesInContinent(int number, String continent)
+    {
+        return "SELECT Code, Name, Continent, Region, Population, Capital "
+                + "FROM country "
+                + "WHERE Continent = '" + continent + "' "
+                + "ORDER BY Population DESC"
+                + " LIMIT " + number;
+    }
+
+    /**
+     * sort countries in a continent by largest population to smallest
+     * @param region The region for the countries to print.
+     */
     public String allCountriesInRegion(String region)
     {
-        String query =
-                "SELECT Code, Name, Continent, Region, Population, Capital "
-                        + "FROM country "
-                        + "WHERE Continent = '" + region + "' "
-                        + "ORDER BY Population DESC";
-        return query;
+        return "SELECT Code, Name, Continent, Region, Population, Capital "
+                + "FROM country "
+                + "WHERE Continent = '" + region + "' "
+                + "ORDER BY Population DESC";
     }
 
+    /**
+     * top N populated countries in a region
+     * @param number the number of countries
+     * @param region the region
+     */
+    public String topPopulatedCountriesInRegion(int number, String region)
+    {
+        return "SELECT Code, Name, Continent, Region, Population, Capital "
+                + "FROM country "
+                + "WHERE Continent = '" + region + "' "
+                + "ORDER BY Population DESC"
+                + " LIMIT " + number;
+    }
+
+    /**
+     * get the countries information as an arraylist
+     * @param query the SQL query to execute
+     */
     public ArrayList<Country> getAllCountries(String query)
     {
         try
         {
             // Create an SQL statement
             Statement stmt = con.createStatement();
-            // Create string for SQL statement
-            String strSelect = query;
             // Execute SQL statement
-            ResultSet rset = stmt.executeQuery(strSelect);
+            ResultSet rset = stmt.executeQuery(query);
 
             // Extract country information
             ArrayList<Country> countries = new ArrayList<>();
+
+            // use number format to format integers
+            NumberFormat nf = NumberFormat.getNumberInstance();
 
             while (rset.next())
             {
@@ -135,8 +172,12 @@ public class App
                 cty.Name = rset.getString("Name");
                 cty.Continent = rset.getString("Continent");
                 cty.Region = rset.getString("Region");
-                cty.Population = rset.getInt("Population");
-                cty.Capital = rset.getInt("Capital");
+                // retrieve it as an integer
+                int intPopulation = rset.getInt("Population");
+                // format with number format
+                cty.Population = nf.format(intPopulation);
+                int intCapital = rset.getInt("Capital");
+                cty.Capital = nf.format(intCapital);
                 countries.add(cty);
             }
             return countries;
@@ -180,25 +221,43 @@ public class App
         // division line between prints
         String line = "=".repeat(130);
 
-        // Extract country information
+        // title underline
+        String titleLine = "-".repeat(70);
+
         ArrayList<Country> countriesInWorld = a.getAllCountries(a.allCountriesInWorld());
         System.out.println("All countries in the world by largest population to smallest");
+        System.out.println(titleLine);
         a.printCountries(countriesInWorld);
         System.out.println(line);
 
         ArrayList<Country> countriesInContinent = a.getAllCountries(a.allCountriesInContinent("Asia"));
         System.out.println("All countries in the continent by largest population to smallest");
+        System.out.println(titleLine);
         a.printCountries(countriesInContinent);
         System.out.println(line);
 
-        ArrayList<Country> countriesInRegion = a.getAllCountries(a.allCountriesInRegion("Caribbean"));
+        ArrayList<Country> countriesInRegion = a.getAllCountries(a.allCountriesInRegion("North America"));
         System.out.println("All countries in the region by largest population to smallest");
+        System.out.println(titleLine);
         a.printCountries(countriesInRegion);
         System.out.println(line);
 
         ArrayList<Country> populatedCountriesInWorld = a.getAllCountries(a.topPopulatedCountriesInWorld(5));
         System.out.println("Top N populated countries in the world");
+        System.out.println(titleLine);
         a.printCountries(populatedCountriesInWorld);
+        System.out.println(line);
+
+        ArrayList<Country> populatedCountriesInContinent = a.getAllCountries(a.topPopulatedCountriesInContinent(5, "Europe"));
+        System.out.println("Top N populated countries in the continent");
+        System.out.println(titleLine);
+        a.printCountries(populatedCountriesInContinent);
+        System.out.println(line);
+
+        ArrayList<Country> populatedCountriesInRegion = a.getAllCountries(a.topPopulatedCountriesInRegion(5,"South America"));
+        System.out.println("Top N populated countries in the region");
+        System.out.println(titleLine);
+        a.printCountries(populatedCountriesInRegion);
         System.out.println(line);
 
 

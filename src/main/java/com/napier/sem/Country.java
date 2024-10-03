@@ -18,9 +18,9 @@ public class Country {
     public String Region;
 
     // country population
-    public int Population;
+    public String Population;
 
     // country capital
-    public int Capital;
+    public String Capital;
 
 }
