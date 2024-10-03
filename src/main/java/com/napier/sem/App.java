@@ -40,10 +40,10 @@ public class App
                 con = DriverManager.getConnection("jdbc:mysql://db:3306/world?allowPublicKeyRetrieval=true&useSSL=false", "root", "example");                System.out.println("Successfully connected");
                 break;
             }
-            catch (SQLException sqle)
+            catch (SQLException e)
             {
                 System.out.println("Failed to connect to database attempt " + i);
-                System.out.println(sqle.getMessage());
+                System.out.println(e.getMessage());
             }
             catch (InterruptedException ie)
             {
@@ -76,9 +76,9 @@ public class App
      */
     public String allCountriesInWorld()
     {
-        return "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name as Capital "
+        return "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name as capital "
                             + "FROM country, city "
-                            + "WHERE country.Capital = city.ID "
+                            + "WHERE country.capital = city.ID "
                             + "ORDER BY Population DESC";
     }
 
@@ -88,9 +88,9 @@ public class App
      */
     public String topPopulatedCountriesInWorld(int number)
     {
-        return "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name as Capital "
+        return "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name as capital "
                 + "FROM country, city "
-                + "WHERE country.Capital = city.ID "
+                + "WHERE country.capital = city.ID "
                 + "ORDER BY Population DESC"
                 + " LIMIT " + number;
     }
@@ -101,9 +101,9 @@ public class App
      */
     public String allCountriesInContinent(String continent)
     {
-        return "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name as Capital "
+        return "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name as capital "
                 + "FROM country, city "
-                + "WHERE country.Capital = city.ID AND country.Continent = '" + continent + "' "
+                + "WHERE country.capital = city.ID AND country.Continent = '" + continent + "' "
                 + "ORDER BY Population DESC";
     }
 
@@ -114,9 +114,9 @@ public class App
      */
     public String topPopulatedCountriesInContinent(int number, String continent)
     {
-        return "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name as Capital "
+        return "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name as capital "
                 + "FROM country, city "
-                + "WHERE country.Capital = city.ID AND country.Continent = '" + continent + "' "
+                + "WHERE country.capital = city.ID AND country.Continent = '" + continent + "' "
                 + "ORDER BY Population DESC"
                 + " LIMIT " + number;
     }
@@ -127,9 +127,9 @@ public class App
      */
     public String allCountriesInRegion(String region)
     {
-        return "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name as Capital "
+        return "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name as capital "
                 + "FROM country, city "
-                + "WHERE country.Capital = city.ID AND country.Region = '" + region + "' "
+                + "WHERE country.capital = city.ID AND country.Region = '" + region + "' "
                 + "ORDER BY Population DESC";
     }
 
@@ -140,9 +140,9 @@ public class App
      */
     public String topPopulatedCountriesInRegion(int number, String region)
     {
-        return "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name as Capital "
+        return "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name as capital "
                 + "FROM country, city "
-                + "WHERE country.Capital = city.ID AND country.Region = '" + region + "' "
+                + "WHERE country.capital = city.ID AND country.Region = '" + region + "' "
                 + "ORDER BY Population DESC"
                 + " LIMIT " + number;
     }
@@ -158,7 +158,7 @@ public class App
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Execute SQL statement
-            ResultSet rset = stmt.executeQuery(query);
+            ResultSet res = stmt.executeQuery(query);
 
             // Extract country information
             ArrayList<Country> countries = new ArrayList<>();
@@ -166,19 +166,19 @@ public class App
             // use number format to format integers
             NumberFormat nf = NumberFormat.getNumberInstance();
 
-            while (rset.next())
+            while (res.next())
             {
                 // creating a country object
                 Country cty = new Country();
-                cty.Code = rset.getString("Code");
-                cty.Name = rset.getString("Name");
-                cty.Continent = rset.getString("Continent");
-                cty.Region = rset.getString("Region");
+                cty.code = res.getString("Code");
+                cty.name = res.getString("Name");
+                cty.continent = res.getString("Continent");
+                cty.region = res.getString("Region");
                 // retrieve it as an integer
-                int intPopulation = rset.getInt("Population");
+                int intPopulation = res.getInt("Population");
                 // format with number format
-                cty.Population = nf.format(intPopulation);
-                cty.Capital = rset.getString("Capital");
+                cty.population = nf.format(intPopulation);
+                cty.capital = res.getString("capital");
                 countries.add(cty);
             }
             return countries;
@@ -199,15 +199,21 @@ public class App
     {
         // Print header for country information
         System.out.println(String.format("%-5s %-50s %-20s %-30s %-15s %-5s",
-                                    "Code", "Name", "Continent", "Region", "Population", "Capital"));
-
-        // Loop over all countries in the list
-        for (Country cty : countries)
+                                    "Code", "Name", "Continent", "Region", "Population", "capital"));
+        try
         {
-            String cty_string =
-                    String.format("%-5s %-50s %-20s %-30s %-15s %-5s",
-                            cty.Code, cty.Name, cty.Continent, cty.Region, cty.Population, cty.Capital);
-            System.out.println(cty_string);
+            // Loop over all countries in the list
+            for (Country cty : countries) {
+                String cty_string =
+                        String.format("%-5s %-50s %-20s %-30s %-15s %-5s",
+                                cty.code, cty.name, cty.continent, cty.region, cty.population, cty.capital);
+                System.out.println(cty_string);
+            }
+        }
+        catch (NullPointerException ne)
+        {
+            System.out.println(ne.getMessage());
+            System.out.println("The country list is empty. Something wrong!");
         }
     }
 
