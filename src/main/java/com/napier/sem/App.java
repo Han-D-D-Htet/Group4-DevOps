@@ -76,8 +76,9 @@ public class App
      */
     public String allCountriesInWorld()
     {
-        return "SELECT Code, Name, Continent, Region, Population, Capital "
-                            + "FROM country "
+        return "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name as Capital "
+                            + "FROM country, city "
+                            + "WHERE country.Capital = city.ID "
                             + "ORDER BY Population DESC";
     }
 
@@ -87,8 +88,9 @@ public class App
      */
     public String topPopulatedCountriesInWorld(int number)
     {
-        return "SELECT Code, Name, Continent, Region, Population, Capital "
-                + "FROM country "
+        return "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name as Capital "
+                + "FROM country, city "
+                + "WHERE country.Capital = city.ID "
                 + "ORDER BY Population DESC"
                 + " LIMIT " + number;
     }
@@ -99,9 +101,9 @@ public class App
      */
     public String allCountriesInContinent(String continent)
     {
-        return "SELECT Code, Name, Continent, Region, Population, Capital "
-                + "FROM country "
-                + "WHERE Continent = '" + continent + "' "
+        return "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name as Capital "
+                + "FROM country, city "
+                + "WHERE country.Capital = city.ID AND country.Continent = '" + continent + "' "
                 + "ORDER BY Population DESC";
     }
 
@@ -112,22 +114,22 @@ public class App
      */
     public String topPopulatedCountriesInContinent(int number, String continent)
     {
-        return "SELECT Code, Name, Continent, Region, Population, Capital "
-                + "FROM country "
-                + "WHERE Continent = '" + continent + "' "
+        return "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name as Capital "
+                + "FROM country, city "
+                + "WHERE country.Capital = city.ID AND country.Continent = '" + continent + "' "
                 + "ORDER BY Population DESC"
                 + " LIMIT " + number;
     }
 
     /**
-     * sort countries in a continent by largest population to smallest
+     * sort countries in a region by largest population to smallest
      * @param region The region for the countries to print.
      */
     public String allCountriesInRegion(String region)
     {
-        return "SELECT Code, Name, Continent, Region, Population, Capital "
-                + "FROM country "
-                + "WHERE Continent = '" + region + "' "
+        return "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name as Capital "
+                + "FROM country, city "
+                + "WHERE country.Capital = city.ID AND country.Region = '" + region + "' "
                 + "ORDER BY Population DESC";
     }
 
@@ -138,9 +140,9 @@ public class App
      */
     public String topPopulatedCountriesInRegion(int number, String region)
     {
-        return "SELECT Code, Name, Continent, Region, Population, Capital "
-                + "FROM country "
-                + "WHERE Continent = '" + region + "' "
+        return "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name as Capital "
+                + "FROM country, city "
+                + "WHERE country.Capital = city.ID AND country.Region = '" + region + "' "
                 + "ORDER BY Population DESC"
                 + " LIMIT " + number;
     }
@@ -176,8 +178,7 @@ public class App
                 int intPopulation = rset.getInt("Population");
                 // format with number format
                 cty.Population = nf.format(intPopulation);
-                int intCapital = rset.getInt("Capital");
-                cty.Capital = nf.format(intCapital);
+                cty.Capital = rset.getString("Capital");
                 countries.add(cty);
             }
             return countries;
@@ -236,7 +237,7 @@ public class App
         a.printCountries(countriesInContinent);
         System.out.println(line);
 
-        ArrayList<Country> countriesInRegion = a.getAllCountries(a.allCountriesInRegion("North America"));
+        ArrayList<Country> countriesInRegion = a.getAllCountries(a.allCountriesInRegion("Southeast Asia"));
         System.out.println("All countries in the region by largest population to smallest");
         System.out.println(titleLine);
         a.printCountries(countriesInRegion);
@@ -254,12 +255,11 @@ public class App
         a.printCountries(populatedCountriesInContinent);
         System.out.println(line);
 
-        ArrayList<Country> populatedCountriesInRegion = a.getAllCountries(a.topPopulatedCountriesInRegion(5,"South America"));
+        ArrayList<Country> populatedCountriesInRegion = a.getAllCountries(a.topPopulatedCountriesInRegion(5,"Caribbean"));
         System.out.println("Top N populated countries in the region");
         System.out.println(titleLine);
         a.printCountries(populatedCountriesInRegion);
         System.out.println(line);
-
 
         // Disconnect from database
         a.disconnect();
