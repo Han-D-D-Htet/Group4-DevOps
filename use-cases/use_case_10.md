@@ -4,7 +4,7 @@
 
 ### Goal in Context
 
-As a *Data Scientist* I want *to produce a report on all the cities in a country organised by largest population to smallest* so that *I can easily access the population information.*
+As a *Data Scientist* I want *to produce a report on all the cities in a country organised by largest population to smallest* so that *I can easily access cities information in a country.*
 
 ### Scope
 
@@ -20,7 +20,7 @@ Database includes population information of the world.
 
 ### Success End Condition
 
-A report which shows the population of all the cities in a country organised by largest population to smallest will be produced.
+A report of all the cities in a country organised by largest population to smallest will be produced.
 
 ### Failed End Condition
 
@@ -36,8 +36,8 @@ Request population information of the world from the organization.
 
 ## MAIN SUCCESS SCENARIO
 
-1. Data Scientist requests population information of the world to the organization.
-2. Data Scientist arranges largest to smallest population by all the cities in a country.
+1. Data Scientist accesses population information of the world.
+2. Data Scientist arranges all the cities in a country from largest to smallest population.
 3. Data Scientist produces report for the information.
 
 ## EXTENSIONS
@@ -50,4 +50,4 @@ None
 
 ## SCHEDULE
 
-**DUE DATE**: Release 1.0
+**DUE DATE**: 4th October 2024
