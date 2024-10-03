@@ -19,7 +19,7 @@ Database includes population information of the world.
 
 ### Success End Condition
 
-A report which shows the population of a country.
+A report for the population of a country will be produced.
 
 ### Failed End Condition
 
@@ -35,7 +35,7 @@ Request population information of the world from the organisation.
 
 ## MAIN SUCCESS SCENARIO
 
-1. Data Scientist requests population information of the world to organisation.
+1. Data Scientist accesses population information of the world to organisation.
 2. Data Scientist extracts population information of a country.
 3. Data Scientist produces report for that information.
 

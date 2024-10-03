@@ -3,7 +3,7 @@
 
 ### Goal in Context
 
-As a *Data Scientist* I want *to produce a report on the top N populated capital cities in a region where N is provided by the user* so that *I can easily access the population information.*
+As a *Data Scientist* I want *to produce a report on the top N populated capital cities in a region where N is provided by the user* so that *I can easily access the top N populated countries information in a region.*
 
 ### Scope
 
@@ -19,7 +19,7 @@ Database includes population information of the world.
 
 ### Success End Condition
 
-A report which shows the population of the top N populated capital cities in a region where N is provided by the user.
+A report of the top N populated capital cities in a region where N is provided by the user will be produced.
 
 ### Failed End Condition
 
@@ -35,8 +35,8 @@ Request population information of the world from the organisation.
 
 ## MAIN SUCCESS SCENARIO
 
-1. Data Scientist requests population information of the world to organisation.
-2. Data Scientist extracts population information of the top N populated capital cities in a region where N is provided by the user.
+1. Data Scientist accesses population information of the world to organisation.
+2. Data Scientist extracts the top N populated capital cities in a region where N is provided by the user.
 3. Data Scientist produces report for that information.
 
 ## EXTENSIONS

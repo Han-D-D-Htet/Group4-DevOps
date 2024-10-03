@@ -3,7 +3,7 @@
 
 ### Goal in Context
 
-As a *Data Scientist* I want *to produce a report on the number of people who speak Chinese, English, Hindi, Spanish, Arabic languages from greatest number to smallest, including the percentage of the world population* so that *I can easily access the population information.*
+As a *Data Scientist* I want *to produce a report on the number of people who speak Chinese, English, Hindi, Spanish, Arabic languages from greatest number to smallest, including the percentage of the world population* so that *I can easily access those information.*
 
 ### Scope
 
@@ -19,8 +19,8 @@ Database includes population information of the world.
 
 ### Success End Condition
 
-A report which shows the number of people who speak Chinese, English, Hindi, Spanish, Arabic languages 
-from greatest number to smallest, including the percentage of the world population.
+A report for the number of people who speak Chinese, English, Hindi, Spanish, Arabic languages 
+from greatest number to smallest, including the percentage of the world population will be produced.
 
 ### Failed End Condition
 
@@ -36,7 +36,7 @@ Request population information of the world from the organisation.
 
 ## MAIN SUCCESS SCENARIO
 
-1. Data Scientist requests population information of the world to organisation.
+1. Data Scientist accesses population information of the world to organisation.
 2. Data Scientist extracts the number of people who speak Chinese, English, Hindi, Spanish, Arabic languages 
 from greatest number to smallest, including the percentage of the world population.
 3. Data Scientist produces report for that information.
