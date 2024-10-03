@@ -1,0 +1,15 @@
+@startuml
+left to right direction
+actor "Data Scientist" as DS
+
+rectangle "World Population Report System" {
+    usecase "Produce a report on all the capital cities in the world \n organised by largest population to smallest" as UC17
+    usecase "Produce a report on all the capital cities in a continent \n organised by largest population to smallest" as UC18
+    usecase "Produce a report on all the capital cities in a region \n organised by largest population to smallest" as UC19
+}
+
+DS --> UC17
+DS --> UC18
+DS --> UC19
+
+@enduml

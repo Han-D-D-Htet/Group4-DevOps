@@ -1,0 +1,11 @@
+@startuml
+left to right direction
+actor "Data Scientist" as DS
+
+rectangle {
+    (Produce a report on the number of people who speak \nChinese, English, Hindi, Spanish, Arabic languages \nfrom greatest number to smallest, including the percentage \nof the world population) as UC32
+}
+
+DS --> UC32
+
+@enduml

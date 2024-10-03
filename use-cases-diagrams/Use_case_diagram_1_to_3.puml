@@ -1,0 +1,16 @@
+@startuml
+left to right direction
+
+actor "Data Scientist" as DS
+
+rectangle  {
+    usecase "Produce a report on all the countries in the\n world organised by largest population to smallest" as UC1
+    usecase "Produce a report on all the countries in a\n continent  organised by largest population to smallest" as UC2
+    usecase "Produce a report on all the countries in a\n region organised by largest population to smallest" as UC3
+}
+
+DS --> UC1
+DS --> UC2
+DS --> UC3
+
+@enduml
