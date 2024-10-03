@@ -98,7 +98,7 @@ public class App
         String query =
                     "SELECT Code, Name, Continent, Region, Population, Capital "
                             + "FROM country "
-                            + "WHERE Continent = " + continent + " "
+                            + "WHERE Continent = '" + continent + "' "
                             + "ORDER BY Population DESC";
         return query;
     }
@@ -108,7 +108,8 @@ public class App
         String query =
                 "SELECT Code, Name, Continent, Region, Population, Capital "
                         + "FROM country "
-                        + "WHERE Continent = " + region;
+                        + "WHERE Continent = '" + region + "' "
+                        + "ORDER BY Population DESC";
         return query;
     }
 
@@ -177,7 +178,7 @@ public class App
         a.connect();
 
         // division line between prints
-        String line = "=".repeat(125);
+        String line = "=".repeat(130);
 
         // Extract country information
         ArrayList<Country> countriesInWorld = a.getAllCountries(a.allCountriesInWorld());
@@ -185,13 +186,15 @@ public class App
         a.printCountries(countriesInWorld);
         System.out.println(line);
 
-//        ArrayList<Country> countriesInContinent = a.getAllCountries(a.allCountriesInContinent("Asia"));
-//        a.printCountries(countriesInContinent);
-//        System.out.println(line);
+        ArrayList<Country> countriesInContinent = a.getAllCountries(a.allCountriesInContinent("Asia"));
+        System.out.println("All countries in the continent by largest population to smallest");
+        a.printCountries(countriesInContinent);
+        System.out.println(line);
 
-//        ArrayList<Country> countriesInRegion = a.getAllCountries(a.allCountriesInRegion("Southeast Asia"));
-//        a.printCountries(countriesInRegion);
-//        System.out.println(line);
+        ArrayList<Country> countriesInRegion = a.getAllCountries(a.allCountriesInRegion("Caribbean"));
+        System.out.println("All countries in the region by largest population to smallest");
+        a.printCountries(countriesInRegion);
+        System.out.println(line);
 
         ArrayList<Country> populatedCountriesInWorld = a.getAllCountries(a.topPopulatedCountriesInWorld(5));
         System.out.println("Top N populated countries in the world");
