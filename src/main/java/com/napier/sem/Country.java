@@ -6,21 +6,21 @@ package com.napier.sem;
 public class Country {
 
     // country code
-    public String Code;
+    public String code;
 
     // country name
-    public String Name;
+    public String name;
 
     // country continent
-    public String Continent;
+    public String continent;
 
     // country region
-    public String Region;
+    public String region;
 
     // country population
-    public String Population;
+    public String population;
 
     // country capital
-    public String Capital;
+    public String capital;
 
 }
