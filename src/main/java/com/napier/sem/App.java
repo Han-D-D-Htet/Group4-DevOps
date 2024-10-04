@@ -256,7 +256,7 @@ public class App
 
     /**
      * sort cities in a country by largest population to smallest
-     * @param country The region to print.
+     * @param country The country to print.
      */
     public String allCitiesInCountry(String country)
     {
@@ -268,7 +268,7 @@ public class App
 
     /**
      * sort cities in a district by largest population to smallest
-     * @param district The continent to print.
+     * @param district The district to print.
      */
     public String allCitiesInDistrict(String district)
     {
