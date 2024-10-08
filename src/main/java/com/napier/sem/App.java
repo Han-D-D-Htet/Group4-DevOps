@@ -144,147 +144,6 @@ public class App
                 + "LIMIT " + number;
     }
 
-    /**
-     * sort capital cities in world by largest Population to smallest
-     */
-    public String allCapitalCitiesInWorld()
-    {
-        return "SELECT city.Name, country.Name as Country, city.Population "
-                + "FROM country, city "
-                + "WHERE country.Capital = city.ID "
-                + "ORDER BY Population DESC";
-    }
-
-    /**
-     * top N populated capital cities in the world
-     * @param number The number of capital cities to print.
-     */
-    public String topPopulatedCapitalCitiesInWorld(int number)
-    {
-        return "SELECT city.Name, country.Name as Country, city.Population "
-                + "FROM country, city "
-                + "WHERE country.Capital = city.ID "
-                + "ORDER BY Population DESC"
-                + " LIMIT " + number;
-    }
-
-    /**
-     * sort capital cities in continent by largest Population to smallest
-     */
-    public String allCapitalCitiesInContinent(String continent)
-    {
-        return "SELECT city.Name, country.Name as Country, city.Population "
-                + "FROM country, city "
-                + "WHERE country.capital = city.ID AND country.Continent = '" + continent + "' "
-                + "ORDER BY Population DESC";
-    }
-
-    /**
-     * top N populated capital cities in the continent
-     * @param number The number of capital cities to print.
-     */
-    public String topPopulatedCapitalCitiesInContinent(int number, String continent)
-    {
-        return "SELECT city.Name, country.Name as Country, city.Population "
-                + "FROM country, city "
-                + "WHERE country.capital = city.ID AND country.Continent = '" + continent + "' "
-                + "ORDER BY Population DESC "
-                + " LIMIT " + number;
-    }
-
-    /**
-     * sort capital cities in region by largest Population to smallest
-     */
-    public String allCapitalCitiesInRegion(String region)
-    {
-        return "SELECT city.Name, country.Name as Country, city.Population "
-                + "FROM country, city "
-                + "WHERE country.capital = city.ID AND country.Region = '" + region + "' "
-                + "ORDER BY Population DESC";
-    }
-
-    /**
-     * top N populated capital cities in the region
-     * @param number The number of capital cities to print.
-     */
-    public String topPopulatedCapitalCitiesInRegion(int number, String region)
-    {
-        return "SELECT city.Name, country.Name as Country, city.Population "
-                + "FROM country, city "
-                + "WHERE country.capital = city.ID AND country.Region = '" + region + "' "
-                + "ORDER BY Population DESC"
-                + " LIMIT " + number;
-    }
-
-    /**
-     * get the capital cities information as an arraylist
-     * @param query the SQL query to execute
-     */
-    public ArrayList<Capital> getAllCapitalCities(String query)
-    {
-        try
-        {
-            // Create an SQL statement
-            Statement stmt = con.createStatement();
-            // Execute SQL statement
-            ResultSet res = stmt.executeQuery(query);
-
-            // Extract capital city information
-            ArrayList<Capital> capitalCities = new ArrayList<>();
-
-            // use number format to format integers
-            NumberFormat nf = NumberFormat.getNumberInstance();
-
-            while (res.next())
-            {
-                // creating a capital city object
-                Capital cc = new Capital();
-                cc.capitalName = res.getString("Name");
-                cc.country = res.getString("Country");
-                // retrieve it as an integer
-                int intPopulation = res.getInt("Population");
-                // format with number format
-                cc.capitalPopulation = nf.format(intPopulation);
-                capitalCities.add(cc);
-            }
-            return capitalCities;
-        }
-        catch (Exception e)
-        {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get capital city details");
-            return null;
-        }
-    }
-
-    /**
-     * Prints a list of capital cities.
-     * @param capitalCities The list of capital cities to print.
-     */
-    public void printCapitalCities(ArrayList<Capital> capitalCities)
-    {
-        // Print header for capital cities information
-        System.out.println(String.format("%-40s %-50s %-20s",
-                "Capital Name", "Country", "Population"));
-        System.out.println(String.format("%-40s %-50s %-20s",
-                "------------", "-------", "----------"));
-        try
-        {
-            // Loop over all countries in the list
-            for (Capital cc : capitalCities) {
-                String cc_string =
-                        String.format("%-40s %-50s %-20s",
-                                cc.capitalName, cc.country, cc.capitalPopulation);
-                System.out.println(cc_string);
-            }
-        }
-        catch (NullPointerException ne)
-        {
-            System.out.println(ne.getMessage());
-            System.out.println("The capital cities list is empty. Something wrong!");
-        }
-    }
-
     public static void main(String[] args)
     {
         // Create new Application
@@ -359,6 +218,38 @@ public class App
         System.out.println("<<< All cities in the " + inputDistrict + " by largest population to smallest >>>");
         cid.printCities(citiesInDistrict);
         System.out.println(line);
+
+        CapitalData cpd = new CapitalData(a.con);
+        ArrayList<Capital> capitalCitiesInWorld = cpd.getAllCapitalCities(cpd.allCapitalCitiesInWorld());
+        System.out.println("<<< All capital cities in the world by largest Population to smallest >>>");
+        cpd.printCapitalCities(capitalCitiesInWorld);
+        System.out.println(line);
+
+        ArrayList<Capital> capitalCitiesInContinent = cpd.getAllCapitalCities(cpd.allCapitalCitiesInContinent(inputContinent));
+        System.out.println("<<< All capital cities in the " + inputContinent + " continent by largest Population to smallest >>>");
+        cpd.printCapitalCities(capitalCitiesInContinent);
+        System.out.println(line);
+
+        ArrayList<Capital> capitalCitiesInRegion = cpd.getAllCapitalCities(cpd.allCapitalCitiesInRegion(inputRegion));
+        System.out.println("<<< All capital cities in the " + inputRegion + " region by largest Population to smallest >>>");
+        cpd.printCapitalCities(capitalCitiesInRegion);
+        System.out.println(line);
+
+        ArrayList<Capital> populatedCapitalCitiesInWorld = cpd.getAllCapitalCities(cpd.topPopulatedCapitalCitiesInWorld(count));
+        System.out.println("<<< Top " + count + " populated capital cities in the world >>>");
+        cpd.printCapitalCities(populatedCapitalCitiesInWorld);
+        System.out.println(line);
+
+        ArrayList<Capital> populatedCapitalCitiesInContinent = cpd.getAllCapitalCities(cpd.topPopulatedCapitalCitiesInContinent(count, inputContinent));
+        System.out.println("<<< Top " + count + " populated capital cities in the " + inputContinent + " continent >>>");
+        cpd.printCapitalCities(populatedCapitalCitiesInContinent);
+        System.out.println(line);
+
+        ArrayList<Capital> populatedCapitalCitiesInRegion = cpd.getAllCapitalCities(cpd.topPopulatedCapitalCitiesInRegion(count, inputRegion));
+        System.out.println("<<< Top " + count + " populated capital cities in the " + inputRegion + " region >>>");
+        cpd.printCapitalCities(populatedCapitalCitiesInRegion);
+        System.out.println(line);
+
 //
 //        // top N populated cities in the world
 //        ArrayList<City> topCitiesInWorld = a.getAllCities(a.topPopulatedCitiesInWorld(count)); // Change the number as needed
@@ -388,36 +279,6 @@ public class App
 //        ArrayList<City> topCitiesInDistrict = a.getAllCities(a.topPopulatedCitiesInDistrict(count, inputDistrict)); // Change the number as needed
 //        System.out.println("<<< Top " + count + " populated cities in the " + inputDistrict + " district >>>");
 //        a.printCities(topCitiesInDistrict);
-//        System.out.println(line);
-//
-//        ArrayList<Capital> capitalCitiesInWorld = a.getAllCapitalCities(a.allCapitalCitiesInWorld());
-//        System.out.println("<<< All capital cities in the world by largest Population to smallest >>>");
-//        a.printCapitalCities(capitalCitiesInWorld);
-//        System.out.println(line);
-//
-//        ArrayList<Capital> capitalCitiesInContinent = a.getAllCapitalCities(a.allCapitalCitiesInContinent(inputContinent));
-//        System.out.println("<<< All capital cities in the " + inputContinent + " continent by largest Population to smallest >>>");
-//        a.printCapitalCities(capitalCitiesInContinent);
-//        System.out.println(line);
-//
-//        ArrayList<Capital> capitalCitiesInRegion = a.getAllCapitalCities(a.allCapitalCitiesInRegion(inputRegion));
-//        System.out.println("<<< All capital cities in the " + inputRegion + " region by largest Population to smallest >>>");
-//        a.printCapitalCities(capitalCitiesInRegion);
-//        System.out.println(line);
-//
-//        ArrayList<Capital> populatedCapitalCitiesInWorld = a.getAllCapitalCities(a.topPopulatedCapitalCitiesInWorld(count));
-//        System.out.println("<<< Top " + count + " populated capital cities in the world >>>");
-//        a.printCapitalCities(populatedCapitalCitiesInWorld);
-//        System.out.println(line);
-//
-//        ArrayList<Capital> populatedCapitalCitiesInContinent = a.getAllCapitalCities(a.topPopulatedCapitalCitiesInContinent(count, inputContinent));
-//        System.out.println("<<< Top " + count + " populated capital cities in the " + inputContinent + " continent >>>");
-//        a.printCapitalCities(populatedCapitalCitiesInContinent);
-//        System.out.println(line);
-//
-//        ArrayList<Capital> populatedCapitalCitiesInRegion = a.getAllCapitalCities(a.topPopulatedCapitalCitiesInRegion(count, inputRegion));
-//        System.out.println("<<< Top " + count + " populated capital cities in the " + inputRegion + " region >>>");
-//        a.printCapitalCities(populatedCapitalCitiesInRegion);
 //        System.out.println(line);
 
         // Disconnect from database
