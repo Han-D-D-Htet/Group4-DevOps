@@ -70,66 +70,7 @@ public class App
             }
         }
     }
-
-
-    /**
-     * sort cities in world by largest population to smallest
-     */
-    public String allCitiesInWorld() {
-        return "SELECT city.Name, country.Name as Country, city.District, city.Population "
-                + "FROM city, country "
-                + "WHERE city.CountryCode = country.Code "
-                + "ORDER BY Population DESC";
-    }
-
-    /**
-     * sort cities in a continent by largest population to smallest
-     * @param continent The continent to print.
-     */
-    public String allCitiesInContinent(String continent)
-    {
-        return "SELECT city.Name, country.Name as Country, city.District, city.Population "
-                + "FROM city, country "
-                + "WHERE city.CountryCode = country.Code AND country.Continent = '" + continent + "' "
-                + "ORDER BY Population DESC";
-    }
-
-    /**
-     * sort cities in a region by largest population to smallest
-     * @param region The region to print.
-     */
-    public String allCitiesInRegion(String region)
-    {
-        return "SELECT city.Name, country.Name as Country, city.District, city.Population "
-                + "FROM city, country "
-                + "WHERE city.CountryCode = country.Code AND country.Region = '" + region + "' "
-                + "ORDER BY Population DESC";
-    }
-
-    /**
-     * sort cities in a country by largest population to smallest
-     * @param country The country to print.
-     */
-    public String allCitiesInCountry(String country)
-    {
-        return "SELECT city.Name, country.Name as Country, city.District, city.Population "
-                + "FROM city, country "
-                + "WHERE city.CountryCode = country.Code AND country.Name = '" + country + "' "
-                + "ORDER BY Population DESC";
-    }
-
-    /**
-     * sort cities in a district by largest population to smallest
-     * @param district The district to print.
-     */
-    public String allCitiesInDistrict(String district)
-    {
-        return "SELECT city.Name, country.Name as Country, city.District, city.Population "
-                + "FROM city,country "
-                + "WHERE city.CountryCode = country.Code AND city.District = '" + district + "' "
-                + "ORDER BY Population DESC";
-    }
-
+    
     /**
      * Retrieves the top N populated cities in the world.
      * @param number The number of cities to retrieve.
@@ -201,76 +142,6 @@ public class App
                 + "WHERE city.District = '" + district + "' "
                 + "ORDER BY city.Population DESC "
                 + "LIMIT " + number;
-    }
-
-    /**
-     * get the cities information as an arraylist
-     * @param query the SQL query to execute
-     */
-    public ArrayList<City> getAllCities(String query)
-    {
-        try
-        {
-            // Create an SQL statement
-            Statement stmt = con.createStatement();
-            // Execute SQL statement
-            ResultSet res = stmt.executeQuery(query);
-
-            // Extract cities information
-            ArrayList<City> cities = new ArrayList<>();
-
-            // use number format to format integers
-            NumberFormat nf = NumberFormat.getNumberInstance();
-
-            while (res.next())
-            {
-                // creating a city object
-                City city = new City();
-                city.cityName = res.getString("Name");
-                city.country = res.getString("Country");
-                city.district = res.getString("District");
-                // retrieve it as an integer
-                int intPopulation = res.getInt("Population");
-                // format with number format
-                city.cityPopulation = nf.format(intPopulation);
-                cities.add(city);
-            }
-            return cities;
-        }
-        catch (Exception e)
-        {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get country details");
-            return null;
-        }
-    }
-
-    /**
-     * Prints a list of cities.
-     * @param cities The list of cities to print.
-     */
-    public void printCities(ArrayList<City> cities)
-    {
-        // Print header for cities information
-        System.out.println(String.format("%-45s %-40s %-30s %-10s",
-                "Name", "Country", "District", "Population"));
-        System.out.println(String.format("%-45s %-40s %-30s %-10s",
-                "----", "-------", "--------", "----------"));
-
-        try
-        {
-            // Loop over all cities in the list
-            for (City city : cities) {
-                String city_string = String.format("%-45s %-40s %-30s %-10s",
-                        city.cityName, city.country, city.district, city.cityPopulation);
-                System.out.println(city_string);
-            }
-        }
-        catch (NullPointerException ne)
-        {
-            System.out.println(ne.getMessage());
-            System.out.println("The city list is empty. Something wrong!");
-        }
     }
 
     /**
@@ -463,30 +334,31 @@ public class App
         cd.printCountries(populatedCountriesInRegion);
         System.out.println(line);
 
-//        ArrayList<City> citiesInWorld = a.getAllCities(a.allCitiesInWorld());
-//        System.out.println("<<< All cities in the world by largest population to smallest >>>");
-//        a.printCities(citiesInWorld);
-//        System.out.println(line);
-//
-//        ArrayList<City> citiesInContinent = a.getAllCities(a.allCitiesInContinent(inputContinent));
-//        System.out.println("<<< All cities in the " + inputContinent + " continent by largest population to smallest >>>");
-//        a.printCities(citiesInContinent);
-//        System.out.println(line);
-//
-//        ArrayList<City> citiesInRegion = a.getAllCities(a.allCitiesInRegion(inputRegion));
-//        System.out.println("<<< All cities in the " + inputRegion + " region by largest population to smallest >>>");
-//        a.printCities(citiesInRegion);
-//        System.out.println(line);
+        CityData cid = new CityData(a.con);
+        ArrayList<City> citiesInWorld = cid.getAllCities(cid.allCitiesInWorld());
+        System.out.println("<<< All cities in the world by largest population to smallest >>>");
+        cid.printCities(citiesInWorld);
+        System.out.println(line);
 
-//        ArrayList<City> citiesInCountry = a.getAllCities(a.allCitiesInCountry(inputCountry));
-//        System.out.println("<<< All cities in the " + inputCountry + " country by largest population to smallest >>>");
-//        a.printCities(citiesInCountry);
-//        System.out.println(line);
-//
-//        ArrayList<City> citiesInDistrict = a.getAllCities(a.allCitiesInDistrict(inputDistrict));
-//        System.out.println("<<< All cities in the " + inputDistrict + " by largest population to smallest >>>");
-//        a.printCities(citiesInDistrict);
-//        System.out.println(line);
+        ArrayList<City> citiesInContinent = cid.getAllCities(cid.allCitiesInContinent(inputContinent));
+        System.out.println("<<< All cities in the " + inputContinent + " continent by largest population to smallest >>>");
+        cid.printCities(citiesInContinent);
+        System.out.println(line);
+
+        ArrayList<City> citiesInRegion = cid.getAllCities(cid.allCitiesInRegion(inputRegion));
+        System.out.println("<<< All cities in the " + inputRegion + " region by largest population to smallest >>>");
+        cid.printCities(citiesInRegion);
+        System.out.println(line);
+
+        ArrayList<City> citiesInCountry = cid.getAllCities(cid.allCitiesInCountry(inputCountry));
+        System.out.println("<<< All cities in the " + inputCountry + " country by largest population to smallest >>>");
+        cid.printCities(citiesInCountry);
+        System.out.println(line);
+
+        ArrayList<City> citiesInDistrict = cid.getAllCities(cid.allCitiesInDistrict(inputDistrict));
+        System.out.println("<<< All cities in the " + inputDistrict + " by largest population to smallest >>>");
+        cid.printCities(citiesInDistrict);
+        System.out.println(line);
 //
 //        // top N populated cities in the world
 //        ArrayList<City> topCitiesInWorld = a.getAllCities(a.topPopulatedCitiesInWorld(count)); // Change the number as needed
