@@ -6,21 +6,71 @@ package com.napier.sem;
 public class Country {
 
     // country code
-    public String code;
+    private String code;
 
     // country name
-    public String name;
+    private String name;
 
     // country continent
-    public String continent;
+    private String continent;
 
     // country region
-    public String region;
+    private String region;
 
     // country population
-    public String population;
+    private String population;
 
     // country capital
-    public String capital;
+    private String capital;
+
+    // getters for country variables
+    public String getCode() {
+        return code;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getContinent() {
+        return continent;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public String getPopulation() {
+        return population;
+    }
+
+    public String getCapital() {
+        return capital;
+    }
+
+    // setters
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setContinent(String continent) {
+        this.continent = continent;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
+    public void setPopulation(String population) {
+        this.population = population;
+    }
+
+    public void setCapital(String capital) {
+        this.capital = capital;
+    }
 
 }
