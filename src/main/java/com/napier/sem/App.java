@@ -70,79 +70,6 @@ public class App
             }
         }
     }
-    
-    /**
-     * Retrieves the top N populated cities in the world.
-     * @param number The number of cities to retrieve.
-     * @return SQL query string to get top N cities in the world.
-     */
-    public String topPopulatedCitiesInWorld(int number) {
-        return "SELECT city.Name, country.Name as Country, city.District, city.Population  "
-                + "FROM city "
-                + "JOIN country ON city.CountryCode = country.Code "
-                + "ORDER BY city.Population DESC "
-                + "LIMIT " + number;
-    }
-
-    /**
-     * Retrieves the top N populated cities in a continent.
-     * @param number The number of cities to retrieve.
-     * @param continent The continent to retrieve cities from.
-     * @return SQL query string to get top N cities in a continent.
-     */
-    public String topPopulatedCitiesInContinent(int number, String continent) {
-        return "SELECT city.Name, country.Name as Country, city.District, city.Population  "
-                + "FROM city "
-                + "JOIN country ON city.CountryCode = country.Code "
-                + "WHERE country.Continent = '" + continent + "' "
-                + "ORDER BY city.Population DESC "
-                + "LIMIT " + number;
-    }
-
-    /**
-     * Retrieves the top N populated cities in a region.
-     * @param number The number of cities to retrieve.
-     * @param region The region to retrieve cities from.
-     * @return SQL query string to get top N cities in a region.
-     */
-    public String topPopulatedCitiesInRegion(int number, String region) {
-        return "SELECT city.Name, country.Name as Country, city.District, city.Population  "
-                + "FROM city "
-                + "JOIN country ON city.CountryCode = country.Code "
-                + "WHERE country.Region = '" + region + "' "
-                + "ORDER BY city.Population DESC "
-                + "LIMIT " + number;
-    }
-
-    /**
-     * Retrieves the top N populated cities in a country.
-     * @param number The number of cities to retrieve.
-     * @param country The country to retrieve cities from.
-     * @return SQL query string to get top N cities in a country.
-     */
-    public String topPopulatedCitiesInCountry(int number, String country) {
-        return "SELECT city.Name, country.Name as Country, city.District, city.Population  "
-                + "FROM city "
-                + "JOIN country ON city.CountryCode = country.Code "
-                + "WHERE country.Name = '" + country + "' "
-                + "ORDER BY city.Population DESC "
-                + "LIMIT " + number;
-    }
-
-    /**
-     * Retrieves the top N populated cities in a district.
-     * @param number The number of cities to retrieve.
-     * @param district The district to retrieve cities from.
-     * @return SQL query string to get top N cities in a district.
-     */
-    public String topPopulatedCitiesInDistrict(int number, String district) {
-        return "SELECT city.Name, country.Name as Country, city.District, city.Population  "
-                + "FROM city "
-                + "JOIN country ON city.CountryCode = country.Code "
-                + "WHERE city.District = '" + district + "' "
-                + "ORDER BY city.Population DESC "
-                + "LIMIT " + number;
-    }
 
     public static void main(String[] args)
     {
@@ -194,10 +121,10 @@ public class App
         System.out.println(line);
 
         CityData cid = new CityData(a.con);
-        ArrayList<City> citiesInWorld = cid.getAllCities(cid.allCitiesInWorld());
-        System.out.println("<<< All cities in the world by largest population to smallest >>>");
-        cid.printCities(citiesInWorld);
-        System.out.println(line);
+//        ArrayList<City> citiesInWorld = cid.getAllCities(cid.allCitiesInWorld());
+//        System.out.println("<<< All cities in the world by largest population to smallest >>>");
+//        cid.printCities(citiesInWorld);
+//        System.out.println(line);
 
         ArrayList<City> citiesInContinent = cid.getAllCities(cid.allCitiesInContinent(inputContinent));
         System.out.println("<<< All cities in the " + inputContinent + " continent by largest population to smallest >>>");
@@ -217,6 +144,36 @@ public class App
         ArrayList<City> citiesInDistrict = cid.getAllCities(cid.allCitiesInDistrict(inputDistrict));
         System.out.println("<<< All cities in the " + inputDistrict + " by largest population to smallest >>>");
         cid.printCities(citiesInDistrict);
+        System.out.println(line);
+
+        // top N populated cities in the world
+        ArrayList<City> topCitiesInWorld = cid.getAllCities(cid.topPopulatedCitiesInWorld(count)); // Change the number as needed
+        System.out.println("<<< Top " + count + " populated cities in the world >>>");
+        cid.printCities(topCitiesInWorld);
+        System.out.println(line);
+
+        // top N populated cities in a specific continent (e.g., Asia)
+        ArrayList<City> topCitiesInContinent = cid.getAllCities(cid.topPopulatedCitiesInContinent(count, inputContinent)); // Change the number as needed
+        System.out.println("<<< Top " + count + " populated cities in the " + inputContinent + " continent>>>");
+        cid.printCities(topCitiesInContinent);
+        System.out.println(line);
+
+        //top N populated cities in a specific region (e.g., Southeast Asia)
+        ArrayList<City> topCitiesInRegion = cid.getAllCities(cid.topPopulatedCitiesInRegion(count, inputRegion)); // Change the number as needed
+        System.out.println("<<< Top " + count + " populated cities in the " + inputRegion + " region >>>");
+        cid.printCities(topCitiesInRegion);
+        System.out.println(line);
+
+        // top N populated cities in a specific country (e.g., "United States")
+        ArrayList<City> topPopulatedCitiesInCountry = cid.getAllCities(cid.topPopulatedCitiesInCountry(count, inputCountry)); // Change the number as needed
+        System.out.println("<<< Top " + count + " populated cities in the " + inputCountry + " country >>>");
+        cid.printCities(topPopulatedCitiesInCountry);
+        System.out.println(line);
+
+        // top N populated cities in a specific district (e.g., "Buenos Aires")
+        ArrayList<City> topCitiesInDistrict = cid.getAllCities(cid.topPopulatedCitiesInDistrict(count, inputDistrict)); // Change the number as needed
+        System.out.println("<<< Top " + count + " populated cities in the " + inputDistrict + " district >>>");
+        cid.printCities(topCitiesInDistrict);
         System.out.println(line);
 
         CapitalData cpd = new CapitalData(a.con);
@@ -251,35 +208,7 @@ public class App
         System.out.println(line);
 
 //
-//        // top N populated cities in the world
-//        ArrayList<City> topCitiesInWorld = a.getAllCities(a.topPopulatedCitiesInWorld(count)); // Change the number as needed
-//        System.out.println("<<< Top " + count + " populated cities in the world >>>");
-//        a.printCities(topCitiesInWorld);
-//        System.out.println(line);
-//
-//        // top N populated cities in a specific continent (e.g., Asia)
-//        ArrayList<City> topCitiesInContinent = a.getAllCities(a.topPopulatedCitiesInContinent(count, inputContinent)); // Change the number as needed
-//        System.out.println("<<< Top " + count + " populated cities in the " + inputContinent + " continent>>>");
-//        a.printCities(topCitiesInContinent);
-//        System.out.println(line);
-//
-//        //top N populated cities in a specific region (e.g., Southeast Asia)
-//        ArrayList<City> topCitiesInRegion = a.getAllCities(a.topPopulatedCitiesInRegion(count, inputRegion)); // Change the number as needed
-//        System.out.println("<<< Top " + count + " populated cities in the " + inputRegion + " region >>>");
-//        a.printCities(topCitiesInRegion);
-//        System.out.println(line);
-//
-//        // top N populated cities in a specific country (e.g., "United States")
-//        ArrayList<City> topPopulatedCitiesInCountry = a.getAllCities(a.topPopulatedCitiesInCountry(count, inputCountry)); // Change the number as needed
-//        System.out.println("<<< Top " + count + " populated cities in the " + inputCountry + " country >>>");
-//        a.printCities(topPopulatedCitiesInCountry);
-//        System.out.println(line);
-//
-//        // top N populated cities in a specific district (e.g., "Buenos Aires")
-//        ArrayList<City> topCitiesInDistrict = a.getAllCities(a.topPopulatedCitiesInDistrict(count, inputDistrict)); // Change the number as needed
-//        System.out.println("<<< Top " + count + " populated cities in the " + inputDistrict + " district >>>");
-//        a.printCities(topCitiesInDistrict);
-//        System.out.println(line);
+
 
         // Disconnect from database
         a.disconnect();

@@ -73,6 +73,79 @@ public class CityData {
                 + "ORDER BY Population DESC";
     }
     /**
+     * Retrieves the top N populated cities in the world.
+     * @param number The number of cities to retrieve.
+     * @return SQL query string to get top N cities in the world.
+     */
+    public String topPopulatedCitiesInWorld(int number) {
+        return "SELECT city.Name, country.Name as Country, city.District, city.Population  "
+                + "FROM city "
+                + "JOIN country ON city.CountryCode = country.Code "
+                + "ORDER BY city.Population DESC "
+                + "LIMIT " + number;
+    }
+
+    /**
+     * Retrieves the top N populated cities in a continent.
+     * @param number The number of cities to retrieve.
+     * @param continent The continent to retrieve cities from.
+     * @return SQL query string to get top N cities in a continent.
+     */
+    public String topPopulatedCitiesInContinent(int number, String continent) {
+        return "SELECT city.Name, country.Name as Country, city.District, city.Population  "
+                + "FROM city "
+                + "JOIN country ON city.CountryCode = country.Code "
+                + "WHERE country.Continent = '" + continent + "' "
+                + "ORDER BY city.Population DESC "
+                + "LIMIT " + number;
+    }
+
+    /**
+     * Retrieves the top N populated cities in a region.
+     * @param number The number of cities to retrieve.
+     * @param region The region to retrieve cities from.
+     * @return SQL query string to get top N cities in a region.
+     */
+    public String topPopulatedCitiesInRegion(int number, String region) {
+        return "SELECT city.Name, country.Name as Country, city.District, city.Population  "
+                + "FROM city "
+                + "JOIN country ON city.CountryCode = country.Code "
+                + "WHERE country.Region = '" + region + "' "
+                + "ORDER BY city.Population DESC "
+                + "LIMIT " + number;
+    }
+
+    /**
+     * Retrieves the top N populated cities in a country.
+     * @param number The number of cities to retrieve.
+     * @param country The country to retrieve cities from.
+     * @return SQL query string to get top N cities in a country.
+     */
+    public String topPopulatedCitiesInCountry(int number, String country) {
+        return "SELECT city.Name, country.Name as Country, city.District, city.Population  "
+                + "FROM city "
+                + "JOIN country ON city.CountryCode = country.Code "
+                + "WHERE country.Name = '" + country + "' "
+                + "ORDER BY city.Population DESC "
+                + "LIMIT " + number;
+    }
+
+    /**
+     * Retrieves the top N populated cities in a district.
+     * @param number The number of cities to retrieve.
+     * @param district The district to retrieve cities from.
+     * @return SQL query string to get top N cities in a district.
+     */
+    public String topPopulatedCitiesInDistrict(int number, String district) {
+        return "SELECT city.Name, country.Name as Country, city.District, city.Population  "
+                + "FROM city "
+                + "JOIN country ON city.CountryCode = country.Code "
+                + "WHERE city.District = '" + district + "' "
+                + "ORDER BY city.Population DESC "
+                + "LIMIT " + number;
+    }
+
+    /**
      * get the cities information as an arraylist
      * @param query the SQL query to execute
      */
