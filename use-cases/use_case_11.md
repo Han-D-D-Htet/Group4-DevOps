@@ -36,9 +36,10 @@ Request population information of the world from the organization.
 
 ## MAIN SUCCESS SCENARIO
 
-1. Data Scientist accesses population information of the world.
-2. Data Scientist arranges all the cities in a district from largest to smallest population.
-3. Data Scientist produces report for the information.
+1. Data Scientist asks for cities information in a district organised by largest population to smallest.
+2. System extracts and sorts cities in a district by largest population to smallest using query.
+3. System stores that sorted information in the array list and prints out as the sorted list.
+4. Data Scientist can view the report for those information.
 
 ## EXTENSIONS
 
