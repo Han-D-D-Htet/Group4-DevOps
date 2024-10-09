@@ -35,9 +35,10 @@ Request population information of the world from the organisation.
 
 ## MAIN SUCCESS SCENARIO
 
-1. Data Scientist accesses population information of the world to organisation.
-2. Data Scientist extracts population information of a continent.
-3. Data Scientist produces report for that information.
+1. Data Scientist asks for the population information of a continent.
+2. System extracts and sorts the population information of a continent using query.
+3. System stores that sorted information in the array list and prints out as the sorted list.
+4. Data Scientist can view the report for those information.
 
 ## EXTENSIONS
 

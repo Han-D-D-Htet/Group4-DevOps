@@ -35,9 +35,10 @@ Request population information of the world from the organisation.
 
 ## MAIN SUCCESS SCENARIO
 
-1. Data Scientist accesses population information of the world to organisation.
-2. Data Scientist extracts the top N populated capital cities in a region where N is provided by the user.
-3. Data Scientist produces report for that information.
+1. Data Scientist asks for the top N populated capital cities information in a region where N is provided by the user.
+2. System extracts and sorts the top N populated capital cities in a region where N is provided by the user using query.
+3. System stores that sorted information in the array list and prints out as the sorted list.
+4. Data Scientist can view the report for those information.
 
 ## EXTENSIONS
 
