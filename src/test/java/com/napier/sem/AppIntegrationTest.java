@@ -164,4 +164,60 @@ public class AppIntegrationTest
         assertEquals(5, cities.size());
     }
 
+    /**
+     * integration tests for capital cities report
+     */
+    @Test
+    void testGetAllCapitalCitiesInWorld()
+    {
+        ArrayList<Capital> capitalCities = cap.getAllCapitalCities(cap.allCapitalCitiesInWorld());
+        Capital cc = capitalCities.getFirst();
+        assertEquals(cc.getCapitalName(), "Seoul");
+        assertEquals(cc.getCountry(), "South Korea");
+        assertEquals(cc.getCapitalPopulation(), "9,981,619");
+    }
+
+    @Test
+    void testGetAllCapitalCitiesInContinent()
+    {
+        ArrayList<Capital> capitalCities = cap.getAllCapitalCities(cap.allCapitalCitiesInContinent("Asia"));
+        Capital cc = capitalCities.getLast();
+        assertEquals(cc.getCapitalName(), "Bandar Seri Begawan");
+        assertEquals(cc.getCountry(), "Brunei");
+        assertEquals(cc.getCapitalPopulation(), "21,484");
+    }
+
+    @Test
+    void testGetAllCapitalCitiesInRegion()
+    {
+        ArrayList<Capital> capitalCities = cap.getAllCapitalCities(cap.allCapitalCitiesInRegion("Southeast Asia"));
+        Capital cc = capitalCities.get(3);
+        assertEquals(cc.getCapitalName(), "Rangoon (Yangon)");
+        assertEquals(cc.getCountry(), "Myanmar");
+        assertEquals(cc.getCapitalPopulation(), "3,361,700");
+    }
+
+    @Test
+    void testGetTopPopulatedCapitalCitiesInWorld()
+    {
+        ArrayList<Capital> capitalCities = cap.getAllCapitalCities(cap.topPopulatedCapitalCitiesInWorld(5));
+        assertEquals(5, capitalCities.size());
+    }
+
+    @Test
+    void testGetTopPopulatedCapitalCitiesInContinent()
+    {
+        ArrayList<Capital> capitalCities = cap.getAllCapitalCities(cap.topPopulatedCapitalCitiesInContinent(5, "Asia"));
+        assertEquals(5, capitalCities.size());
+    }
+
+    @Test
+    void testGetTopPopulatedCapitalCitiesInRegion()
+    {
+        ArrayList<Capital> capitalCities = cap.getAllCapitalCities(cap.allCapitalCitiesInRegion("Southeast Asia"));
+        Capital cc = capitalCities.get(1);
+        assertEquals(cc.getCapitalName(), "Bangkok");
+        assertEquals(cc.getCountry(), "Thailand");
+        assertEquals(cc.getCapitalPopulation(), "6,320,174");
+    }
 }
