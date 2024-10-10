@@ -27,6 +27,7 @@ public class AppTest {
         cap = new CapitalData(con);
     }
 
+    // Test for returned query
     @Test
     void allCountriesInWorld() {
         String actual = cd.allCountriesInWorld();
