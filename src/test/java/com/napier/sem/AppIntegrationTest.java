@@ -96,5 +96,64 @@ public class AppIntegrationTest
         assertEquals(cty.getCapital(), "Hanoi");
     }
 
+    /**
+     * integration tests for cities report
+     */
+    @Test
+    void testGetAllCitiesInWorld()
+    {
+        ArrayList<City> cities = ct.getAllCities(ct.allCitiesInWorld());
+        City city = cities.getFirst();
+        assertEquals(city.getCityName(), "Mumbai (Bombay)");
+        assertEquals(city.getCountry(), "India");
+        assertEquals(city.getDistrict(), "Maharashtra");
+        assertEquals(city.getCityPopulation(), "10,500,000");
+    }
+
+    @Test
+    void testGetAllCitiesInContinent()
+    {
+        ArrayList<City> cities = ct.getAllCities(ct.allCitiesInContinent("Asia"));
+        City city = cities.getFirst();
+        assertEquals(city.getCityName(), "Mumbai (Bombay)");
+        assertEquals(city.getCountry(), "India");
+        assertEquals(city.getDistrict(), "Maharashtra");
+        assertEquals(city.getCityPopulation(), "10,500,000");
+    }
+
+    @Test
+    void testGetAllCitiesInRegion()
+    {
+        ArrayList<City> cities = ct.getAllCities(ct.allCitiesInRegion("Southeast Asia"));
+        City city = cities.getFirst();
+        assertEquals(city.getCityName(), "Jakarta");
+        assertEquals(city.getCountry(), "Indonesia");
+        assertEquals(city.getDistrict(), "Jakarta Raya");
+        assertEquals(city.getCityPopulation(), "9,604,900");
+    }
+
+    @Test
+    void testGetAllCitiesInCountry()
+    {
+        ArrayList<City> cities = ct.getAllCities(ct.allCitiesInCountry("China"));
+        City city = cities.getLast();
+        assertEquals(city.getCityName(), "Huangyan");
+        assertEquals(city.getCountry(), "China");
+        assertEquals(city.getDistrict(), "Zhejiang");
+        assertEquals(city.getCityPopulation(), "89,288");
+    }
+
+    @Test
+    void testGetAllCitiesInDistrict()
+    {
+        ArrayList<City> cities = ct.getAllCities(ct.allCitiesInDistrict("Buenos Aires"));
+        City city = cities.getLast();
+        assertEquals(city.getCityName(), "Tandil");
+        assertEquals(city.getCountry(), "Argentina");
+        assertEquals(city.getDistrict(), "Buenos Aires");
+        assertEquals(city.getCityPopulation(), "91,101");
+    }
+
+
 
 }
