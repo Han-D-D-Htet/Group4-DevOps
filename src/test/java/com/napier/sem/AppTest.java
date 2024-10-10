@@ -12,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class AppTest {
     static App app;
     static CountryData cd;
+    static CityData ct;
     static CapitalData cap;
     static Connection con;
 
@@ -21,6 +22,7 @@ public class AppTest {
         app = new App();
         con = app.connect();
         cd = new CountryData(con);
+        ct = new CityData(con);
         cap = new CapitalData(con);
     }
 
@@ -115,7 +117,98 @@ public class AppTest {
         cd.printCountries(countries);
     }
 
-    // Uint Testing for Capital Cities
+    /**
+     * unit tests for cities report
+     */
+    @Test
+    void allCitiesInWorld() {
+        String actual = ct.allCitiesInWorld();
+        String expected = "SELECT city.Name, country.Name as Country, city.District, city.Population "
+                + "FROM city, country WHERE city.CountryCode = country.Code ORDER BY Population DESC";
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void allCitiesInContinent() {
+        String actual = ct.allCitiesInContinent("Asia");
+        String expected = "SELECT city.Name, country.Name as Country, city.District, city.Population "
+                + "FROM city, country WHERE city.CountryCode = country.Code AND country.Continent = 'Asia' ORDER BY Population DESC";
+        Assertions.assertEquals(expected, actual);
+    }
+
+
+    @Test
+    void allCitiesInRegion() {
+        String actual = ct.allCitiesInRegion("Southeast Asia");
+        String expected = "SELECT city.Name, country.Name as Country, city.District, city.Population "
+                + "FROM city, country WHERE city.CountryCode = country.Code AND country.Region = 'Southeast Asia' ORDER BY Population DESC";
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void allCitiesInCountry() {
+        String actual = ct.allCitiesInCountry("Myanmar");
+        String expected = "SELECT city.Name, country.Name as Country, city.District, city.Population "
+                + "FROM city, country WHERE city.CountryCode = country.Code AND country.Name = 'Myanmar' ORDER BY Population DESC";
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void allCitiesInDistrict() {
+        String actual = ct.allCitiesInDistrict("Mandalay");
+        String expected = "SELECT city.Name, country.Name as Country, city.District, city.Population "
+                + "FROM city,country "
+                + "WHERE city.CountryCode = country.Code AND city.District = 'Mandalay' ORDER BY Population DESC";
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void getAllCitiesTestNullQuery() {
+        ct.getAllCities(null);
+    }
+
+    @Test
+    void getAllCitiesTestEmptyQuery() {
+        ct.getAllCities("");
+    }
+
+    @Test
+    void printCitiesTestNull()
+    {
+        ct.printCities(null);
+    }
+
+    @Test
+    void printCitiesTestEmpty()
+    {
+        ArrayList<City> cities = new ArrayList<>();
+        ct.printCities(cities);
+    }
+
+    @Test
+    void printCitiesTestContainsNull()
+    {
+        ArrayList<City> cities = new ArrayList<>();
+        cities.add(null);
+        ct.printCities(cities);
+    }
+
+    @Test
+    void printCities()
+    {
+        ArrayList<City> cities = new ArrayList<>();
+        City city = new City();
+        city.setCityName("Kabul");
+        city.setCountry("Afghanistan");
+        city.setCityPopulation("1780000");
+        cities.add(city);
+        ct.printCities(cities);
+    }
+
+
+    /**
+     * unit tests for capital cities report
+     */
     @Test
     void allCapitalCitiesInWorld() {
         String actual = cap.allCapitalCitiesInWorld();
@@ -181,20 +274,20 @@ public class AppTest {
 
     @Test
     void printCapitalCitiesTestEmpty() {
-        ArrayList<Capital> capitalCities = new ArrayList<Capital>();
+        ArrayList<Capital> capitalCities = new ArrayList<>();
         cap.printCapitalCities(capitalCities);
     }
 
     @Test
     void printCapitalCitiesTestContainsNull() {
-        ArrayList<Capital> capitalCities = new ArrayList<Capital>();
+        ArrayList<Capital> capitalCities = new ArrayList<>();
         capitalCities.add(null);
         cap.printCapitalCities(capitalCities);
     }
 
     @Test
     void printCapitalCities() {
-        ArrayList<Capital> capitalCities = new ArrayList<Capital>();
+        ArrayList<Capital> capitalCities = new ArrayList<>();
         Capital cc = new Capital();
         cc.setCapitalName("Kabul");
         cc.setCountry("Afghanistan");
