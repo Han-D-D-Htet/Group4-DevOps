@@ -1,5 +1,6 @@
 package com.napier.sem;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -338,5 +339,13 @@ public class AppTest {
         cc.setCapitalPopulation("1780000");
         capitalCities.add(cc);
         cap.printCapitalCities(capitalCities);
+    }
+
+    /**
+     * closing database connection after all tests finished
+     */
+    @AfterAll
+    static void closeConnection(){
+        app.disconnect();
     }
 }
