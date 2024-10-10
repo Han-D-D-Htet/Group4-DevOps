@@ -141,26 +141,26 @@ public class CountryData {
      */
     public void printCountries(ArrayList<Country> countries)
     {
+        // Check countries is not null
+        if (countries == null)
+        {
+            System.out.println("No countries");
+            return;
+        }
         // Print header for country information
         System.out.println(String.format("%-5s %-50s %-20s %-30s %-15s %-5s",
                 "Code", "Name", "Continent", "Region", "Population", "capital"));
         System.out.println(String.format("%-5s %-50s %-20s %-30s %-15s %-5s",
                 "----", "----", "---------", "------", "----------", "-------"));
 
-        try
-        {
-            // Loop over all countries in the list
-            for (Country cty : countries) {
-                String cty_string =
-                        String.format("%-5s %-50s %-20s %-30s %-15s %-5s",
-                                cty.getCode(), cty.getName(), cty.getContinent(), cty.getRegion(), cty.getPopulation(), cty.getCapital());
-                System.out.println(cty_string);
-            }
-        }
-        catch (NullPointerException ne)
-        {
-            System.out.println(ne.getMessage());
-            System.out.println("The country list is empty. Something wrong!");
+        // Loop over all countries in the list
+        for (Country cty : countries) {
+            if (cty == null)
+                continue;
+            String cty_string =
+                    String.format("%-5s %-50s %-20s %-30s %-15s %-5s",
+                            cty.getCode(), cty.getName(), cty.getContinent(), cty.getRegion(), cty.getPopulation(), cty.getCapital());
+            System.out.println(cty_string);
         }
     }
 

@@ -193,25 +193,27 @@ public class CityData {
      */
     public void printCities(ArrayList<City> cities)
     {
+        // Check cities is not null
+        if (cities == null)
+        {
+            System.out.println("No cities");
+            return;
+        }
         // Print header for cities information
         System.out.println(String.format("%-45s %-40s %-30s %-10s",
                 "Name", "Country", "District", "Population"));
         System.out.println(String.format("%-45s %-40s %-30s %-10s",
                 "----", "-------", "--------", "----------"));
 
-        try
+        // Loop over all cities in the list
+        for (City city : cities)
         {
-            // Loop over all cities in the list
-            for (City city : cities) {
-                String city_string = String.format("%-45s %-40s %-30s %-10s",
-                        city.getCityName(), city.getCountry(), city.getDistrict(), city.getCityPopulation());
-                System.out.println(city_string);
-            }
-        }
-        catch (NullPointerException ne)
-        {
-            System.out.println(ne.getMessage());
-            System.out.println("The city list is empty. Something wrong!");
+            if (city == null)
+                continue;
+            String city_string = String.format("%-45s %-40s %-30s %-10s",
+                    city.getCityName(), city.getCountry(), city.getDistrict(), city.getCityPopulation());
+            System.out.println(city_string);
         }
     }
+
 }

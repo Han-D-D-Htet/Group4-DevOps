@@ -134,25 +134,28 @@ public class CapitalData {
      */
     public void printCapitalCities(ArrayList<Capital> capitalCities)
     {
+        // Check capitalCities is not null
+        if (capitalCities == null)
+        {
+            System.out.println("No capital cities");
+            return;
+        }
         // Print header for capital cities information
         System.out.println(String.format("%-40s %-50s %-20s",
                 "Capital Name", "Country", "Population"));
         System.out.println(String.format("%-40s %-50s %-20s",
                 "------------", "-------", "----------"));
-        try
-        {
-            // Loop over all countries in the list
-            for (Capital cc : capitalCities) {
-                String cc_string =
-                        String.format("%-40s %-50s %-20s",
-                                cc.getCapitalName(), cc.getCountry(), cc.getCapitalPopulation());
-                System.out.println(cc_string);
-            }
-        }
-        catch (NullPointerException ne)
-        {
-            System.out.println(ne.getMessage());
-            System.out.println("The capital cities list is empty. Something wrong!");
+
+        // Loop over all countries in the list
+        for (Capital cc : capitalCities) {
+
+            if (cc == null)
+                continue;
+            String cc_string =
+                    String.format("%-40s %-50s %-20s",
+                            cc.getCapitalName(), cc.getCountry(), cc.getCapitalPopulation());
+            System.out.println(cc_string);
         }
     }
+
 }
