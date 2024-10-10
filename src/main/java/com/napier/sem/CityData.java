@@ -78,7 +78,7 @@ public class CityData {
      * @return SQL query string to get top N cities in the world.
      */
     public String topPopulatedCitiesInWorld(int number) {
-        return "SELECT city.Name, country.Name as Country, city.District, city.Population  "
+        return "SELECT city.Name, country.Name as Country, city.District, city.Population "
                 + "FROM city "
                 + "JOIN country ON city.CountryCode = country.Code "
                 + "ORDER BY city.Population DESC "
@@ -92,7 +92,7 @@ public class CityData {
      * @return SQL query string to get top N cities in a continent.
      */
     public String topPopulatedCitiesInContinent(int number, String continent) {
-        return "SELECT city.Name, country.Name as Country, city.District, city.Population  "
+        return "SELECT city.Name, country.Name as Country, city.District, city.Population "
                 + "FROM city "
                 + "JOIN country ON city.CountryCode = country.Code "
                 + "WHERE country.Continent = '" + continent + "' "
@@ -107,7 +107,7 @@ public class CityData {
      * @return SQL query string to get top N cities in a region.
      */
     public String topPopulatedCitiesInRegion(int number, String region) {
-        return "SELECT city.Name, country.Name as Country, city.District, city.Population  "
+        return "SELECT city.Name, country.Name as Country, city.District, city.Population "
                 + "FROM city "
                 + "JOIN country ON city.CountryCode = country.Code "
                 + "WHERE country.Region = '" + region + "' "
@@ -122,7 +122,7 @@ public class CityData {
      * @return SQL query string to get top N cities in a country.
      */
     public String topPopulatedCitiesInCountry(int number, String country) {
-        return "SELECT city.Name, country.Name as Country, city.District, city.Population  "
+        return "SELECT city.Name, country.Name as Country, city.District, city.Population "
                 + "FROM city "
                 + "JOIN country ON city.CountryCode = country.Code "
                 + "WHERE country.Name = '" + country + "' "
@@ -137,7 +137,7 @@ public class CityData {
      * @return SQL query string to get top N cities in a district.
      */
     public String topPopulatedCitiesInDistrict(int number, String district) {
-        return "SELECT city.Name, country.Name as Country, city.District, city.Population  "
+        return "SELECT city.Name, country.Name as Country, city.District, city.Population "
                 + "FROM city "
                 + "JOIN country ON city.CountryCode = country.Code "
                 + "WHERE city.District = '" + district + "' "
