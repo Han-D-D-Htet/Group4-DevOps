@@ -1,4 +1,4 @@
 FROM openjdk:23
-COPY ./target/Group4-DevOps-0.1.0.3-jar-with-dependencies.jar /tmp
+COPY ./target/devopsethods.jar /tmp
 WORKDIR /tmp
-ENTRYPOINT ["java", "-jar", "Group4-DevOps-0.1.0.3-jar-with-dependencies.jar"]
+ENTRYPOINT ["java", "-jar", "devopsethods.jar", "db:3306", "30000"]

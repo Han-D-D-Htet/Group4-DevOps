@@ -20,7 +20,8 @@ public class AppTest {
     static void init()
     {
         app = new App();
-        con = app.connect();
+        app.connect("localhost:33060", 30000);
+        con = app.getCon();
         cd = new CountryData(con);
         ct = new CityData(con);
         cap = new CapitalData(con);
