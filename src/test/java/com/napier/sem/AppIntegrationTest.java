@@ -30,7 +30,7 @@ public class AppIntegrationTest
     @Test
     void testGetAllCountries() {
         ArrayList<Country> countries = cd.getAllCountries(cd.allCountriesInWorld());
-        Country cty = countries.get(0);
+        Country cty = countries.getFirst();
         assertEquals(cty.getCode(), "CHN");
         assertEquals(cty.getName(), "China");
         assertEquals(cty.getContinent(), "Asia");
