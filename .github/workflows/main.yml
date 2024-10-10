@@ -1,5 +1,14 @@
-name: A workflow for my Hello World App
-on: push
+name: A workflow for Group 4
+on:
+  push:
+    branches:
+      - master
+      - develop
+      - feature/capital-cities-report
+      - feature/cities-report
+      - feature/country-report
+      - feature/top-N-populate-cities
+      - release
 
 jobs:
   UnitTests:
@@ -31,17 +40,23 @@ jobs:
         with:
           java-version: '23'
           distribution: 'adopt'
-      - name: Integration Tests
+      - name: Integration Tests and CodeCov
         run: |
           docker build -t database ./db 
           docker run --name world -dp 33060:3306 database
-          mvn -Dtest=com.napier.sem.AppIntegrationTest test
+          mvn -Dtest=com.napier.sem.AppIntegrationTest test          
           docker stop world
           docker rm world
-          docker image rm database  
-
+          docker image rm database
+      - name: CodeCov
+        uses: codecov/codecov-action@v3
+        with:
+          # token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+          directory: ./target/site/jacoco
+          flags: Integration Tests # optional
+          verbose: true # optional (default = false)
   build:
-    name: Build and Start Using docker-compose
+    name: Build and Start Using docker compose
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
