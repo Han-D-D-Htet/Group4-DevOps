@@ -74,48 +74,7 @@ public class AppTest {
                 + "FROM country, city WHERE country.capital = city.ID AND country.Region = 'Caribbean' ORDER BY Population DESC LIMIT 20";
         Assertions.assertEquals(expected, actual);
     }
-    /**
-     * unit tests for top populated cities report
-     */
-    @Test
-    void topPopulatedCitiesInWorld() {
-        String actual = ct.topPopulatedCitiesInWorld(10);
-        String expected = "SELECT city.Name, country.Name as Country, city.District, city.Population "
-                + "FROM city JOIN country ON city.CountryCode = country.Code ORDER BY city.Population DESC LIMIT 10";
-        Assertions.assertEquals(expected, actual);
-    }
 
-    @Test
-    void topPopulatedCitiesInContinent() {
-        String actual = ct.topPopulatedCitiesInContinent(10, "Asia");
-        String expected = "SELECT city.Name, country.Name as Country, city.District, city.Population "
-                + "FROM city JOIN country ON city.CountryCode = country.Code WHERE country.Continent = 'Asia' ORDER BY city.Population DESC LIMIT 10";
-        Assertions.assertEquals(expected, actual);
-    }
-
-    @Test
-    void topPopulatedCitiesInRegion() {
-        String actual = ct.topPopulatedCitiesInRegion(10, "Southeast Asia");
-        String expected = "SELECT city.Name, country.Name as Country, city.District, city.Population "
-                + "FROM city JOIN country ON city.CountryCode = country.Code WHERE country.Region = 'Southeast Asia' ORDER BY city.Population DESC LIMIT 10";
-        Assertions.assertEquals(expected, actual);
-    }
-
-    @Test
-    void topPopulatedCitiesInCountry() {
-        String actual = ct.topPopulatedCitiesInCountry(10, "Myanmar");
-        String expected = "SELECT city.Name, country.Name as Country, city.District, city.Population "
-                + "FROM city JOIN country ON city.CountryCode = country.Code WHERE country.Name = 'Myanmar' ORDER BY city.Population DESC LIMIT 10";
-        Assertions.assertEquals(expected, actual);
-    }
-
-    @Test
-    void topPopulatedCitiesInDistrict() {
-        String actual = ct.topPopulatedCitiesInDistrict(10, "Mandalay");
-        String expected = "SELECT city.Name, country.Name as Country, city.District, city.Population "
-                + "FROM city JOIN country ON city.CountryCode = country.Code WHERE city.District = 'Mandalay' ORDER BY city.Population DESC LIMIT 10";
-        Assertions.assertEquals(expected, actual);
-    }
     @Test
     void getAllCountriesTestNull() {
         cd.getAllCountries(null);
@@ -241,11 +200,54 @@ public class AppTest {
         City city = new City();
         city.setCityName("Kabul");
         city.setCountry("Afghanistan");
+        city.setDistrict("Mandalay");
         city.setCityPopulation("1780000");
         cities.add(city);
         ct.printCities(cities);
     }
 
+    /**
+     * unit tests for top populated cities report
+     */
+    @Test
+    void topPopulatedCitiesInWorld() {
+        String actual = ct.topPopulatedCitiesInWorld(10);
+        String expected = "SELECT city.Name, country.Name as Country, city.District, city.Population "
+                + "FROM city JOIN country ON city.CountryCode = country.Code ORDER BY city.Population DESC LIMIT 10";
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void topPopulatedCitiesInContinent() {
+        String actual = ct.topPopulatedCitiesInContinent(10, "Asia");
+        String expected = "SELECT city.Name, country.Name as Country, city.District, city.Population "
+                + "FROM city JOIN country ON city.CountryCode = country.Code WHERE country.Continent = 'Asia' ORDER BY city.Population DESC LIMIT 10";
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void topPopulatedCitiesInRegion() {
+        String actual = ct.topPopulatedCitiesInRegion(10, "Southeast Asia");
+        String expected = "SELECT city.Name, country.Name as Country, city.District, city.Population "
+                + "FROM city JOIN country ON city.CountryCode = country.Code WHERE country.Region = 'Southeast Asia' ORDER BY city.Population DESC LIMIT 10";
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void topPopulatedCitiesInCountry() {
+        String actual = ct.topPopulatedCitiesInCountry(10, "Myanmar");
+        String expected = "SELECT city.Name, country.Name as Country, city.District, city.Population "
+                + "FROM city JOIN country ON city.CountryCode = country.Code WHERE country.Name = 'Myanmar' ORDER BY city.Population DESC LIMIT 10";
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void topPopulatedCitiesInDistrict() {
+        String actual = ct.topPopulatedCitiesInDistrict(10, "Mandalay");
+        String expected = "SELECT city.Name, country.Name as Country, city.District, city.Population "
+                + "FROM city JOIN country ON city.CountryCode = country.Code WHERE city.District = 'Mandalay' ORDER BY city.Population DESC LIMIT 10";
+        Assertions.assertEquals(expected, actual);
+    }
 
     /**
      * unit tests for capital cities report
