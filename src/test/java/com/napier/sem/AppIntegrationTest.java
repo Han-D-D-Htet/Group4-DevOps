@@ -163,6 +163,45 @@ public class AppIntegrationTest
         ArrayList<City> cities = ct.getAllCities(ct.topPopulatedCitiesInWorld(5));
         assertEquals(5, cities.size());
     }
+    @Test
+    void testGetTopPopulatedCitiesInContinent()
+    {
+        ArrayList<City> cities = ct.getAllCities(ct.topPopulatedCitiesInContinent(5,"Asia"));
+        City city = cities.get(2);
+        assertEquals(city.getCityName(), "Shanghai");
+        assertEquals(city.getCountry(), "China");
+        assertEquals(city.getDistrict(), "Shanghai");
+        assertEquals(city.getCityPopulation(), "9,696,300");
+    }
+
+    @Test
+    void testGetTopPopulatedCitiesInRegion()
+    {
+        ArrayList<City> cities = ct.getAllCities(ct.topPopulatedCitiesInRegion(5,"Southeast Asia"));
+        assertEquals(5, cities.size());
+    }
+
+    @Test
+    void testGetTopPopulatedCitiesInCountry()
+    {
+        ArrayList<City> cities = ct.getAllCities(ct.topPopulatedCitiesInCountry(5,"China"));
+        City city = cities.getLast();
+        assertEquals(city.getCityName(), "Wuhan");
+        assertEquals(city.getCountry(), "China");
+        assertEquals(city.getDistrict(), "Hubei");
+        assertEquals(city.getCityPopulation(), "4,344,600");
+    }
+
+    @Test
+    void testGetTopPopulatedCitiesInDistrict()
+    {
+        ArrayList<City> cities = ct.getAllCities(ct.topPopulatedCitiesInDistrict(5,"Buenos Aires"));
+        City city = cities.get(3);
+        assertEquals(city.getCityName(), "Almirante Brown");
+        assertEquals(city.getCountry(), "Argentina");
+        assertEquals(city.getDistrict(), "Buenos Aires");
+        assertEquals(city.getCityPopulation(), "538,918");
+    }
 
     /**
      * integration tests for capital cities report
