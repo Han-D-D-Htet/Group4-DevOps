@@ -15,7 +15,7 @@ public class App
     /**
      * Connect to the MySQL database.
      */
-    public void connect()
+    public Connection connect()
     {
         try
         {
@@ -35,10 +35,11 @@ public class App
             try
             {
                 // Wait a bit for db to start
-                Thread.sleep(30000);
+                Thread.sleep(10000);
                 // Connect to database
                 con = DriverManager.getConnection("jdbc:mysql://db:3306/world?allowPublicKeyRetrieval=true&useSSL=false", "root", "example");                System.out.println("Successfully connected");
-                break;
+                return con;
+//                break;
             }
             catch (SQLException e)
             {
@@ -50,6 +51,7 @@ public class App
                 System.out.println("Thread interrupted? Should not happen.");
             }
         }
+        return null;
     }
 
     /**
@@ -90,10 +92,10 @@ public class App
         String inputDistrict = "Buenos Aires";
 
         CountryData cd = new CountryData(a.con);
-        ArrayList<Country> countriesInWorld = cd.getAllCountries(cd.allCountriesInWorld());
-        System.out.println("<<< All countries in the world by largest population to smallest >>>");
-        cd.printCountries(countriesInWorld);
-        System.out.println(line);
+//        ArrayList<Country> countriesInWorld = cd.getAllCountries(cd.allCountriesInWorld());
+//        System.out.println("<<< All countries in the world by largest population to smallest >>>");
+//        cd.printCountries(countriesInWorld);
+//        System.out.println(line);
 
         ArrayList<Country> countriesInContinent = cd.getAllCountries(cd.allCountriesInContinent(inputContinent));
         System.out.println("<<< All countries in the " + inputContinent + " continent by largest population to smallest >>>");
@@ -206,9 +208,6 @@ public class App
         System.out.println("<<< Top " + count + " populated capital cities in the " + inputRegion + " region >>>");
         cpd.printCapitalCities(populatedCapitalCitiesInRegion);
         System.out.println(line);
-
-//
-
 
         // Disconnect from database
         a.disconnect();
