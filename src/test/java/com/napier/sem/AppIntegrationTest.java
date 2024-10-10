@@ -154,6 +154,14 @@ public class AppIntegrationTest
         assertEquals(city.getCityPopulation(), "91,101");
     }
 
-
+    /**
+     * integration tests for populated cities report
+     */
+    @Test
+    void testGetTopPopulatedCitiesInWorld()
+    {
+        ArrayList<City> cities = ct.getAllCities(ct.topPopulatedCitiesInWorld(5));
+        assertEquals(5, cities.size());
+    }
 
 }
