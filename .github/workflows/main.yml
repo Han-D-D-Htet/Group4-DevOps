@@ -1,4 +1,4 @@
-name: A workflow for Group 4
+name: A workflow for my Hello World App
 on: push
 
 jobs:
@@ -17,6 +17,28 @@ jobs:
           distribution: 'adopt'
       - name: Unit Tests
         run: mvn -Dtest=com.napier.sem.AppTest test
+
+  IntegrationTests:
+    name: Integration Tests
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - name: Set up JDK 23
+        uses: actions/setup-java@v3
+        with:
+          java-version: '23'
+          distribution: 'adopt'
+      - name: Integration Tests
+        run: |
+          docker build -t database ./db 
+          docker run --name world -dp 33060:3306 database
+          mvn -Dtest=com.napier.sem.AppIntegrationTest test
+          docker stop world
+          docker rm world
+          docker image rm database  
 
   build:
     name: Build and Start Using docker-compose
