@@ -59,7 +59,7 @@ public class CapitalData {
         return "SELECT city.Name, country.Name as Country, city.Population "
                 + "FROM country, city "
                 + "WHERE country.capital = city.ID AND country.Continent = '" + continent + "' "
-                + "ORDER BY Population DESC "
+                + "ORDER BY Population DESC"
                 + " LIMIT " + number;
     }
 
