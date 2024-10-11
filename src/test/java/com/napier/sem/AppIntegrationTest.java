@@ -1,5 +1,6 @@
 package com.napier.sem;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -20,7 +21,7 @@ public class AppIntegrationTest
     static void init()
     {
         app = new App();
-        app.connect("localhost:33060", 30000);
+        app.connect("localhost:33060", 20000);
         con = app.getCon();
         cd = new CountryData(con);
         ct = new CityData(con);
@@ -258,5 +259,13 @@ public class AppIntegrationTest
         assertEquals(cc.getCapitalName(), "Bangkok");
         assertEquals(cc.getCountry(), "Thailand");
         assertEquals(cc.getCapitalPopulation(), "6,320,174");
+    }
+
+    /**
+     * close database connection after all tests
+     */
+    @AfterAll
+    static void closeConnection() {
+        app.disconnect();
     }
 }

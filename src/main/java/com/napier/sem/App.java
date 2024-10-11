@@ -86,11 +86,6 @@ public class App
         String inputDistrict = "Buenos Aires";
 
         CountryData cd = new CountryData(a.con);
-//        ArrayList<Country> countriesInWorld = cd.getAllCountries(cd.allCountriesInWorld());
-//        System.out.println("<<< All countries in the world by largest population to smallest >>>");
-//        cd.printCountries(countriesInWorld);
-//        System.out.println(line);
-
         ArrayList<Country> countriesInContinent = cd.getAllCountries(cd.allCountriesInContinent(inputContinent));
         System.out.println("<<< All countries in the " + inputContinent + " continent by largest population to smallest >>>");
         cd.printCountries(countriesInContinent);
@@ -117,11 +112,6 @@ public class App
         System.out.println(line);
 
         CityData cid = new CityData(a.con);
-//        ArrayList<City> citiesInWorld = cid.getAllCities(cid.allCitiesInWorld());
-//        System.out.println("<<< All cities in the world by largest population to smallest >>>");
-//        cid.printCities(citiesInWorld);
-//        System.out.println(line);
-
         ArrayList<City> citiesInContinent = cid.getAllCities(cid.allCitiesInContinent(inputContinent));
         System.out.println("<<< All cities in the " + inputContinent + " continent by largest population to smallest >>>");
         cid.printCities(citiesInContinent);
