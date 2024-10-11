@@ -29,12 +29,13 @@ public class AppIntegrationTest
     }
 
     /**
-     * integration tests for countries report
+     * testing for all countries in world
      */
     @Test
     void testGetAllCountriesInWorld() {
         ArrayList<Country> countries = cd.getAllCountries(cd.allCountriesInWorld());
         Country cty = countries.get(0);
+        assertNotNull(countries, "Countries should not be null");
         assertEquals("CHN", cty.getCode() );
         assertEquals("China", cty.getName());
         assertEquals("Asia", cty.getContinent() );
@@ -43,6 +44,9 @@ public class AppIntegrationTest
         assertEquals("Peking", cty.getCapital());
     }
 
+    /**
+     * test for top populated countries in world
+     */
     @Test
     void testTopPopulatedCountriesInWorld() {
         ArrayList<Country> countries = cd.getAllCountries(cd.topPopulatedCountriesInWorld(5));
@@ -55,6 +59,9 @@ public class AppIntegrationTest
         assertEquals("Washington", cty.getCapital());
     }
 
+    /**
+     * tests for all countries in continent
+     */
     @Test
     void testGetAllCountriesInContinent() {
         ArrayList<Country> countries = cd.getAllCountries(cd.allCountriesInContinent("Europe"));
@@ -67,12 +74,18 @@ public class AppIntegrationTest
         assertEquals("Moscow", cty.getCapital());
     }
 
+    /**
+     * test for top populated countries in continent
+     */
     @Test
     void testTopPopulatedCountriesInContinent() {
         ArrayList<Country> countries = cd.getAllCountries(cd.topPopulatedCountriesInContinent(5,"Asia"));
         assertEquals(5, countries.size());
     }
 
+    /**
+     * tests for all countries in region
+     */
     @Test
     void testGetAllCountriesInRegion() {
         ArrayList<Country> countries = cd.getAllCountries(cd.allCountriesInRegion("Southeast Asia"));

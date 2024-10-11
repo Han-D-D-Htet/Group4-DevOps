@@ -17,6 +17,9 @@ public class AppTest {
     static CapitalData cap;
     static Connection con;
 
+    /**
+     * creating necessary objects for tests
+     */
     @BeforeAll
     static void init()
     {
@@ -28,7 +31,9 @@ public class AppTest {
         cap = new CapitalData(con);
     }
 
-    // Test for returned query
+    /**
+     * Test for returned query of countries report
+      */
     @Test
     void allCountriesInWorld() {
         String actual = cd.allCountriesInWorld();
@@ -78,27 +83,32 @@ public class AppTest {
         Assertions.assertEquals(expected, actual);
     }
 
+    // test for null query as input for get all countries
     @Test
     void getAllCountriesTestNull() {
         cd.getAllCountries(null);
     }
 
+    // test for empty query as input for get all countries
     @Test
     void getAllCountriesTestEmptyQuery() {
         cd.getAllCountries("");
     }
 
+    // test for printing null
     @Test
     void printCountriesTestNull() {
         cd.printCountries(null);
     }
 
+    // test for printing empty list
     @Test
     void printCountriesTestEmpty() {
         ArrayList<Country> countries = new ArrayList<>();
         cd.printCountries(countries);
     }
 
+    // test for countries that contain null
     @Test
     void printCountriesTestContainsNull() {
         ArrayList<Country> countries = new ArrayList<>();
@@ -106,6 +116,7 @@ public class AppTest {
         cd.printCountries(countries);
     }
 
+    // test for printing valid data
     @Test
     void printCountriesTestValid() {
         ArrayList<Country> countries = new ArrayList<>();
