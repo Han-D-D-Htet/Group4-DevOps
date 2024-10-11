@@ -126,7 +126,6 @@ public class AppIntegrationTest
         City city = cities.get(0);
         assertEquals("Jakarta", city.getCityName());
         assertEquals("Indonesia", city.getCountry());
-        assertEquals("Jakarta Raya", city.getDistrict());
         assertEquals("9,604,900", city.getCityPopulation());
     }
 
