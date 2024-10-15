@@ -32,8 +32,9 @@ public class AppTest {
     }
 
     /**
-     * Test for returned query of countries report
-      */
+     * test for returned query of countries report
+     * unit test for all countries in the world
+     */
     @Test
     void allCountriesInWorld() {
         String actual = cd.allCountriesInWorld();
@@ -42,6 +43,9 @@ public class AppTest {
         Assertions.assertEquals(expected, actual);
     }
 
+    /**
+     * unit test for top populated countries in the world
+     */
     @Test
     void topPopulatedCountriesInWorld() {
         String actual = cd.topPopulatedCountriesInWorld(10);
@@ -51,6 +55,9 @@ public class AppTest {
         Assertions.assertEquals(expected, actual);
     }
 
+    /**
+     * unit test for all countries in a continent
+     */
     @Test
     void allCountriesInContinent() {
         String actual = cd.allCountriesInContinent("Europe");
@@ -59,6 +66,9 @@ public class AppTest {
         Assertions.assertEquals(expected, actual);
     }
 
+    /**
+     * unit test for top populated countries in a continent
+     */
     @Test
     void topPopulatedCountriesInContinent() {
         String actual = cd.topPopulatedCountriesInContinent(15, "Europe");
@@ -67,6 +77,9 @@ public class AppTest {
         Assertions.assertEquals(expected, actual);
     }
 
+    /**
+     * unit test for all countries in a region
+     */
     @Test
     void allCountriesInRegion() {
         String actual = cd.allCountriesInRegion("Caribbean");
@@ -75,6 +88,9 @@ public class AppTest {
         Assertions.assertEquals(expected, actual);
     }
 
+    /**
+     * unit test for top populated countries in a region
+     */
     @Test
     void topPopulatedCountriesInRegion() {
         String actual = cd.topPopulatedCountriesInRegion(20, "Caribbean");
@@ -83,32 +99,42 @@ public class AppTest {
         Assertions.assertEquals(expected, actual);
     }
 
-    // test for null query as input for get all countries
+    /**
+     * test for null query as input for get all countries
+     */
     @Test
     void getAllCountriesTestNull() {
         cd.getAllCountries(null);
     }
 
-    // test for empty query as input for get all countries
+    /**
+     * test for empty query as input for get all countries
+     */
     @Test
     void getAllCountriesTestEmptyQuery() {
         cd.getAllCountries("");
     }
 
-    // test for printing null
+    /**
+     * test for printing null
+     */
     @Test
     void printCountriesTestNull() {
         cd.printCountries(null);
     }
 
-    // test for printing empty list
+    /**
+     * test for printing empty list
+     */
     @Test
     void printCountriesTestEmpty() {
         ArrayList<Country> countries = new ArrayList<>();
         cd.printCountries(countries);
     }
 
-    // test for countries that contain null
+    /**
+     * test for countries that contain null
+     */
     @Test
     void printCountriesTestContainsNull() {
         ArrayList<Country> countries = new ArrayList<>();
@@ -116,7 +142,9 @@ public class AppTest {
         cd.printCountries(countries);
     }
 
-    // test for printing valid data
+    /**
+     * test for printing valid data
+     */
     @Test
     void printCountriesTestValid() {
         ArrayList<Country> countries = new ArrayList<>();
@@ -132,7 +160,8 @@ public class AppTest {
     }
 
     /**
-     * unit tests for cities report
+     * test for returned query of cities report
+     * unit test for all cities in the world
      */
     @Test
     void allCitiesInWorld() {
@@ -142,6 +171,9 @@ public class AppTest {
         Assertions.assertEquals(expected, actual);
     }
 
+    /**
+     * unit tests for all cities in a continent
+     */
     @Test
     void allCitiesInContinent() {
         String actual = ct.allCitiesInContinent("Asia");
@@ -150,7 +182,9 @@ public class AppTest {
         Assertions.assertEquals(expected, actual);
     }
 
-
+    /**
+     * unit tests for all cities in a region
+     */
     @Test
     void allCitiesInRegion() {
         String actual = ct.allCitiesInRegion("Southeast Asia");
@@ -159,6 +193,9 @@ public class AppTest {
         Assertions.assertEquals(expected, actual);
     }
 
+    /**
+     * unit tests for all cities in a country
+     */
     @Test
     void allCitiesInCountry() {
         String actual = ct.allCitiesInCountry("Myanmar");
@@ -167,6 +204,9 @@ public class AppTest {
         Assertions.assertEquals(expected, actual);
     }
 
+    /**
+     * unit tests for all cities in a district
+     */
     @Test
     void allCitiesInDistrict() {
         String actual = ct.allCitiesInDistrict("Mandalay");
@@ -176,22 +216,34 @@ public class AppTest {
         Assertions.assertEquals(expected, actual);
     }
 
+    /**
+     * test for null query as input for get all cities
+     */
     @Test
     void getAllCitiesTestNullQuery() {
         ct.getAllCities(null);
     }
 
+    /**
+     * test for empty query as input for get all cities
+     */
     @Test
     void getAllCitiesTestEmptyQuery() {
         ct.getAllCities("");
     }
 
+    /**
+     * test for printing null
+     */
     @Test
     void printCitiesTestNull()
     {
         ct.printCities(null);
     }
 
+    /**
+     * test for printing empty list
+     */
     @Test
     void printCitiesTestEmpty()
     {
@@ -199,6 +251,9 @@ public class AppTest {
         ct.printCities(cities);
     }
 
+    /**
+     * test for cities that contain null
+     */
     @Test
     void printCitiesTestContainsNull()
     {
@@ -207,6 +262,9 @@ public class AppTest {
         ct.printCities(cities);
     }
 
+    /**
+     * test for printing valid data
+     */
     @Test
     void printCities()
     {
@@ -221,7 +279,7 @@ public class AppTest {
     }
 
     /**
-     * unit tests for top populated cities report
+     * unit test for top populated cities in the world
      */
     @Test
     void topPopulatedCitiesInWorld() {
@@ -231,6 +289,9 @@ public class AppTest {
         Assertions.assertEquals(expected, actual);
     }
 
+    /**
+     * unit test for top populated cities in a continent
+     */
     @Test
     void topPopulatedCitiesInContinent() {
         String actual = ct.topPopulatedCitiesInContinent(10, "Asia");
@@ -239,6 +300,9 @@ public class AppTest {
         Assertions.assertEquals(expected, actual);
     }
 
+    /**
+     * unit test for top populated cities in a region
+     */
     @Test
     void topPopulatedCitiesInRegion() {
         String actual = ct.topPopulatedCitiesInRegion(10, "Southeast Asia");
@@ -247,6 +311,9 @@ public class AppTest {
         Assertions.assertEquals(expected, actual);
     }
 
+    /**
+     * unit test for top populated cities in a country
+     */
     @Test
     void topPopulatedCitiesInCountry() {
         String actual = ct.topPopulatedCitiesInCountry(10, "Myanmar");
@@ -255,6 +322,9 @@ public class AppTest {
         Assertions.assertEquals(expected, actual);
     }
 
+    /**
+     * unit test for top populated cities in a district
+     */
     @Test
     void topPopulatedCitiesInDistrict() {
         String actual = ct.topPopulatedCitiesInDistrict(10, "Mandalay");
@@ -264,7 +334,8 @@ public class AppTest {
     }
 
     /**
-     * unit tests for capital cities report
+     * test for returned query of capital cities report
+     * unit test for all capital cities in the world
      */
     @Test
     void allCapitalCitiesInWorld() {
@@ -274,6 +345,9 @@ public class AppTest {
         Assertions.assertEquals(expected, actual);
     }
 
+    /**
+     * unit test for top populated capital cities in the world
+     */
     @Test
     void topPopulatedCapitalCitiesInWorld() {
         String actual = cap.topPopulatedCapitalCitiesInWorld(10);
@@ -282,6 +356,9 @@ public class AppTest {
         Assertions.assertEquals(expected, actual);
     }
 
+    /**
+     * unit test for all capital cities in a continent
+     */
     @Test
     void allCapitalCitiesInContinent() {
         String actual = cap.allCapitalCitiesInContinent("Asia");
@@ -290,6 +367,9 @@ public class AppTest {
         Assertions.assertEquals(expected, actual);
     }
 
+    /**
+     * unit test for top populated capital cities in a continent
+     */
     @Test
     void topPopulatedCapitalCitiesInContinent() {
         String actual = cap.topPopulatedCapitalCitiesInContinent(10,"Asia");
@@ -298,6 +378,9 @@ public class AppTest {
         Assertions.assertEquals(expected, actual);
     }
 
+    /**
+     * unit test for all capital cities in a region
+     */
     @Test
     void allCapitalCitiesInRegion() {
         String actual = cap.allCapitalCitiesInRegion("Southeast Asia");
@@ -306,6 +389,9 @@ public class AppTest {
         assertEquals(expected, actual);
     }
 
+    /**
+     * unit test for top populated capital cities in a region
+     */
     @Test
     void topPopulatedCapitalCitiesInRegion() {
         String actual = cap.topPopulatedCapitalCitiesInRegion(10,"Southeast Asia");
@@ -314,27 +400,42 @@ public class AppTest {
         Assertions.assertEquals(expected, actual);
     }
 
+    /**
+     * test for null query as input for get all capital cities
+     */
     @Test
     void getAllCapitalCitiesTestNullQuery() {
         cap.getAllCapitalCities(null);
     }
 
+    /**
+     * test for empty query as input for get all capital cities
+     */
     @Test
     void getAllCapitalCitiesTestEmptyQuery() {
         cap.getAllCapitalCities("");
     }
 
+    /**
+     * test for printing null
+     */
     @Test
     void printCapitalCitiesTestNull() {
         cap.printCapitalCities(null);
     }
 
+    /**
+     * test for printing empty list
+     */
     @Test
     void printCapitalCitiesTestEmpty() {
         ArrayList<Capital> capitalCities = new ArrayList<>();
         cap.printCapitalCities(capitalCities);
     }
 
+    /**
+     * test for capital cities that contain null
+     */
     @Test
     void printCapitalCitiesTestContainsNull() {
         ArrayList<Capital> capitalCities = new ArrayList<>();
@@ -342,6 +443,9 @@ public class AppTest {
         cap.printCapitalCities(capitalCities);
     }
 
+    /**
+     * test for printing valid data
+     */
     @Test
     void printCapitalCities() {
         ArrayList<Capital> capitalCities = new ArrayList<>();
