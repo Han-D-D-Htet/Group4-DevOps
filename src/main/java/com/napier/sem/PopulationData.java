@@ -33,6 +33,46 @@ public class PopulationData {
     }
 
     /**
+     * query for the sum of total population in a region
+     * @param region The region for total population.
+     */
+    public String totalPopulationInRegion(String region) {
+        return "SELECT country.Region as popName, SUM(country.Population) as totalPopulation "
+                + "FROM country, city "
+                + "WHERE country.capital = city.ID AND country.Region = '" + region + "'";
+    }
+
+    /**
+     * query for the sum of total population living in cities in a region
+     * @param region The region for total population.
+     */
+    public String totalPopulationLivingInCitiesInRegion(String region) {
+        return "SELECT country.Region, SUM(city.Population) as totalCityPopulation "
+                + "FROM country, city "
+                + "WHERE country.Code = city.CountryCode AND country.Region = '" + region + "'";
+    }
+
+    /**
+     * query for the sum of total population in a country
+     * @param country The country for total population.
+     */
+    public String totalPopulationInCountry(String country) {
+        return "SELECT country.Name as popName, SUM(country.Population) as totalPopulation "
+                + "FROM country, city "
+                + "WHERE country.capital = city.ID AND country.Name = '" + country + "'";
+    }
+
+    /**
+     * query for the sum of total population living in cities in a country
+     * @param country The country for total population.
+     */
+    public String totalPopulationLivingInCitiesInCountry(String country) {
+        return "SELECT country.Name, SUM(city.Population) as totalCityPopulation "
+                + "FROM country, city "
+                + "WHERE country.Code = city.CountryCode AND country.Name = '" + country + "'";
+    }
+
+    /**
      * get the countries information as an arraylist
      * @param query1 the SQL query to calculate total population
      * @param query2 the SQL query to calculate total population living in cities
@@ -96,7 +136,7 @@ public class PopulationData {
 
             String cty_string =
                     String.format("%-15s %-25s %-25s %-20s",
-                            pop.getPopName(), pop.getTotalPopulation() + "(" + pop.getPercentageCityPopulation() + ")", pop.getTotalPopulationCities(), pop.getTotalPopulationNotCities() + "(" + pop.getPercentageNotCityPopulation() + ")");
+                            pop.getPopName(), pop.getTotalPopulation(), pop.getTotalPopulationCities() + "(" + pop.getPercentageCityPopulation() + ")", pop.getTotalPopulationNotCities() + "(" + pop.getPercentageNotCityPopulation() + ")");
             System.out.println(cty_string);
         } else {
             System.out.println("No population information");

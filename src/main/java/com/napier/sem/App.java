@@ -73,7 +73,7 @@ public class App
         App a = new App();
 
         // Connect to database
-        a.connect("localhost:33060", 30000);
+        a.connect("localhost:33060", 10000);
 
         // division line between prints
         String line = "=".repeat(130);
@@ -217,6 +217,20 @@ public class App
         Population popInContinent = pdt.getPopulationInformation(query1, query2);
         System.out.println("<<< 23. Population information in " + inputContinent + " continent >>>");
         pdt.printPopulation(popInContinent);
+
+        // The population of people, people living in cities, and people not living in cities in each region.
+        String query3 = pdt.totalPopulationInRegion(inputRegion);
+        String query4 = pdt.totalPopulationLivingInCitiesInRegion(inputRegion);
+        Population popInRegion = pdt.getPopulationInformation(query3, query4);
+        System.out.println("<<< 24. Population information in " + inputRegion + " region >>>");
+        pdt.printPopulation(popInRegion);
+
+        // The population of people, people living in cities, and people not living in cities in each country.
+        String query5 = pdt.totalPopulationInCountry(inputCountry);
+        String query6 = pdt.totalPopulationLivingInCitiesInCountry(inputCountry);
+        Population popInCountry = pdt.getPopulationInformation(query5, query6);
+        System.out.println("<<< 25. Population information in " + inputCountry + " country >>>");
+        pdt.printPopulation(popInCountry);
 
         // Disconnect from database
         a.disconnect();
