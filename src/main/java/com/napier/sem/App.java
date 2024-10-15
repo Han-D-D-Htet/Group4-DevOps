@@ -99,7 +99,7 @@ public class App
         cd.printCountries(countriesInRegion);
         System.out.println(line);
 
-        // Top N populated countries the in world
+        // Top N populated countries in the world
         ArrayList<Country> populatedCountriesInWorld = cd.getAllCountries(cd.topPopulatedCountriesInWorld(count));
         System.out.println("<<< Top " + count + " populated countries in the world >>>");
         cd.printCountries(populatedCountriesInWorld);
@@ -125,7 +125,7 @@ public class App
         cid.printCities(citiesInContinent);
         System.out.println(line);
 
-        // All capital cities in a  region
+        // All capital cities in a region
         ArrayList<City> citiesInRegion = cid.getAllCities(cid.allCitiesInRegion(inputRegion));
         System.out.println("<<< All cities in the " + inputRegion + " region by largest population to smallest >>>");
         cid.printCities(citiesInRegion);
