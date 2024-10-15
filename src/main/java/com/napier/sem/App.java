@@ -87,31 +87,31 @@ public class App
 
         CountryData cd = new CountryData(a.con);
 
-        // All countries in continent
+        // All countries in a continent
         ArrayList<Country> countriesInContinent = cd.getAllCountries(cd.allCountriesInContinent(inputContinent));
         System.out.println("<<< All countries in the " + inputContinent + " continent by largest population to smallest >>>");
         cd.printCountries(countriesInContinent);
         System.out.println(line);
 
-        // All countries in region
+        // All countries in a region
         ArrayList<Country> countriesInRegion = cd.getAllCountries(cd.allCountriesInRegion(inputRegion));
         System.out.println("<<< All countries in the " + inputRegion + " region by largest population to smallest >>>");
         cd.printCountries(countriesInRegion);
         System.out.println(line);
 
-        // Top N populated countries in world
+        // Top N populated countries the in world
         ArrayList<Country> populatedCountriesInWorld = cd.getAllCountries(cd.topPopulatedCountriesInWorld(count));
         System.out.println("<<< Top " + count + " populated countries in the world >>>");
         cd.printCountries(populatedCountriesInWorld);
         System.out.println(line);
 
-        // Top N populated countries in a specific continent
+        // Top N populated countries in a continent
         ArrayList<Country> populatedCountriesInContinent = cd.getAllCountries(cd.topPopulatedCountriesInContinent(count, inputContinent));
         System.out.println("<<< Top " + count + " populated countries in the " + inputContinent + " continent >>>");
         cd.printCountries(populatedCountriesInContinent);
         System.out.println(line);
 
-        // Top N populated countries in a specific region
+        // Top N populated countries in a region
         ArrayList<Country> populatedCountriesInRegion = cd.getAllCountries(cd.topPopulatedCountriesInRegion(count, inputRegion));
         System.out.println("<<< Top " + count + " populated countries in the " + inputRegion + " region >>>");
         cd.printCountries(populatedCountriesInRegion);
@@ -119,25 +119,25 @@ public class App
 
         CityData cid = new CityData(a.con);
 
-        // All capital cities in a specific continent
+        // All capital cities in a continent
         ArrayList<City> citiesInContinent = cid.getAllCities(cid.allCitiesInContinent(inputContinent));
         System.out.println("<<< All cities in the " + inputContinent + " continent by largest population to smallest >>>");
         cid.printCities(citiesInContinent);
         System.out.println(line);
 
-        // All capital cities in a specific region
+        // All capital cities in a  region
         ArrayList<City> citiesInRegion = cid.getAllCities(cid.allCitiesInRegion(inputRegion));
         System.out.println("<<< All cities in the " + inputRegion + " region by largest population to smallest >>>");
         cid.printCities(citiesInRegion);
         System.out.println(line);
 
-        // All capital cities in a specific country
+        // All capital cities in a country
         ArrayList<City> citiesInCountry = cid.getAllCities(cid.allCitiesInCountry(inputCountry));
         System.out.println("<<< All cities in the " + inputCountry + " country by largest population to smallest >>>");
         cid.printCities(citiesInCountry);
         System.out.println(line);
 
-        // All capital cities in a specific district
+        // All capital cities in a district
         ArrayList<City> citiesInDistrict = cid.getAllCities(cid.allCitiesInDistrict(inputDistrict));
         System.out.println("<<< All cities in the " + inputDistrict + " by largest population to smallest >>>");
         cid.printCities(citiesInDistrict);
@@ -149,44 +149,44 @@ public class App
         cid.printCities(topCitiesInWorld);
         System.out.println(line);
 
-        // Top N populated cities in a specific continent
+        // Top N populated cities in a continent
         ArrayList<City> topCitiesInContinent = cid.getAllCities(cid.topPopulatedCitiesInContinent(count, inputContinent));
         System.out.println("<<< Top " + count + " populated cities in the " + inputContinent + " continent>>>");
         cid.printCities(topCitiesInContinent);
         System.out.println(line);
 
-        //top N populated cities in a specific region
+        //top N populated cities in a region
         ArrayList<City> topCitiesInRegion = cid.getAllCities(cid.topPopulatedCitiesInRegion(count, inputRegion));
         System.out.println("<<< Top " + count + " populated cities in the " + inputRegion + " region >>>");
         cid.printCities(topCitiesInRegion);
         System.out.println(line);
 
-        // top N populated cities in a specific country
+        // top N populated cities in a country
         ArrayList<City> topPopulatedCitiesInCountry = cid.getAllCities(cid.topPopulatedCitiesInCountry(count, inputCountry));
         System.out.println("<<< Top " + count + " populated cities in the " + inputCountry + " country >>>");
         cid.printCities(topPopulatedCitiesInCountry);
         System.out.println(line);
 
-        // top N populated cities in a specific district
+        // top N populated cities in a district
         ArrayList<City> topCitiesInDistrict = cid.getAllCities(cid.topPopulatedCitiesInDistrict(count, inputDistrict));
         System.out.println("<<< Top " + count + " populated cities in the " + inputDistrict + " district >>>");
         cid.printCities(topCitiesInDistrict);
         System.out.println(line);
 
-        // All capital cities in world
+        // All capital cities in the world
         CapitalData cpd = new CapitalData(a.con);
         ArrayList<Capital> capitalCitiesInWorld = cpd.getAllCapitalCities(cpd.allCapitalCitiesInWorld());
         System.out.println("<<< All capital cities in the world by largest Population to smallest >>>");
         cpd.printCapitalCities(capitalCitiesInWorld);
         System.out.println(line);
 
-        // All capital cities in a specific continent
+        // All capital cities in a continent
         ArrayList<Capital> capitalCitiesInContinent = cpd.getAllCapitalCities(cpd.allCapitalCitiesInContinent(inputContinent));
         System.out.println("<<< All capital cities in the " + inputContinent + " continent by largest Population to smallest >>>");
         cpd.printCapitalCities(capitalCitiesInContinent);
         System.out.println(line);
 
-        // All capital cities in a specific region
+        // All capital cities in a region
         ArrayList<Capital> capitalCitiesInRegion = cpd.getAllCapitalCities(cpd.allCapitalCitiesInRegion(inputRegion));
         System.out.println("<<< All capital cities in the " + inputRegion + " region by largest Population to smallest >>>");
         cpd.printCapitalCities(capitalCitiesInRegion);
@@ -198,13 +198,13 @@ public class App
         cpd.printCapitalCities(populatedCapitalCitiesInWorld);
         System.out.println(line);
 
-        // Top N populated capital cities in a specific continent
+        // Top N populated capital cities in a continent
         ArrayList<Capital> populatedCapitalCitiesInContinent = cpd.getAllCapitalCities(cpd.topPopulatedCapitalCitiesInContinent(count, inputContinent));
         System.out.println("<<< Top " + count + " populated capital cities in the " + inputContinent + " continent >>>");
         cpd.printCapitalCities(populatedCapitalCitiesInContinent);
         System.out.println(line);
 
-        // Top N populated capital cities in a specific region
+        // Top N populated capital cities in a region
         ArrayList<Capital> populatedCapitalCitiesInRegion = cpd.getAllCapitalCities(cpd.topPopulatedCapitalCitiesInRegion(count, inputRegion));
         System.out.println("<<< Top " + count + " populated capital cities in the " + inputRegion + " region >>>");
         cpd.printCapitalCities(populatedCapitalCitiesInRegion);
