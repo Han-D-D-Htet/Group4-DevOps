@@ -29,7 +29,8 @@ public class AppIntegrationTest
     }
 
     /**
-     * testing for all countries in world
+     * test for countries report
+     * test for all countries in the world
      */
     @Test
     void testGetAllCountriesInWorld() {
@@ -45,7 +46,7 @@ public class AppIntegrationTest
     }
 
     /**
-     * test for top populated countries in world
+     * test for top populated countries in the world
      */
     @Test
     void testTopPopulatedCountriesInWorld() {
@@ -60,7 +61,7 @@ public class AppIntegrationTest
     }
 
     /**
-     * tests for all countries in continent
+     * test for all countries in a continent
      */
     @Test
     void testGetAllCountriesInContinent() {
@@ -75,7 +76,7 @@ public class AppIntegrationTest
     }
 
     /**
-     * test for top populated countries in continent
+     * test for top populated countries in a continent
      */
     @Test
     void testTopPopulatedCountriesInContinent() {
@@ -84,7 +85,7 @@ public class AppIntegrationTest
     }
 
     /**
-     * tests for all countries in region
+     * test for all countries in a region
      */
     @Test
     void testGetAllCountriesInRegion() {
@@ -99,6 +100,9 @@ public class AppIntegrationTest
         assertEquals("Bandar Seri Begawan", cty.getCapital());
     }
 
+    /**
+     * tests for all top populated countries in a region
+     */
     @Test
     void testTopPopulatedCountriesInRegion() {
         ArrayList<Country> countries = cd.getAllCountries(cd.topPopulatedCountriesInRegion(5,"Southeast Asia"));
@@ -112,7 +116,8 @@ public class AppIntegrationTest
     }
 
     /**
-     * integration tests for cities report
+     * test for cities report
+     * integration test for all cities in the world
      */
     @Test
     void testGetAllCitiesInWorld()
@@ -121,6 +126,9 @@ public class AppIntegrationTest
         assertEquals(4079, cities.size());
     }
 
+    /**
+     * integration test for all cities in a continent
+     */
     @Test
     void testGetAllCitiesInContinent()
     {
@@ -132,6 +140,9 @@ public class AppIntegrationTest
         assertEquals("10,500,000", city.getCityPopulation());
     }
 
+    /**
+     * integration test for all cities in a region
+     */
     @Test
     void testGetAllCitiesInRegion()
     {
@@ -142,6 +153,9 @@ public class AppIntegrationTest
         assertEquals("9,604,900", city.getCityPopulation());
     }
 
+    /**
+     * integration test for all cities in a country
+     */
     @Test
     void testGetAllCitiesInCountry()
     {
@@ -150,6 +164,9 @@ public class AppIntegrationTest
         assertEquals("Wuhan", cities.get(4).getCityName());
     }
 
+    /**
+     * integration test for all cities in a district
+     */
     @Test
     void testGetAllCitiesInDistrict()
     {
@@ -161,7 +178,7 @@ public class AppIntegrationTest
     }
 
     /**
-     * integration tests for populated cities report
+     * integration test for top populated cities in the world
      */
     @Test
     void testGetTopPopulatedCitiesInWorld()
@@ -169,6 +186,10 @@ public class AppIntegrationTest
         ArrayList<City> cities = ct.getAllCities(ct.topPopulatedCitiesInWorld(5));
         assertEquals(5, cities.size());
     }
+
+    /**
+     * integration test for top populated cities in a continent
+     */
     @Test
     void testGetTopPopulatedCitiesInContinent()
     {
@@ -180,6 +201,9 @@ public class AppIntegrationTest
         assertEquals("9,696,300", city.getCityPopulation());
     }
 
+    /**
+     * integration test for top populated cities in a region
+     */
     @Test
     void testGetTopPopulatedCitiesInRegion()
     {
@@ -187,6 +211,9 @@ public class AppIntegrationTest
         assertEquals(5, cities.size());
     }
 
+    /**
+     * integration test for top populated cities in a country
+     */
     @Test
     void testGetTopPopulatedCitiesInCountry()
     {
@@ -196,6 +223,9 @@ public class AppIntegrationTest
         assertEquals("Sichuan", city.getDistrict());
     }
 
+    /**
+     * integration test for top populated cities in a district
+     */
     @Test
     void testGetTopPopulatedCitiesInDistrict()
     {
@@ -208,7 +238,8 @@ public class AppIntegrationTest
     }
 
     /**
-     * integration tests for capital cities report
+     * test for capital cities report
+     * integration test for all capital cities in the world
      */
     @Test
     void testGetAllCapitalCitiesInWorld()
@@ -219,6 +250,9 @@ public class AppIntegrationTest
         assertEquals("South Korea", cc.getCountry());
     }
 
+    /**
+     * integration test for all capital cities in a continent
+     */
     @Test
     void testGetAllCapitalCitiesInContinent()
     {
@@ -229,6 +263,9 @@ public class AppIntegrationTest
         assertEquals("21,484", cc.getCapitalPopulation());
     }
 
+    /**
+     * integration test for all capital cities in a region
+     */
     @Test
     void testGetAllCapitalCitiesInRegion()
     {
@@ -237,6 +274,9 @@ public class AppIntegrationTest
         assertEquals("Rangoon (Yangon)", cc.getCapitalName());
     }
 
+    /**
+     * integration test for top populated cities in the world
+     */
     @Test
     void testGetTopPopulatedCapitalCitiesInWorld()
     {
@@ -244,6 +284,9 @@ public class AppIntegrationTest
         assertEquals(5, capitalCities.size());
     }
 
+    /**
+     * integration test for top populated cities in a continent
+     */
     @Test
     void testGetTopPopulatedCapitalCitiesInContinent()
     {
@@ -251,6 +294,9 @@ public class AppIntegrationTest
         assertEquals(5, capitalCities.size());
     }
 
+    /**
+     * integration test for top populated cities in a region
+     */
     @Test
     void testGetTopPopulatedCapitalCitiesInRegion()
     {
