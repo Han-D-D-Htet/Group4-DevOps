@@ -210,6 +210,14 @@ public class App
         cpd.printCapitalCities(populatedCapitalCitiesInRegion);
         System.out.println(line);
 
+        // The population of people, people living in cities, and people not living in cities in each continent.
+        PopulationData pdt = new PopulationData(a.con);
+        String query1 = pdt.totalPopulationInContinent(inputContinent);
+        String query2 = pdt.totalPopulationLivingInCitiesInContinent(inputContinent);
+        Population popInContinent = pdt.getPopulationInformation(query1, query2);
+        System.out.println("<<< 23. Population information in " + inputContinent + " continent >>>");
+        pdt.printPopulation(popInContinent);
+
         // Disconnect from database
         a.disconnect();
     }

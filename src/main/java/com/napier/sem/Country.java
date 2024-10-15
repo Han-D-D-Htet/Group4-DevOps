@@ -32,10 +32,6 @@ public class Country {
         return name;
     }
 
-    public void setCode(String code) {
-        this.code = code;
-    }
-
     public String getContinent() {
         return continent;
     }
@@ -53,6 +49,10 @@ public class Country {
     }
 
     // setters
+    public void setCode(String code) {
+        this.code = code;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
