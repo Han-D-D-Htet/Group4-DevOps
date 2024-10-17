@@ -51,4 +51,4 @@ None
 
 ## SCHEDULE
 
-**DUE DATE**: Release 1.0
+**DUE DATE**: 4th October 2024
