@@ -12,7 +12,20 @@ Define Code of Conduct. <br>
 ## Sprint 2
 
 Issues and user stories are created. <br>
-Assigned user, separate tasks and add sprint for issues.<br>
+Assigned user, separate tasks and add sprint for issues. <br>
 Create queries for generating reports in feature/ branches. <br>
 Full use cases are created. <br>
 Use case diagram is created. <br>
+
+## Sprint 3
+
+Unit tests for finished reports are added. <br>
+Integration tests for finished reports are added.
+
+## Sprint 4
+
+Deployment is performed. <br>
+Bug reporting is set up. <br>
+Creating queries(23-32) for generating reports. <br>
+Adding unit tests for queries(23-32) <br>
+Adding integration tests for queries(23-32)
