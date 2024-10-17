@@ -232,6 +232,11 @@ public class App
         System.out.println("<<< 25. Population information in " + inputCountry + " country >>>");
         pdt.printPopulation(popInCountry);
 
+        AdditionalPopulation add = new AdditionalPopulation(a.con);
+        // All capital cities in a continent
+        System.out.println("<<< 26. Population of the world >>>");
+        add.worldPopulation();
+
         // Disconnect from database
         a.disconnect();
     }
