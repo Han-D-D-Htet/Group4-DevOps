@@ -21,7 +21,7 @@ public class AppIntegrationTest
     static void init()
     {
         app = new App();
-        app.connect("localhost:33060", 20000);
+        app.connect("localhost:33060", 10000);
         con = app.getCon();
         cd = new CountryData(con);
         ct = new CityData(con);
