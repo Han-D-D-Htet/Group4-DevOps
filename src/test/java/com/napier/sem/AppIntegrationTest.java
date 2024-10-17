@@ -15,6 +15,7 @@ public class AppIntegrationTest
     static CountryData cd;
     static CityData ct;
     static CapitalData cap;
+    static PopulationData pd;
     static Connection con;
 
     @BeforeAll
@@ -26,6 +27,7 @@ public class AppIntegrationTest
         cd = new CountryData(con);
         ct = new CityData(con);
         cap = new CapitalData(con);
+        pd = new PopulationData(con);
     }
 
     /**
@@ -304,6 +306,38 @@ public class AppIntegrationTest
         Capital cc = capitalCities.get(1);
         assertEquals("Bangkok", cc.getCapitalName());
     }
+
+    /**
+     * integration test for population of people, population of people, people living in cities, and people not living in cities in each continent
+     */
+    @Test
+    void testGetPopulationInformationInContinent(){
+        Population ppe = pd.getPopulationInformation(pd.totalPopulationInContinent("Asia"),pd.totalPopulationLivingInCitiesInContinent("Asia"));
+        assertEquals("3,705,025,700", ppe.getTotalPopulation(), "Expected population and Actual population of people living in Asia should be the same.");
+        assertEquals("19%", ppe.getPercentageCityPopulation(), "In Asia, 19% of people live in cities.");
+    }
+
+    /**
+     * integration test for population of people, population of people, people living in cities, and people not living in cities in each region
+     */
+    @Test
+    void testGetPopulationInformationInRegion(){
+        Population ppe = pd.getPopulationInformation(pd.totalPopulationInRegion("Southeast Asia"),pd.totalPopulationLivingInCitiesInRegion("Southeast Asia"));
+        assertEquals("102,067,225", ppe.getTotalPopulationCities(), "In Southeast Asia, 102,067,225 people live in cities.");
+        assertEquals("20%", ppe.getPercentageCityPopulation(), "Percentage of people who live in cities of Southeast Asia is 20%.");
+    }
+
+    /**
+     * integration test for population of people, population of people, people living in cities, and people not living in cities in each country
+     */
+    @Test
+    void testGetPopulationInformationInCountry(){
+        Population ppe = pd.getPopulationInformation(pd.totalPopulationInCountry("China"),pd.totalPopulationLivingInCitiesInCountry("China"));
+        assertEquals("China", ppe.getPopName(), "Country should be China.");
+        assertEquals("1,101,604,386", ppe.getTotalPopulationNotCities(), "In China, 101,604,386 people do not live in cities.");
+        assertEquals("86%", ppe.getPercentageNotCityPopulation(), "Percentage of people who do not live in cities of China is 86%.");
+    }
+
 
     /**
      * close database connection after all tests

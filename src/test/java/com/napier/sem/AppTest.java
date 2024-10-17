@@ -15,6 +15,7 @@ public class AppTest {
     static CountryData cd;
     static CityData ct;
     static CapitalData cap;
+    static PopulationData pd;
     static Connection con;
 
     /**
@@ -29,6 +30,7 @@ public class AppTest {
         cd = new CountryData(con);
         ct = new CityData(con);
         cap = new CapitalData(con);
+        pd = new PopulationData(con);
     }
 
     /**
@@ -455,6 +457,111 @@ public class AppTest {
         cc.setCapitalPopulation("1780000");
         capitalCities.add(cc);
         cap.printCapitalCities(capitalCities);
+    }
+
+    /**
+     * test for query of total population in a continent
+     */
+    @Test
+    void totalPopulationInContinent(){
+        String actual = pd.totalPopulationInContinent("Asia");
+        String expected = "SELECT country.Continent as popName, SUM(country.Population) as totalPopulation " +"FROM country, city WHERE country.capital = city.ID AND country.Continent = 'Asia'";
+        Assertions.assertEquals(expected, actual);
+    }
+
+    /**
+     * test for the query of total population living in cities in a continent
+     */
+    @Test
+    void totalPopulationLivingInCitiesInContinent(){
+        String actual = pd.totalPopulationLivingInCitiesInContinent("Asia");
+        String expected = "SELECT country.Continent, SUM(city.Population) as totalCityPopulation "
+                + "FROM country, city "
+                + "WHERE country.Code = city.CountryCode AND country.Continent = 'Asia'";
+        Assertions.assertEquals(expected, actual);
+    }
+
+    /**
+     * test for the query of total population in a region
+     */
+    @Test
+    void totalPopulationInRegion(){
+        String actual = pd.totalPopulationInRegion("Asia");
+        String expected = "SELECT country.Region as popName, SUM(country.Population) as totalPopulation "
+                + "FROM country, city "
+                + "WHERE country.capital = city.ID AND country.Region = 'Asia'";
+        Assertions.assertEquals(expected, actual);
+    }
+
+    /**
+     * test for the query of total population living in cities in a region
+     */
+    @Test
+    void totalPopulationLivingInCitiesInRegion(){
+        String actual = pd.totalPopulationLivingInCitiesInRegion("Southeast Asia");
+        String expected = "SELECT country.Region, SUM(city.Population) as totalCityPopulation "
+                + "FROM country, city "
+                + "WHERE country.Code = city.CountryCode AND country.Region = 'Southeast Asia'";
+        Assertions.assertEquals(expected, actual);
+    }
+
+    /**
+     * test for the query of total population in a country
+     */
+    @Test
+    void totalPopulationInCountry(){
+        String actual = pd.totalPopulationInCountry("China");
+        String expected = "SELECT country.Name as popName, SUM(country.Population) as totalPopulation "
+                + "FROM country, city "
+                + "WHERE country.capital = city.ID AND country.Name = 'China'";
+        Assertions.assertEquals(expected, actual);
+    }
+
+    /**
+     * test for the query of total population living in cities in a country
+     */
+    @Test
+    void totalPopulationLivingInCitiesInCountry(){
+        String actual = pd.totalPopulationLivingInCitiesInCountry("China");
+        String expected = "SELECT country.Name, SUM(city.Population) as totalCityPopulation "
+                + "FROM country, city "
+                + "WHERE country.Code = city.CountryCode AND country.Name = 'China'";
+        Assertions.assertEquals(expected, actual);
+    }
+
+    /**
+     * test for null query as input for get all population information
+     */
+    @Test
+    void getAllPopulationInformationTestNull() { pd.getPopulationInformation((null),(null));}
+
+    /**
+     * test for empty query as input for get all population information
+     */
+    @Test
+    void getAllPopulationInformationTestEmpty() {pd.getPopulationInformation("","");}
+
+    /**
+     * test for printing null for get all population information
+     */
+    @Test
+    void printPopulationTestNull() {
+        pd.printPopulation(null);
+    }
+
+    /**
+     * test for printing valid data for population of people, living or not living in cites information in a country
+     */
+    @Test
+    void printPopulationTestValid() {
+        Population ppe = new Population();
+        ppe.setPopName("China");
+        ppe.setTotalPopulation("1,277,558,000");
+        ppe.setTotalPopulationCities("175,953,614");
+        ppe.setTotalPopulationNotCities("1,101,604,386");
+        ppe.setPercentageCityPopulation("14%");
+        ppe.setPercentageNotCityPopulation("86%");
+        pd.printPopulation(ppe);
     }
 
     /**
