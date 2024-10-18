@@ -245,6 +245,11 @@ public class App
         pdt.printPopulation(popInCountry);
         System.out.println(line);
 
+        AdditionalPopulation add = new AdditionalPopulation(a.con);
+        System.out.println("<<< Additional Population Information >>>");
+        // population of the world
+        add.worldPopulation();
+
         // Disconnect from database
         a.disconnect();
     }
