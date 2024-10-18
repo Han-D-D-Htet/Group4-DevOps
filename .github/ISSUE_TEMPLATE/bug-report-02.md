@@ -1,6 +1,6 @@
 ---
 name: Bug Report 02
-about: A bug for total population reports
+about: Create a bug report to improve more
 title: 'Using wrong variable type for total population number'
 labels: ['bug']
 
