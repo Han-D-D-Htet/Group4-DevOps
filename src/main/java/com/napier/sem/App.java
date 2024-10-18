@@ -84,7 +84,6 @@ public class App
         String inputRegion = "Southeast Asia";
         String inputCountry = "China";
         String inputDistrict = "Buenos Aires";
-        String inputCity = "Seoul";
 
         CountryData cd = new CountryData(a.con);
         //all country in world by largest population
@@ -244,22 +243,6 @@ public class App
         Population popInCountry = pdt.getPopulationInformation(query5, query6);
         System.out.println("<<< 25. Population information in " + inputCountry + " country >>>");
         pdt.printPopulation(popInCountry);
-        System.out.println(line);
-
-        AdditionalPopulation add = new AdditionalPopulation(a.con);
-        System.out.println("<<< Additional Population Information >>>");
-        // Population of the world
-        add.worldPopulation();
-        // Population of a continent
-        add.continentPopulation(inputContinent);
-        //Population of a region
-        add.regionPopulation(inputRegion);
-        // Population of a country
-        add.countryPopulation(inputCountry);
-        // Population of a district
-        add.districtPopulation(inputDistrict);
-        // Population of a city
-        add.cityPopulation(inputCity);
         System.out.println(line);
 
         // Disconnect from database
