@@ -275,7 +275,7 @@ public class AppIntegrationTest
     @Test
     void testGetTopPopulatedCapitalCitiesInRegion()
     {
-        ArrayList<Capital> capitalCities = cap.getAllCapitalCities(cap.allCapitalCitiesInRegion("Southeast Asia"));
+        ArrayList<Capital> capitalCities = cap.getAllCapitalCities(cap.topPopulatedCapitalCitiesInRegion(5,"Southeast Asia"));
         Capital cc = capitalCities.get(1);
         assertEquals("Bangkok", cc.getCapitalName(), "Capital cities should be Bangkok.");
         assertEquals("Thailand", cc.getCountry(), "Country name should be Thailand.");
@@ -311,7 +311,6 @@ public class AppIntegrationTest
         assertEquals("1,101,604,386", ppe.getTotalPopulationNotCities(), "In China, 101,604,386 people do not live in cities.");
         assertEquals("86%", ppe.getPercentageNotCityPopulation(), "Percentage of people who do not live in cities of China is 86%.");
     }
-
 
     /**
      * close database connection after all tests

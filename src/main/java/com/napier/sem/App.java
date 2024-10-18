@@ -250,22 +250,16 @@ public class App
         System.out.println("<<< Additional Population Information >>>");
         // Population of the world
         add.worldPopulation();
-
         // Population of a continent
         add.continentPopulation(inputContinent);
-
         //Population of a region
         add.regionPopulation(inputRegion);
-
         // Population of a country
         add.countryPopulation(inputCountry);
-
         // Population of a district
         add.districtPopulation(inputDistrict);
-
         // Population of a city
         add.cityPopulation(inputCity);
-
         System.out.println(line);
 
         // Disconnect from database
