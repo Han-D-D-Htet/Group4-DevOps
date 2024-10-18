@@ -247,8 +247,11 @@ public class App
 
         AdditionalPopulation add = new AdditionalPopulation(a.con);
         System.out.println("<<< Additional Population Information >>>");
-        // population of the world
+        // Population of the world
         add.worldPopulation();
+
+        // Population of a continent
+        add.continentPopulation(inputContinent);
 
         // Disconnect from database
         a.disconnect();

@@ -39,4 +39,30 @@ public class AdditionalPopulation {
 
         }
     }
+
+    /**
+     * query for the population of a continent
+     */
+    public void continentPopulation(String continent){
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // query for the population of the continent
+            String conQuery = "SELECT SUM(Population) as continentPop FROM country WHERE Continent = '" + continent + "'";
+            // Execute SQL statement
+            ResultSet res = stmt.executeQuery(conQuery);
+            if (res.next())
+            {
+                System.out.println("27. " + continent + " Population: " + nf.format(res.getDouble("continentPop")));
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get continent population");
+
+        }
+    }
+
 }
