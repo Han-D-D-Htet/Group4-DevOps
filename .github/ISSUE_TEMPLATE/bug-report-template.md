@@ -1,5 +1,5 @@
 ---
-name: Bug Report Template
+name: Bug Report
 about: Create a report to improve more
 title: '[Bug]: Mismatching JDK and Jacoco versions leads to failure in GitHub workflow action'
 labels: ['bug']

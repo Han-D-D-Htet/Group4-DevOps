@@ -26,6 +26,6 @@ Integration tests for finished reports are added.
 
 Deployment is performed. <br>
 Bug reporting is set up. <br>
-Creating queries(23-31) for generating reports. <br>
-Adding unit tests for queries(23-31) <br>
-Adding integration tests for queries(23-31)
+Creating queries(23-25) for generating reports. <br>
+Adding unit tests for queries(23-25) <br>
+Adding integration tests for queries(23-25)
