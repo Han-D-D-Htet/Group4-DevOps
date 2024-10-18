@@ -149,7 +149,7 @@ public class CountryData {
         }
         // Print header for country information
         System.out.println(String.format("%-5s %-50s %-20s %-30s %-15s %-5s",
-                "Code", "Name", "Continent", "Region", "Population", "CSapital"));
+                "Code", "Name", "Continent", "Region", "Population", "Capital"));
         System.out.println(String.format("%-5s %-50s %-20s %-30s %-15s %-5s",
                 "----", "----", "---------", "------", "----------", "-------"));
 
