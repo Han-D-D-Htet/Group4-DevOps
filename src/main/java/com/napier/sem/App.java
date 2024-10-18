@@ -253,6 +253,9 @@ public class App
         // Population of a continent
         add.continentPopulation(inputContinent);
 
+        //Population of a region
+        add.regionPopulation(inputRegion);
+
         // Disconnect from database
         a.disconnect();
     }

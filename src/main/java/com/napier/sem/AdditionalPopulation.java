@@ -42,6 +42,7 @@ public class AdditionalPopulation {
 
     /**
      * query for the population of a continent
+     * @param continent The continent to print.
      */
     public void continentPopulation(String continent){
         try
@@ -61,6 +62,32 @@ public class AdditionalPopulation {
         {
             System.out.println(e.getMessage());
             System.out.println("Failed to get continent population");
+
+        }
+    }
+
+    /**
+     * query for the population of a region
+     * @param region The region to print.
+     */
+    public void regionPopulation(String region){
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // query for the population of the continent
+            String regQuery = "SELECT SUM(Population) as regPop FROM country WHERE Region = '" + region + "'";
+            // Execute SQL statement
+            ResultSet res = stmt.executeQuery(regQuery);
+            if (res.next())
+            {
+                System.out.println("28. " + region + " Population: " + nf.format(res.getDouble("regPop")));
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get region population");
 
         }
     }
