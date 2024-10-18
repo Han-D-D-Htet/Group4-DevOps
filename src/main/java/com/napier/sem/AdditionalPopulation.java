@@ -145,4 +145,30 @@ public class AdditionalPopulation {
         }
     }
 
+    /**
+     * query for the sum of total population living in cities in a region
+     * @param city The region for total population.
+     */
+    public void cityPopulation(String city){
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // query for the population of the continent
+            String citQuery = "SELECT SUM(Population) as citPop FROM city WHERE Name = '" + city + "'";
+            // Execute SQL statement
+            ResultSet res = stmt.executeQuery(citQuery);
+            if (res.next())
+            {
+                System.out.println("31. " + city + " Population: " + nf.format(res.getDouble("citPop")));
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city population");
+
+        }
+    }
+
 }
