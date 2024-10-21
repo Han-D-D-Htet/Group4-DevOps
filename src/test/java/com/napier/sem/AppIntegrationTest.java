@@ -338,6 +338,16 @@ public class AppIntegrationTest
     }
 
     /**
+     * integration test for return result of the continent population
+     */
+    @Test
+    void testReturnOfRegionPopulation(){
+
+        String regionPopulationResults = ap.regionPopulation("Southeast Asia");
+        assertEquals("518,541,000",regionPopulationResults, "This is the population of Southeast Asia.");
+    }
+
+    /**
      * integration test for Chinese language information
      */
     @Test
