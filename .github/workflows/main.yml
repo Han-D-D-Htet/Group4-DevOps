@@ -46,6 +46,7 @@ jobs:
         uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.d9539b27-74c6-4ce2-a9ef-a9e2493be186 }}
+          version: "v0.1.15"
           directory: ./target/site/jacoco/jacoco.xml
           flags: Integration Tests
           root_dir: /home/runner/work/Group4-DevOps/Group4-DevOps
@@ -67,7 +68,7 @@ jobs:
           distribution: 'adopt'
       - name: Package and Run docker compose
         run: |
-          mvn package
+          mvn package -DskipTests
           docker compose up --abort-on-container-exit
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
