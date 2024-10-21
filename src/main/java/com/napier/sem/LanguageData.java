@@ -22,7 +22,7 @@ public class LanguageData {
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // query for language information
-            String query = "SELECT countrylanguage.Language, SUM(countrylanguage.Percentage * country.Population / 100) AS speakers, SUM(countrylanguage.Percentage * country.Population) / SUM(country.Population) AS worldPercentage "
+            String query = "SELECT countrylanguage.Language, SUM(countrylanguage.Percentage * country.Population / 100) AS speakers, (SUM(countrylanguage.Percentage * country.Population/100) / SUM(country.Population)) AS worldPercentage "
                     + "FROM country, countrylanguage "
                     + "WHERE country.Code = countrylanguage.CountryCode AND countrylanguage.language IN ('Chinese', 'English', 'Hindi', 'Spanish', 'Arabic') "
                     + "GROUP BY countrylanguage.Language ORDER BY speakers DESC";
