@@ -245,6 +245,15 @@ public class App
         pdt.printPopulation(popInCountry);
         System.out.println(line);
 
+        AdditionalPopulation add = new AdditionalPopulation(a.con);
+        System.out.println("<<< Additional Population Information >>>");
+        // Population of the world
+        System.out.println("26. World Population:\t\t" + add.worldPopulation());
+        // Population of a continent
+        System.out.println("27. " + inputContinent + " Population:\t\t" + add.continentPopulation(inputContinent));
+        //Population of a region
+        System.out.println("28. " + inputRegion + " Population:\t" + add.regionPopulation(inputRegion));
+
         // five language information by greatest number of speakers to smallest
         LanguageData ld = new LanguageData(a.con);
         System.out.println("<<< 32. Five language information by greatest number of speakers >>>");
