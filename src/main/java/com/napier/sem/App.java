@@ -245,6 +245,12 @@ public class App
         pdt.printPopulation(popInCountry);
         System.out.println(line);
 
+        // five language information by greatest number of speakers to smallest
+        LanguageData ld = new LanguageData(a.con);
+        System.out.println("<<< 32. Five language information by greatest number of speakers >>>");
+        ld.printLanguage(ld.getLanguageInformation());
+        System.out.println(line);
+
         // Disconnect from database
         a.disconnect();
     }

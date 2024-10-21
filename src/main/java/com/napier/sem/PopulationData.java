@@ -134,10 +134,10 @@ public class PopulationData {
             System.out.println(String.format("%-15s %-25s %-25s %-20s",
                     "----", "----------------", "----------------", "--------------------"));
 
-            String cty_string =
+            String pop_string =
                     String.format("%-15s %-25s %-25s %-20s",
                             pop.getPopName(), pop.getTotalPopulation(), pop.getTotalPopulationCities() + "(" + pop.getPercentageCityPopulation() + ")", pop.getTotalPopulationNotCities() + "(" + pop.getPercentageNotCityPopulation() + ")");
-            System.out.println(cty_string);
+            System.out.println(pop_string);
         } else {
             System.out.println("No population information");
         }
