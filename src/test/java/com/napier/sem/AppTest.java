@@ -16,6 +16,7 @@ public class AppTest {
     static CityData ct;
     static CapitalData cap;
     static PopulationData pd;
+    static AdditionalPopulation ap;
     static LanguageData ld;
     static Connection con;
 
@@ -32,6 +33,7 @@ public class AppTest {
         ct = new CityData(con);
         cap = new CapitalData(con);
         pd = new PopulationData(con);
+        ap = new AdditionalPopulation(con);
         ld = new LanguageData(con);
     }
 

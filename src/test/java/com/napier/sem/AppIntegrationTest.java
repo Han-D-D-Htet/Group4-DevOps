@@ -17,6 +17,7 @@ public class AppIntegrationTest
     static CapitalData cap;
     static PopulationData pd;
     static LanguageData ld;
+    static AdditionalPopulation ap;
     static Connection con;
 
     @BeforeAll
@@ -30,6 +31,7 @@ public class AppIntegrationTest
         cap = new CapitalData(con);
         pd = new PopulationData(con);
         ld = new LanguageData(con);
+        ap = new AdditionalPopulation(con);
     }
 
     /**
@@ -312,6 +314,17 @@ public class AppIntegrationTest
         assertEquals("China", ppe.getPopName(), "Country should be China.");
         assertEquals("1,101,604,386", ppe.getTotalPopulationNotCities(), "In China, 101,604,386 people do not live in cities.");
         assertEquals("86%", ppe.getPercentageNotCityPopulation(), "Percentage of people who do not live in cities of China is 86%.");
+    }
+
+
+    /**
+     * integration test for return result of the world population
+     */
+    @Test
+    void testReturnOfWorldPopulation(){
+
+        String worldPopulationResults = ap.worldPopulation();
+        assertEquals("6,078,749,450",worldPopulationResults, "This is the population of the world.");
     }
 
     /**
