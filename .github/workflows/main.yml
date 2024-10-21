@@ -45,8 +45,9 @@ jobs:
       - name: CodeCov
         uses: codecov/codecov-action@v3
         with:
-          directory: ./target/site/jacoco/jacoco.xml
+          directory: ./target/site/jacoco
           flags: Integration Tests
+          root_dir: /home/runner/work/Group4-DevOps/Group4-DevOps
           verbose: true
         env:
           token: ${{ secrets.d9539b27-74c6-4ce2-a9ef-a9e2493be186 }}
