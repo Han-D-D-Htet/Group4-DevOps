@@ -45,10 +45,11 @@ jobs:
       - name: CodeCov
         uses: codecov/codecov-action@v3
         with:
-          token: ${{ secrets.d9539b27-74c6-4ce2-a9ef-a9e2493be186 }}
-          directory: ./target/site/jacoco
+          directory: ./target/site/jacoco/jacoco.xml
           flags: Integration Tests
           verbose: true
+        env:
+          token: ${{ secrets.d9539b27-74c6-4ce2-a9ef-a9e2493be186 }}
 
   build:
     name: Build and Start Using docker-compose
