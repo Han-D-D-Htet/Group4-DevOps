@@ -46,13 +46,7 @@ jobs:
         uses: codecov/codecov-action@v3
       - name: Upload coverage to Codecov
         run: bash <(curl -s https://codecov.io/bash) -f target/site/jacoco/jacoco.xml
-        with:
-          token: ${{ secrets.d9539b27-74c6-4ce2-a9ef-a9e2493be186 }}
-          version: "v0.1.15"
-          directory: ./target/site/jacoco/jacoco.xml
-          flags: Integration Tests
-          root_dir: /home/runner/work/Group4-DevOps/Group4-DevOps
-          verbose: true
+
 
 
   build:
