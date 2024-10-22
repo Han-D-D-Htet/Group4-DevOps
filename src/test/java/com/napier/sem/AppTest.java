@@ -595,6 +595,14 @@ public class AppTest {
     }
 
     /**
+     * test for printing null for district population
+     */
+    @Test
+    void testDistrictPopulationEmpty(){
+        ap.districtPopulation("");
+    }
+
+    /**
      * test for empty query as input for get language Information
      */
     @Test
