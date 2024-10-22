@@ -348,6 +348,16 @@ public class AppIntegrationTest
     }
 
     /**
+     * integration test for return result of the country population
+     */
+    @Test
+    void testReturnOfCountryPopulation(){
+
+        String countryPopulationResults = ap.countryPopulation("China");
+        assertEquals("1,277,558,000",countryPopulationResults, "This is the population of China.");
+    }
+
+    /**
      * integration test for Chinese language information
      */
     @Test
