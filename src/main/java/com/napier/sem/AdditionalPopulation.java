@@ -43,9 +43,9 @@ public class AdditionalPopulation {
      */
     public String continentPopulation(String continent) {
         try {
-            //testing continent is not null
-            if (continent == null) {
-                System.out.println("No continent selected");
+            //testing continent is not empty
+            if (continent.isEmpty()) {
+                System.out.println("Continent is empty");
                 return null;
             }
             // Create an SQL statement
