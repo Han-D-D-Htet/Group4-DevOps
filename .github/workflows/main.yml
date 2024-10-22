@@ -47,7 +47,7 @@ jobs:
       - name: CodeCov
         uses: codecov/codecov-action@v3
         with:
-            token: ${{ secrets.CODECOV_TOKEN }}
+#            token: ${{ secrets.CODECOV_TOKEN }}
             directory: ./target/site/jacoco
             flags: Integration Tests
             slug: Han-D-D-Htet/Group4-DevOps
