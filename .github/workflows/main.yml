@@ -34,6 +34,8 @@ jobs:
         with:
           java-version: '17'
           distribution: 'adopt'
+      - name: Build and run tests
+        run: mvn clean install -DskipTests=false
       - name: Integration Tests and CodeCov
         run: |
           docker build -t database ./db 
@@ -44,10 +46,11 @@ jobs:
           docker image rm database
       - name: CodeCov
         uses: codecov/codecov-action@v3
-      - name: Upload coverage to Codecov
-        run: bash <(curl -s https://codecov.io/bash) -f target/site/jacoco/jacoco.xml
         with:
-          CODECOV_TOKEN=8e3f0c6a-eec9-4572-ae5f-0a043e3c66f7
+            token: ${{ secrets.CODECOV_TOKEN }}
+            directory: ./target/site/jacoco/jacoco.xml
+            flags: Integration Tests
+            verbose: true
 
   build:
     name: Build and Start Using docker-compose

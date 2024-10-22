@@ -260,6 +260,7 @@ public class App
         ld.printLanguage(ld.getLanguageInformation());
         System.out.println(line);
 
+
         // Disconnect from database
         a.disconnect();
     }

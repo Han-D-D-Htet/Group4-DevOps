@@ -22,7 +22,7 @@ public class LanguageData {
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // query for language information
-            String query = "SELECT countrylanguage.Language, SUM(countrylanguage.Percentage * country.Population / 100) AS speakers, (SUM(countrylanguage.Percentage * country.Population) / SUM(country.Population)) AS worldPercentage "
+            String query = "SELECT countrylanguage.Language, SUM(countrylanguage.Percentage * country.Population / 100) as speakers, (SELECT SUM(Population) FROM country) as worldPopulation "
                     + "FROM country, countrylanguage "
                     + "WHERE country.Code = countrylanguage.CountryCode AND countrylanguage.language IN ('Chinese', 'English', 'Hindi', 'Spanish', 'Arabic') "
                     + "GROUP BY countrylanguage.Language ORDER BY speakers DESC";
@@ -37,9 +37,11 @@ public class LanguageData {
                 // creating a language object
                 Language lan = new Language();
                 lan.setLanguage(res.getString("Language"));
-                lan.setTotalLanguageSpeaker(nf.format(Math.round(res.getDouble("speakers"))));
-                long worldPercent = Math.round(res.getDouble("worldPercentage"));
-                lan.setWorldPopPercentage(nf.format(worldPercent) + "%");
+                long totalSpeakers = Math.round(res.getDouble("speakers"));
+                lan.setTotalLanguageSpeaker(nf.format(totalSpeakers));
+                long worldPopulation = Math.round(res.getDouble("worldPopulation"));
+                double worldPopPercent = ((double) totalSpeakers / worldPopulation);
+                lan.setWorldPopPercentage((Math.round(worldPopPercent *100)+"%"));
                 languages.add(lan);
             }
             return languages;
