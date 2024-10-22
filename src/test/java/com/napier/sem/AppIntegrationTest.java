@@ -368,6 +368,16 @@ public class AppIntegrationTest
     }
 
     /**
+     * integration test for return result of the district population
+     */
+    @Test
+    void testReturnOfCityPopulation(){
+
+        String cityPopulationResults = ap.cityPopulation("Seoul");
+        assertEquals("9,981,619",cityPopulationResults, "This is the population of Seoul.");
+    }
+
+    /**
      * integration test for Chinese language information
      */
     @Test
