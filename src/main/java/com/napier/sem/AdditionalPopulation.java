@@ -71,6 +71,11 @@ public class AdditionalPopulation {
      */
     public String regionPopulation(String region) {
         try {
+            //testing region is not null
+            if (region == null) {
+                System.out.println("No region selected");
+                return null;
+            }
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // query for the population of the continent

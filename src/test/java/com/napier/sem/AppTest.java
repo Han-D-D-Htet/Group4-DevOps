@@ -578,6 +578,15 @@ public class AppTest {
     }
 
     /**
+     * test for printing null for region population
+     */
+    @Test
+    void testRegionPopulationNull(){
+        String result = ap.regionPopulation(null);
+        assertNull(result, "Region is null.");
+    }
+
+    /**
      * test for empty query as input for get language Information
      */
     @Test
