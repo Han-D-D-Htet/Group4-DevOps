@@ -603,6 +603,15 @@ public class AppTest {
     }
 
     /**
+     * test for printing null for city population
+     */
+    @Test
+    void testCityPopulationNull(){
+        String result = ap.cityPopulation(null);
+        assertNull(result, "City is null.");
+    }
+
+    /**
      * test for empty query as input for get language Information
      */
     @Test
