@@ -255,6 +255,8 @@ public class App
         System.out.println("28. " + inputRegion + " Population:\t" + add.regionPopulation(inputRegion));
         // Population of a country
         System.out.println("29. " + inputCountry + " Population:\t\t" + add.countryPopulation(inputCountry));
+        // Population of a district
+        System.out.println("30. " + inputDistrict + " Population:\t\t" + add.districtPopulation(inputDistrict));
 
         // five language information by greatest number of speakers to smallest
         LanguageData ld = new LanguageData(a.con);

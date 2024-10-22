@@ -92,9 +92,10 @@ public class AdditionalPopulation {
         return null;
     }
 
-    /** query for the sum of total population living in cities in a region
+    /**
+     * query for the sum of total population living in cities in a region
      * @param country The region for total population.
-            */
+     */
     public String countryPopulation(String country){
         try
         {
@@ -120,4 +121,30 @@ public class AdditionalPopulation {
         return null;
     }
 
+    /**
+     * query for the sum of total population living in cities in a region
+     * @param district The region for total population.
+     */
+    public String districtPopulation(String district){
+        try {
+            //testing district is not null
+            if (district.isEmpty()) {
+                System.out.println("Cannot issue empty district");
+            }
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // query for the population of the continent
+            String disQuery = "SELECT SUM(Population) as disPop FROM city WHERE District = '" + district + "'";
+            // Execute SQL statement
+            ResultSet res = stmt.executeQuery(disQuery);
+            if (res.next()) {
+                return nf.format(res.getDouble("disPop"));
+            }
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get district population");
+        }
+        return null;
+    }
 }
