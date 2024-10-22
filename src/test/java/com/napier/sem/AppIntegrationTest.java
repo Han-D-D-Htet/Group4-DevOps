@@ -16,6 +16,8 @@ public class AppIntegrationTest
     static CityData ct;
     static CapitalData cap;
     static PopulationData pd;
+    static LanguageData ld;
+    static AdditionalPopulation ap;
     static Connection con;
 
     @BeforeAll
@@ -28,6 +30,8 @@ public class AppIntegrationTest
         ct = new CityData(con);
         cap = new CapitalData(con);
         pd = new PopulationData(con);
+        ld = new LanguageData(con);
+        ap = new AdditionalPopulation(con);
     }
 
     /**
@@ -310,6 +314,60 @@ public class AppIntegrationTest
         assertEquals("China", ppe.getPopName(), "Country should be China.");
         assertEquals("1,101,604,386", ppe.getTotalPopulationNotCities(), "In China, 101,604,386 people do not live in cities.");
         assertEquals("86%", ppe.getPercentageNotCityPopulation(), "Percentage of people who do not live in cities of China is 86%.");
+    }
+
+
+    /**
+     * integration test for return result of the world population
+     */
+    @Test
+    void testReturnOfWorldPopulation(){
+
+        String worldPopulationResults = ap.worldPopulation();
+        assertEquals("6,078,749,450",worldPopulationResults, "This is the population of the world.");
+    }
+
+    /**
+     * integration test for return result of the continent population
+     */
+    @Test
+    void testReturnOfContinentPopulation(){
+
+        String continentPopulationResults = ap.continentPopulation("Asia");
+        assertEquals("3,705,025,700",continentPopulationResults, "This is the population of Asia.");
+    }
+
+    /**
+     * integration test for Chinese language information
+     */
+    @Test
+    void testGetChineseLanguageInformation(){
+        ArrayList<Language> languages = ld.getLanguageInformation();
+        Language lan = languages.get(0);
+        assertEquals("Chinese", lan.getLanguage(), "Language should be Chinese.");
+        assertEquals(5, languages.size(), "There should be 5 languages.");
+    }
+
+    /**
+     * integration test for Spanish language information
+     */
+    @Test
+    void testGetSpanishLanguageInformation(){
+        ArrayList<Language> languages = ld.getLanguageInformation();
+        Language lan = languages.get(2);
+        assertEquals("Spanish", lan.getLanguage(), "Language should be Spanish.");
+        assertEquals("47%", lan.getWorldPopPercentage(), "This percentage is based on world population.");
+    }
+
+    /**
+     * integration test for Arabic language information
+     */
+    @Test
+    void testGetArabicLanguageInformation(){
+        ArrayList<Language> languages = ld.getLanguageInformation();
+        int lastLan = languages.size()-1;
+        Language lan = languages.get(lastLan);
+        assertEquals("233,839,239", lan.getTotalLanguageSpeaker(), "233,839,239 people speak Arabic.");
     }
 
     /**

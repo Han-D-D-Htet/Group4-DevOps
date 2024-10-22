@@ -16,6 +16,8 @@ public class AppTest {
     static CityData ct;
     static CapitalData cap;
     static PopulationData pd;
+    static AdditionalPopulation ap;
+    static LanguageData ld;
     static Connection con;
 
     /**
@@ -31,6 +33,8 @@ public class AppTest {
         ct = new CityData(con);
         cap = new CapitalData(con);
         pd = new PopulationData(con);
+        ap = new AdditionalPopulation(con);
+        ld = new LanguageData(con);
     }
 
     /**
@@ -562,6 +566,47 @@ public class AppTest {
         ppe.setPercentageCityPopulation("14%");
         ppe.setPercentageNotCityPopulation("86%");
         pd.printPopulation(ppe);
+    }
+
+    /**
+     * test for empty query as input for get language Information
+     */
+    @Test
+    void getLanguageInformation() {
+        ld.getLanguageInformation();
+    }
+
+    /**
+     * test for printing empty list
+     */
+    @Test
+    void printLanguageTestEmpty(){
+        ArrayList<Language> languages = new ArrayList<>();
+        ld.printLanguage(languages);
+    }
+
+    /**
+     * test for printing null for language test
+     */
+    @Test
+    void printLanguageTestNull(){
+        ArrayList<Language> languages = new ArrayList<>();
+        languages.add(null);
+        ld.printLanguage(languages);
+    }
+
+    /**
+     * test for printing valid data
+     */
+    @Test
+    void printLanguageTestValid(){
+        ArrayList<Language> languages =  new ArrayList<>();
+        Language lang = new Language();
+        lang.setLanguage("English");
+        lang.setTotalLanguageSpeaker("347,077,867");
+        lang.setWorldPopPercentage("55%");
+        languages.add(lang);
+        ld.printLanguage(languages);
     }
 
     /**
