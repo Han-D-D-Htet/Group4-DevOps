@@ -11,7 +11,7 @@ Build Status for master
 ![GitHub Workflow Status (master)](https://img.shields.io/github/actions/workflow/status/Han-D-D-Htet/Group4-DevOps/main.yml?branch=master&style=flat-square)
 
 Code coverage of tests for master
-(get link from codecov)
+[![codecov](https://codecov.io/gh/Han-D-D-Htet/Group4-DevOps/graph/badge.svg?token=MABMXMFDY3)](https://codecov.io/gh/Han-D-D-Htet/Group4-DevOps)
 
 LICENSE
 [![LICENSE](https://img.shields.io/github/license/Han-D-D-Htet/Group4-DevOps.svg?style=flat-square)](https://github.com/Han-D-D-Htet/Group4-DevOps/blob/sem/LICENSE)

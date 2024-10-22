@@ -100,9 +100,9 @@ public class PopulationData {
                 // total population not living in cities
                 long intTotalNotCityPop = intTotalPop - intTotalCityPop;
                 // percentage of population living in cities
-                String percentCityPop = Math.round(((double) intTotalCityPop / intTotalPop) * 100) + "%";
+                String percentCityPop = Math.round((double) intTotalCityPop / intTotalPop * 100) + "%";
                 // percentage of population not living in cities
-                String percentNotCityPop = Math.round(((double) intTotalNotCityPop / intTotalPop) * 100) + "%";
+                String percentNotCityPop = Math.round((double) intTotalNotCityPop / intTotalPop * 100) + "%";
                 // setting values for population arraylist
                 pop.setPopName(res1.getString("popName"));
                 pop.setTotalPopulation(nf.format(intTotalPop));

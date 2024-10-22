@@ -27,7 +27,7 @@ public class AppTest {
     static void init()
     {
         app = new App();
-        app.connect("localhost:33060", 10000);
+        app.connect("localhost:33060", 10_000);
         con = app.getCon();
         cd = new CountryData(con);
         ct = new CityData(con);
@@ -537,7 +537,7 @@ public class AppTest {
      * test for null query as input for get all population information
      */
     @Test
-    void getAllPopulationInformationTestNull() { pd.getPopulationInformation((null),(null));}
+    void getAllPopulationInformationTestNull() { pd.getPopulationInformation(null,null);}
 
     /**
      * test for empty query as input for get all population information
@@ -645,7 +645,7 @@ public class AppTest {
     void printLanguageTestValid(){
         ArrayList<Language> languages =  new ArrayList<>();
         Language lang = new Language();
-        lang.setLanguage("English");
+        lang.setLanguageName("English");
         lang.setTotalLanguageSpeaker("347,077,867");
         lang.setWorldPopPercentage("55%");
         languages.add(lang);
