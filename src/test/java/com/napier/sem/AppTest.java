@@ -569,12 +569,12 @@ public class AppTest {
     }
 
     /**
-     * test for printing null for world population
+     * test for printing null for continent population
      */
     @Test
-    void testWorldPopulationNull(){
-        String result = ap.worldPopulation();
-        assertNotNull(result, "Result should not be null.");
+    void testContinentPopulationNull(){
+        String result = ap.continentPopulation(null);
+        assertNull(result, "Continent is null.");
     }
 
     /**
