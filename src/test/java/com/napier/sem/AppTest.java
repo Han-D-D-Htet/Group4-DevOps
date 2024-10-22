@@ -586,6 +586,15 @@ public class AppTest {
     }
 
     /**
+     * test for printing null for country population
+     */
+    @Test
+    void testCountryPopulationNull(){
+        String result = ap.countryPopulation(null);
+        assertNull(result, "Country is null.");
+    }
+
+    /**
      * test for empty query as input for get language Information
      */
     @Test
