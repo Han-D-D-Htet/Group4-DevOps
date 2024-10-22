@@ -356,7 +356,7 @@ public class AppIntegrationTest
         ArrayList<Language> languages = ld.getLanguageInformation();
         Language lan = languages.get(2);
         assertEquals("Spanish", lan.getLanguage(), "Language should be Spanish.");
-        assertEquals("47%", lan.getWorldPopPercentage(), "This percentage is based on world population.");
+        assertEquals("6%", lan.getWorldPopPercentage(), "This percentage is based on world population.");
     }
 
     /**
