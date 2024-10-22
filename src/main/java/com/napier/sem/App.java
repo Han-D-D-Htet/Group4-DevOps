@@ -84,6 +84,7 @@ public class App
         String inputRegion = "Southeast Asia";
         String inputCountry = "China";
         String inputDistrict = "Buenos Aires";
+        String inputCity = "Seoul";
 
         CountryData cd = new CountryData(a.con);
         //all country in world by largest population
@@ -257,6 +258,9 @@ public class App
         System.out.println("29. " + inputCountry + " Population:\t\t" + add.countryPopulation(inputCountry));
         // Population of a district
         System.out.println("30. " + inputDistrict + " Population:\t\t" + add.districtPopulation(inputDistrict));
+        // Population of a city
+        System.out.println("31. " + inputCity + " Population:\t\t" + add.cityPopulation(inputCity));
+        System.out.println(line);
 
         // five language information by greatest number of speakers to smallest
         LanguageData ld = new LanguageData(a.con);
