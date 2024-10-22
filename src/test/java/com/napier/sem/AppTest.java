@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class AppTest {
     static App app;
@@ -566,6 +566,15 @@ public class AppTest {
         ppe.setPercentageCityPopulation("14%");
         ppe.setPercentageNotCityPopulation("86%");
         pd.printPopulation(ppe);
+    }
+
+    /**
+     * test for printing null for world population
+     */
+    @Test
+    void testWorldPopulationNull(){
+        String result = ap.worldPopulation();
+        assertNotNull(result, "Result should not be null.");
     }
 
     /**
