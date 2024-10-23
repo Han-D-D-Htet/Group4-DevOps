@@ -42,12 +42,15 @@ jobs:
           docker stop world
           docker rm world
           docker image rm database
+      - name: List generated files
+        run: ls -R ./target/site/jacoco
       - name: CodeCov
         uses: codecov/codecov-action@v3
         with:
             token: ${{ secrets.CODECOV_TOKEN }}
             directory: ./target/site/jacoco
             flags: Integration Tests
+            slug: Han-D-D-Htet/Group4-DevOps
             verbose: true
 
   build:

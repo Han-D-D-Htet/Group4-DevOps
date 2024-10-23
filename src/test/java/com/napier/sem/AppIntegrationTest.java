@@ -24,7 +24,7 @@ public class AppIntegrationTest
     static void init()
     {
         app = new App();
-        app.connect("localhost:33060", 10000);
+        app.connect("localhost:33060", 10_000);
         con = app.getCon();
         cd = new CountryData(con);
         ct = new CityData(con);
@@ -384,7 +384,7 @@ public class AppIntegrationTest
     void testGetChineseLanguageInformation(){
         ArrayList<Language> languages = ld.getLanguageInformation();
         Language lan = languages.get(0);
-        assertEquals("Chinese", lan.getLanguage(), "Language should be Chinese.");
+        assertEquals("Chinese", lan.getLanguageName(), "Language should be Chinese.");
         assertEquals(5, languages.size(), "There should be 5 languages.");
     }
 
@@ -395,7 +395,7 @@ public class AppIntegrationTest
     void testGetSpanishLanguageInformation(){
         ArrayList<Language> languages = ld.getLanguageInformation();
         Language lan = languages.get(2);
-        assertEquals("Spanish", lan.getLanguage(), "Language should be Spanish.");
+        assertEquals("Spanish", lan.getLanguageName(), "Language should be Spanish.");
         assertEquals("6%", lan.getWorldPopPercentage(), "This percentage is based on world population.");
     }
 

@@ -36,12 +36,12 @@ public class LanguageData {
             {
                 // creating a language object
                 Language lan = new Language();
-                lan.setLanguage(res.getString("Language"));
+                lan.setLanguageName(res.getString("Language"));
                 long totalSpeakers = Math.round(res.getDouble("speakers"));
                 lan.setTotalLanguageSpeaker(nf.format(totalSpeakers));
                 long worldPopulation = Math.round(res.getDouble("worldPopulation"));
-                double worldPopPercent = ((double) totalSpeakers / worldPopulation);
-                lan.setWorldPopPercentage((Math.round(worldPopPercent *100)+"%"));
+                double worldPopPercent = (double) totalSpeakers / worldPopulation;
+                lan.setWorldPopPercentage(Math.round(worldPopPercent *100)+"%");
                 languages.add(lan);
             }
             return languages;
@@ -77,7 +77,7 @@ public class LanguageData {
                 continue;
             String lan_string =
                     String.format("%-15s %-20s %-20s",
-                            lan.getLanguage(), lan.getTotalLanguageSpeaker(), lan.getWorldPopPercentage());
+                            lan.getLanguageName(), lan.getTotalLanguageSpeaker(), lan.getWorldPopPercentage());
             System.out.println(lan_string);
         }
     }

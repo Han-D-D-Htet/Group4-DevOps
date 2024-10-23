@@ -73,7 +73,7 @@ public class App
         App a = new App();
 
         // Connect to database
-        a.connect("localhost:33060", 10000);
+        a.connect("localhost:33060", 10_000);
 
         // division line between prints
         String line = "=".repeat(130);
@@ -81,9 +81,9 @@ public class App
         // variables
         int count = 5;
         String inputContinent = "Asia";
-        String inputRegion = "Southeast Asia";
+        String inputRegion = "Caribbean";
         String inputCountry = "China";
-        String inputDistrict = "Buenos Aires";
+        String inputDistrict = "Kabol";
         String inputCity = "Seoul";
 
         CountryData cd = new CountryData(a.con);

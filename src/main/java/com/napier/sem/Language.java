@@ -3,7 +3,7 @@ package com.napier.sem;
 public class Language {
 
     // language name
-    private String language;
+    private String languageName;
 
     // number of people speaking the language
     private String totalLanguageSpeaker;
@@ -12,8 +12,8 @@ public class Language {
     private String worldPopPercentage;
 
     // getters
-    public String getLanguage() {
-        return language;
+    public String getLanguageName() {
+        return languageName;
     }
 
     public String getTotalLanguageSpeaker() {
@@ -25,8 +25,8 @@ public class Language {
     }
 
     // setters
-    public void setLanguage(String language) {
-        this.language = language;
+    public void setLanguageName(String languageName) {
+        this.languageName = languageName;
     }
 
     public void setTotalLanguageSpeaker(String totalLanguageSpeaker) {
