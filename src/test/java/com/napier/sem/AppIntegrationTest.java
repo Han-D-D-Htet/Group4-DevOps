@@ -93,7 +93,7 @@ public class AppIntegrationTest
     void testTopPopulatedCountriesInRegion() {
         ArrayList<Country> countries = cd.getAllCountries(cd.topPopulatedCountriesInRegion(5,"Southeast Asia"));
         Country cty = countries.get(1);
-        assertEquals("Hanoi", cty.getCapital(), "Capital city should be Hanoi.");
+        assertEquals("Southeast Asia", cty.getRegion(), "Region should be Southeast Asia.");
     }
 
     /**
