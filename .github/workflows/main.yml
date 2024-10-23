@@ -24,7 +24,7 @@ jobs:
         uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          directory: ./target/site/jacoco
+          directory: ./target/site/jacoco/jacoco.xml
           flags: Unit Tests
           slug: Han-D-D-Htet/Group4-DevOps
           verbose: true
@@ -54,7 +54,7 @@ jobs:
         uses: codecov/codecov-action@v3
         with:
             token: ${{ secrets.CODECOV_TOKEN }}
-            directory: ./target/site/jacoco
+            directory: ./target/site/jacoco/jacoco.xml
             flags: Integration Tests
             slug: Han-D-D-Htet/Group4-DevOps
             verbose: true
