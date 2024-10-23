@@ -20,7 +20,7 @@ jobs:
           distribution: 'adopt'
       - name: Unit Tests
         run: mvn -Dtest=com.napier.sem.AppTest test
-      - name: Upload coverage to Codecov
+      - name: Codecov
         run: bash <(curl -s https://codecov.io/bash) -t ${{ secrets.CODECOV_TOKEN }} -f ./target/site/jacoco/jacoco.xml
 
 
@@ -45,15 +45,9 @@ jobs:
           docker stop world
           docker rm world
           docker image rm database
-      - name: CodeCov
-        uses: codecov/codecov-action@v3
-        with:
-            token: ${{ secrets.CODECOV_TOKEN }}
-            directory: ./target/site/jacoco/jacoco.xml
-            flags: Integration Tests
-            slug: Han-D-D-Htet/Group4-DevOps
-            verbose: true
-            fail_ci_if_error: true
+      - name: Codecov
+        run: bash <(curl -s https://codecov.io/bash) -t ${{ secrets.CODECOV_TOKEN }} -f ./target/site/jacoco/jacoco.xml
+
 
   build:
     name: Build and Start Using docker-compose
