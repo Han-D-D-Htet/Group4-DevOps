@@ -6,6 +6,9 @@ import java.text.NumberFormat;
 
 import java.util.ArrayList;
 
+/**
+ * class for necessary operations for countries report
+ */
 public class CountryData {
 
     private final Connection con;

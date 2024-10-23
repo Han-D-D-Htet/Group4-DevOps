@@ -4,6 +4,9 @@ import java.sql.*;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 
+/**
+ * class for necessary operations for language report
+ */
 public class LanguageData {
 
     private final Connection con;

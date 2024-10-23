@@ -3,6 +3,9 @@ package com.napier.sem;
 import java.sql.*;
 import java.text.NumberFormat;
 
+/**
+ * class for necessary operations for additional population report
+ */
 public class AdditionalPopulation {
 
     private final Connection con;

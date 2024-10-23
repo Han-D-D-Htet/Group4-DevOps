@@ -225,7 +225,6 @@ public class AppIntegrationTest
         ArrayList<Capital> capitalCities = cap.getAllCapitalCities(cap.allCapitalCitiesInContinent("Asia"));
         int lastCapital = capitalCities.size()-1;
         Capital cc = capitalCities.get(lastCapital);
-//        assertEquals("Bandar Seri Begawan", cc.getCapitalName(), "Capital city is Bandar Seri Begawan.");
         assertEquals("21,484", cc.getCapitalPopulation(), "Population of the city is 21,484.");
     }
 
@@ -272,7 +271,7 @@ public class AppIntegrationTest
     }
 
     /**
-     * integration test for population of people, population of people, people living in cities, and people not living in cities in each continent
+     * integration test for population in each continent
      */
     @Test
     void testGetPopulationInformationInContinent(){
@@ -282,7 +281,7 @@ public class AppIntegrationTest
     }
 
     /**
-     * integration test for population of people, population of people, people living in cities, and people not living in cities in each region
+     * integration test for population in each region
      */
     @Test
     void testGetPopulationInformationInRegion(){
@@ -292,7 +291,7 @@ public class AppIntegrationTest
     }
 
     /**
-     * integration test for population of people, population of people, people living in cities, and people not living in cities in each country
+     * integration test for population in each country
      */
     @Test
     void testGetPopulationInformationInCountry(){

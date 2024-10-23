@@ -554,7 +554,7 @@ public class AppTest {
     }
 
     /**
-     * test for printing valid data for population of people, living or not living in cites information in a country
+     * test for printing valid data for population in a country
      */
     @Test
     void printPopulationTestValid() {
