@@ -17,8 +17,7 @@ LICENSE
 [![LICENSE](https://img.shields.io/github/license/Han-D-D-Htet/Group4-DevOps.svg?style=flat-square)](https://github.com/Han-D-D-Htet/Group4-DevOps/blob/sem/LICENSE)
 
 Release
-[![Releases](https://img.shields.io/github/release/Han-D-D-Htet/Group4-DevOps/all.svg?style=flat-square)](https://github.com/Han-D-D-Htet/Group4-DevOps/releases)
-
+[![Releases](https://img.shields.io/github/v/release/Han-D-D-Htet/Group4-DevOps?style=flat-square)](https://github.com/Han-D-D-Htet/Group4-DevOps/releases/latest)
 ## Sprint 1
 
 Project set-up and product Backlog created. <br>
