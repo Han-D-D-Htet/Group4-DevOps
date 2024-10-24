@@ -11,7 +11,7 @@ Build Status for master
 ![GitHub Workflow Status (master)](https://img.shields.io/github/actions/workflow/status/Han-D-D-Htet/Group4-DevOps/main.yml?branch=master&style=flat-square)
 
 Code coverage of tests for master
-[![codecov](https://codecov.io/gh/Han-D-D-Htet/Group4-DevOps/graph/badge.svg?token=MABMXMFDY3)](https://codecov.io/gh/Han-D-D-Htet/Group4-DevOps)
+[![codecov](https://codecov.io/github/Han-D-D-Htet/Group4-DevOps/graph/badge.svg?token=MABMXMFDY3)](https://codecov.io/github/Han-D-D-Htet/Group4-DevOps)
 
 LICENSE
 [![LICENSE](https://img.shields.io/github/license/Han-D-D-Htet/Group4-DevOps.svg?style=flat-square)](https://github.com/Han-D-D-Htet/Group4-DevOps/blob/sem/LICENSE)
@@ -64,7 +64,7 @@ You can view our project progress and step by step tasks performed due to the fo
 Github: https://github.com/Han-D-D-Htet/Group4-DevOps
 
 Zube(Kanban Board): https://zube.io/group4_devops/group4/w/workspace-1/sprints <br>
-(Note: All defined tasks are done so they can be viewed in the closed tab)
+(Note: All defined tasks are done and sprints are closed so they can be viewed in the closed tab)
 
 ## Bug Report
 For reporting bug, we create reports by using both issue template and issue form to describe details for each issue.
