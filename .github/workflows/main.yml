@@ -3,7 +3,6 @@ on: push
 permissions:
   contents: write
   repository-projects: write
-
 jobs:
   UnitTests:
     name: Unit Tests
