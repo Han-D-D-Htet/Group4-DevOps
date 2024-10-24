@@ -58,6 +58,17 @@ Adding Badges in Main Repository Readme. <br>
 Adding detailed requirements table. <br>
 Implementing final delivery and other requirements for the system.
 
+## Resource Link
+You can view our project progress and step by step tasks performed due to the following site: 
+
+Github: https://github.com/Han-D-D-Htet/Group4-DevOps
+
+Zube(Kanban Board): https://zube.io/group4_devops/group4/w/workspace-1/sprints <br>
+(Note: All defined tasks are done so they can be viewed in the closed tab)
+
+## Bug Report
+For reporting bug, we create reports by using both issue template and issue form to describe details for each issue.
+
 ## Showing query outputs that meet the Requirements
 
 | ID | Name                                                                                                                                                                 |  Met   |                             Screenshot |
@@ -95,3 +106,5 @@ Implementing final delivery and other requirements for the system.
 | 31 | The population of the city.                                                                                                                                          |  Yes   | ![img_30.png](output-img%2Fimg_30.png) |
 | 32 | Number of people who speak Chinese, English, Hindi, Spanish and Arabic languages from greatest number to smallest, including the percentage of the world population. |  Yes   | ![img_31.png](output-img%2Fimg_31.png) |
 
+## Contribution Marks
+![img.png](img.png)
