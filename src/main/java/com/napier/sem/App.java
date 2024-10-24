@@ -73,7 +73,7 @@ public class App
         App a = new App();
 
         // Connect to database
-        a.connect("localhost:33060", 10000);
+        a.connect("localhost:33060", 10_000);
 
         // division line between prints
         String line = "=".repeat(130);
@@ -81,9 +81,10 @@ public class App
         // variables
         int count = 5;
         String inputContinent = "Asia";
-        String inputRegion = "Southeast Asia";
+        String inputRegion = "Caribbean";
         String inputCountry = "China";
-        String inputDistrict = "Buenos Aires";
+        String inputDistrict = "Kabol";
+        String inputCity = "Seoul";
 
         CountryData cd = new CountryData(a.con);
         //all country in world by largest population
@@ -220,7 +221,7 @@ public class App
         cpd.printCapitalCities(populatedCapitalCitiesInRegion);
         System.out.println(line);
 
-        // The population of people, people living in cities, and people not living in cities in each continent.
+        // The population in each continent.
         PopulationData pdt = new PopulationData(a.con);
         String query1 = pdt.totalPopulationInContinent(inputContinent);
         String query2 = pdt.totalPopulationLivingInCitiesInContinent(inputContinent);
@@ -229,7 +230,7 @@ public class App
         pdt.printPopulation(popInContinent);
         System.out.println(line);
 
-        // The population of people, people living in cities, and people not living in cities in each region.
+        // The population in each region.
         String query3 = pdt.totalPopulationInRegion(inputRegion);
         String query4 = pdt.totalPopulationLivingInCitiesInRegion(inputRegion);
         Population popInRegion = pdt.getPopulationInformation(query3, query4);
@@ -237,13 +238,36 @@ public class App
         pdt.printPopulation(popInRegion);
         System.out.println(line);
 
-        // The population of people, people living in cities, and people not living in cities in each country.
+        // The population in each country.
         String query5 = pdt.totalPopulationInCountry(inputCountry);
         String query6 = pdt.totalPopulationLivingInCitiesInCountry(inputCountry);
         Population popInCountry = pdt.getPopulationInformation(query5, query6);
         System.out.println("<<< 25. Population information in " + inputCountry + " country >>>");
         pdt.printPopulation(popInCountry);
         System.out.println(line);
+
+        AdditionalPopulation add = new AdditionalPopulation(a.con);
+        System.out.println("<<< Additional Population Information >>>");
+        // Population of the world
+        System.out.println("26. World Population:\t\t" + add.worldPopulation());
+        // Population of a continent
+        System.out.println("27. " + inputContinent + " Population:\t\t" + add.continentPopulation(inputContinent));
+        //Population of a region
+        System.out.println("28. " + inputRegion + " Population:\t" + add.regionPopulation(inputRegion));
+        // Population of a country
+        System.out.println("29. " + inputCountry + " Population:\t\t" + add.countryPopulation(inputCountry));
+        // Population of a district
+        System.out.println("30. " + inputDistrict + " Population:\t\t" + add.districtPopulation(inputDistrict));
+        // Population of a city
+        System.out.println("31. " + inputCity + " Population:\t\t" + add.cityPopulation(inputCity));
+        System.out.println(line);
+
+        // five language information by greatest number of speakers to smallest
+        LanguageData ld = new LanguageData(a.con);
+        System.out.println("<<< 32. Five language information by greatest number of speakers >>>");
+        ld.printLanguage(ld.getLanguageInformation());
+        System.out.println(line);
+
 
         // Disconnect from database
         a.disconnect();

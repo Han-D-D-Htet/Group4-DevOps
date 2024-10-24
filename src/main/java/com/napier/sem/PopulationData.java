@@ -3,6 +3,9 @@ package com.napier.sem;
 import java.sql.*;
 import java.text.NumberFormat;
 
+/**
+ * class for necessary operations for population report
+ */
 public class PopulationData {
 
     private final Connection con;
@@ -100,9 +103,9 @@ public class PopulationData {
                 // total population not living in cities
                 long intTotalNotCityPop = intTotalPop - intTotalCityPop;
                 // percentage of population living in cities
-                String percentCityPop = Math.round(((double) intTotalCityPop / intTotalPop) * 100) + "%";
+                String percentCityPop = Math.round((double) intTotalCityPop / intTotalPop * 100) + "%";
                 // percentage of population not living in cities
-                String percentNotCityPop = Math.round(((double) intTotalNotCityPop / intTotalPop) * 100) + "%";
+                String percentNotCityPop = Math.round((double) intTotalNotCityPop / intTotalPop * 100) + "%";
                 // setting values for population arraylist
                 pop.setPopName(res1.getString("popName"));
                 pop.setTotalPopulation(nf.format(intTotalPop));
@@ -134,10 +137,10 @@ public class PopulationData {
             System.out.println(String.format("%-15s %-25s %-25s %-20s",
                     "----", "----------------", "----------------", "--------------------"));
 
-            String cty_string =
+            String pop_string =
                     String.format("%-15s %-25s %-25s %-20s",
                             pop.getPopName(), pop.getTotalPopulation(), pop.getTotalPopulationCities() + "(" + pop.getPercentageCityPopulation() + ")", pop.getTotalPopulationNotCities() + "(" + pop.getPercentageNotCityPopulation() + ")");
-            System.out.println(cty_string);
+            System.out.println(pop_string);
         } else {
             System.out.println("No population information");
         }

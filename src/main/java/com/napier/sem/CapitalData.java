@@ -6,6 +6,9 @@ import java.text.NumberFormat;
 
 import java.util.ArrayList;
 
+/**
+ * class for necessary operations for capital cities report
+ */
 public class CapitalData {
 
     private final Connection con;

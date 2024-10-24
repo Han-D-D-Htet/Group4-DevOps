@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class AppTest {
     static App app;
@@ -16,6 +16,8 @@ public class AppTest {
     static CityData ct;
     static CapitalData cap;
     static PopulationData pd;
+    static AdditionalPopulation ap;
+    static LanguageData ld;
     static Connection con;
 
     /**
@@ -25,12 +27,14 @@ public class AppTest {
     static void init()
     {
         app = new App();
-        app.connect("localhost:33060", 10000);
+        app.connect("localhost:33060", 10_000);
         con = app.getCon();
         cd = new CountryData(con);
         ct = new CityData(con);
         cap = new CapitalData(con);
         pd = new PopulationData(con);
+        ap = new AdditionalPopulation(con);
+        ld = new LanguageData(con);
     }
 
     /**
@@ -42,7 +46,7 @@ public class AppTest {
         String actual = cd.allCountriesInWorld();
         String expected = "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name as capital " +
                 "FROM country, city WHERE country.capital = city.ID ORDER BY Population DESC";
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual, "Actual output is not same with the expected output.");
     }
 
     /**
@@ -54,7 +58,7 @@ public class AppTest {
         String expected = "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name as capital "
                 + "FROM country, city WHERE country.capital = city.ID "
                 + "ORDER BY Population DESC LIMIT 10";
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual,"Actual output is not same with the expected output.");
     }
 
     /**
@@ -65,7 +69,7 @@ public class AppTest {
         String actual = cd.allCountriesInContinent("Europe");
         String expected = "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name as capital "
                 + "FROM country, city WHERE country.capital = city.ID AND country.Continent = 'Europe' ORDER BY Population DESC";
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual, "Actual output is not same with the expected output.");
     }
 
     /**
@@ -76,7 +80,7 @@ public class AppTest {
         String actual = cd.topPopulatedCountriesInContinent(15, "Europe");
         String expected = "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name as capital "
                 + "FROM country, city WHERE country.capital = city.ID AND country.Continent = 'Europe' ORDER BY Population DESC LIMIT 15";
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual, "Actual output is not same with the expected output.");
     }
 
     /**
@@ -87,7 +91,7 @@ public class AppTest {
         String actual = cd.allCountriesInRegion("Caribbean");
         String expected = "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name as capital "
                 + "FROM country, city WHERE country.capital = city.ID AND country.Region = 'Caribbean' ORDER BY Population DESC";
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual, "Actual output is not same with the expected output.");
     }
 
     /**
@@ -98,7 +102,7 @@ public class AppTest {
         String actual = cd.topPopulatedCountriesInRegion(20, "Caribbean");
         String expected = "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name as capital "
                 + "FROM country, city WHERE country.capital = city.ID AND country.Region = 'Caribbean' ORDER BY Population DESC LIMIT 20";
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual, "Actual output is not same with the expected output.");
     }
 
     /**
@@ -170,7 +174,7 @@ public class AppTest {
         String actual = ct.allCitiesInWorld();
         String expected = "SELECT city.Name, country.Name as Country, city.District, city.Population "
                 + "FROM city, country WHERE city.CountryCode = country.Code ORDER BY Population DESC";
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual, "Actual output is not same with the expected output.");
     }
 
     /**
@@ -181,7 +185,7 @@ public class AppTest {
         String actual = ct.allCitiesInContinent("Asia");
         String expected = "SELECT city.Name, country.Name as Country, city.District, city.Population "
                 + "FROM city, country WHERE city.CountryCode = country.Code AND country.Continent = 'Asia' ORDER BY Population DESC";
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual, "Actual output is not same with the expected output.");
     }
 
     /**
@@ -192,7 +196,7 @@ public class AppTest {
         String actual = ct.allCitiesInRegion("Southeast Asia");
         String expected = "SELECT city.Name, country.Name as Country, city.District, city.Population "
                 + "FROM city, country WHERE city.CountryCode = country.Code AND country.Region = 'Southeast Asia' ORDER BY Population DESC";
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual, "Actual output is not same with the expected output.");
     }
 
     /**
@@ -203,7 +207,7 @@ public class AppTest {
         String actual = ct.allCitiesInCountry("Myanmar");
         String expected = "SELECT city.Name, country.Name as Country, city.District, city.Population "
                 + "FROM city, country WHERE city.CountryCode = country.Code AND country.Name = 'Myanmar' ORDER BY Population DESC";
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual, "Actual output is not same with the expected output.");
     }
 
     /**
@@ -215,7 +219,7 @@ public class AppTest {
         String expected = "SELECT city.Name, country.Name as Country, city.District, city.Population "
                 + "FROM city,country "
                 + "WHERE city.CountryCode = country.Code AND city.District = 'Mandalay' ORDER BY Population DESC";
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual, "Actual output is not same with the expected output.");
     }
 
     /**
@@ -288,7 +292,7 @@ public class AppTest {
         String actual = ct.topPopulatedCitiesInWorld(10);
         String expected = "SELECT city.Name, country.Name as Country, city.District, city.Population "
                 + "FROM city JOIN country ON city.CountryCode = country.Code ORDER BY city.Population DESC LIMIT 10";
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual, "Actual output is not same with the expected output.");
     }
 
     /**
@@ -299,7 +303,7 @@ public class AppTest {
         String actual = ct.topPopulatedCitiesInContinent(10, "Asia");
         String expected = "SELECT city.Name, country.Name as Country, city.District, city.Population "
                 + "FROM city JOIN country ON city.CountryCode = country.Code WHERE country.Continent = 'Asia' ORDER BY city.Population DESC LIMIT 10";
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual, "Actual output is not same with the expected output.");
     }
 
     /**
@@ -310,7 +314,7 @@ public class AppTest {
         String actual = ct.topPopulatedCitiesInRegion(10, "Southeast Asia");
         String expected = "SELECT city.Name, country.Name as Country, city.District, city.Population "
                 + "FROM city JOIN country ON city.CountryCode = country.Code WHERE country.Region = 'Southeast Asia' ORDER BY city.Population DESC LIMIT 10";
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual, "Actual output is not same with the expected output.");
     }
 
     /**
@@ -321,7 +325,7 @@ public class AppTest {
         String actual = ct.topPopulatedCitiesInCountry(10, "Myanmar");
         String expected = "SELECT city.Name, country.Name as Country, city.District, city.Population "
                 + "FROM city JOIN country ON city.CountryCode = country.Code WHERE country.Name = 'Myanmar' ORDER BY city.Population DESC LIMIT 10";
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual, "Actual output is not same with the expected output.");
     }
 
     /**
@@ -332,7 +336,7 @@ public class AppTest {
         String actual = ct.topPopulatedCitiesInDistrict(10, "Mandalay");
         String expected = "SELECT city.Name, country.Name as Country, city.District, city.Population "
                 + "FROM city JOIN country ON city.CountryCode = country.Code WHERE city.District = 'Mandalay' ORDER BY city.Population DESC LIMIT 10";
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual, "Actual output is not same with the expected output.");
     }
 
     /**
@@ -344,7 +348,7 @@ public class AppTest {
         String actual = cap.allCapitalCitiesInWorld();
         String expected = "SELECT city.Name, country.Name as Country, city.Population " +
                 "FROM country, city WHERE country.Capital = city.ID ORDER BY Population DESC";
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual, "Actual output is not same with the expected output.");
     }
 
     /**
@@ -355,7 +359,7 @@ public class AppTest {
         String actual = cap.topPopulatedCapitalCitiesInWorld(10);
         String expected = "SELECT city.Name, country.Name as Country, city.Population " +
                 "FROM country, city WHERE country.Capital = city.ID ORDER BY Population DESC LIMIT 10";
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual, "Actual output is not same with the expected output.");
     }
 
     /**
@@ -366,7 +370,7 @@ public class AppTest {
         String actual = cap.allCapitalCitiesInContinent("Asia");
         String expected = "SELECT city.Name, country.Name as Country, city.Population "
                 + "FROM country, city WHERE country.capital = city.ID AND country.Continent = 'Asia' ORDER BY Population DESC";
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual, "Actual output is not same with the expected output.");
     }
 
     /**
@@ -377,7 +381,7 @@ public class AppTest {
         String actual = cap.topPopulatedCapitalCitiesInContinent(10,"Asia");
         String expected = "SELECT city.Name, country.Name as Country, city.Population " +
                 "FROM country, city WHERE country.capital = city.ID AND country.Continent = 'Asia' ORDER BY Population DESC LIMIT 10";
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual, "Actual output is not same with the expected output.");
     }
 
     /**
@@ -388,7 +392,7 @@ public class AppTest {
         String actual = cap.allCapitalCitiesInRegion("Southeast Asia");
         String expected = "SELECT city.Name, country.Name as Country, city.Population "
                 + "FROM country, city WHERE country.capital = city.ID AND country.Region = 'Southeast Asia' ORDER BY Population DESC";
-        assertEquals(expected, actual);
+        assertEquals(expected, actual, "Actual output is not same with the expected output.");
     }
 
     /**
@@ -399,7 +403,7 @@ public class AppTest {
         String actual = cap.topPopulatedCapitalCitiesInRegion(10,"Southeast Asia");
         String expected = "SELECT city.Name, country.Name as Country, city.Population " +
                 "FROM country, city WHERE country.capital = city.ID AND country.Region = 'Southeast Asia' ORDER BY Population DESC LIMIT 10";
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual, "Actual output is not same with the expected output.");
     }
 
     /**
@@ -466,7 +470,7 @@ public class AppTest {
     void totalPopulationInContinent(){
         String actual = pd.totalPopulationInContinent("Asia");
         String expected = "SELECT country.Continent as popName, SUM(country.Population) as totalPopulation " +"FROM country, city WHERE country.capital = city.ID AND country.Continent = 'Asia'";
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual, "Actual output is not same with the expected output.");
     }
 
     /**
@@ -478,7 +482,7 @@ public class AppTest {
         String expected = "SELECT country.Continent, SUM(city.Population) as totalCityPopulation "
                 + "FROM country, city "
                 + "WHERE country.Code = city.CountryCode AND country.Continent = 'Asia'";
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual, "Actual output is not same with the expected output.");
     }
 
     /**
@@ -490,7 +494,7 @@ public class AppTest {
         String expected = "SELECT country.Region as popName, SUM(country.Population) as totalPopulation "
                 + "FROM country, city "
                 + "WHERE country.capital = city.ID AND country.Region = 'Asia'";
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual, "Actual output is not same with the expected output.");
     }
 
     /**
@@ -502,7 +506,7 @@ public class AppTest {
         String expected = "SELECT country.Region, SUM(city.Population) as totalCityPopulation "
                 + "FROM country, city "
                 + "WHERE country.Code = city.CountryCode AND country.Region = 'Southeast Asia'";
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual, "Actual output is not same with the expected output.");
     }
 
     /**
@@ -514,7 +518,7 @@ public class AppTest {
         String expected = "SELECT country.Name as popName, SUM(country.Population) as totalPopulation "
                 + "FROM country, city "
                 + "WHERE country.capital = city.ID AND country.Name = 'China'";
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual, "Actual output is not same with the expected output.");
     }
 
     /**
@@ -526,14 +530,14 @@ public class AppTest {
         String expected = "SELECT country.Name, SUM(city.Population) as totalCityPopulation "
                 + "FROM country, city "
                 + "WHERE country.Code = city.CountryCode AND country.Name = 'China'";
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual, "Actual output is not same with the expected output.");
     }
 
     /**
      * test for null query as input for get all population information
      */
     @Test
-    void getAllPopulationInformationTestNull() { pd.getPopulationInformation((null),(null));}
+    void getAllPopulationInformationTestNull() { pd.getPopulationInformation(null,null);}
 
     /**
      * test for empty query as input for get all population information
@@ -550,7 +554,7 @@ public class AppTest {
     }
 
     /**
-     * test for printing valid data for population of people, living or not living in cites information in a country
+     * test for printing valid data for population in a country
      */
     @Test
     void printPopulationTestValid() {
@@ -562,6 +566,90 @@ public class AppTest {
         ppe.setPercentageCityPopulation("14%");
         ppe.setPercentageNotCityPopulation("86%");
         pd.printPopulation(ppe);
+    }
+
+    /**
+     * test for printing empty for continent population
+     */
+    @Test
+    void testContinentPopulationEmpty(){
+        ap.continentPopulation("");
+    }
+
+    /**
+     * test for printing null for region population
+     */
+    @Test
+    void testRegionPopulationNull(){
+        String result = ap.regionPopulation(null);
+        assertNull(result, "Region is null.");
+    }
+
+    /**
+     * test for printing null for country population
+     */
+    @Test
+    void testCountryPopulationNull(){
+        String result = ap.countryPopulation(null);
+        assertNull(result, "Country is null.");
+    }
+
+    /**
+     * test for printing null for district population
+     */
+    @Test
+    void testDistrictPopulationEmpty(){
+        ap.districtPopulation("");
+    }
+
+    /**
+     * test for printing null for city population
+     */
+    @Test
+    void testCityPopulationNull(){
+        String result = ap.cityPopulation(null);
+        assertNull(result, "City is null.");
+    }
+
+    /**
+     * test for empty query as input for get language Information
+     */
+    @Test
+    void getLanguageInformation() {
+        ld.getLanguageInformation();
+    }
+
+    /**
+     * test for printing empty list
+     */
+    @Test
+    void printLanguageTestEmpty(){
+        ArrayList<Language> languages = new ArrayList<>();
+        ld.printLanguage(languages);
+    }
+
+    /**
+     * test for printing null for language test
+     */
+    @Test
+    void printLanguageTestNull(){
+        ArrayList<Language> languages = new ArrayList<>();
+        languages.add(null);
+        ld.printLanguage(languages);
+    }
+
+    /**
+     * test for printing valid data
+     */
+    @Test
+    void printLanguageTestValid(){
+        ArrayList<Language> languages =  new ArrayList<>();
+        Language lang = new Language();
+        lang.setLanguageName("English");
+        lang.setTotalLanguageSpeaker("347,077,867");
+        lang.setWorldPopPercentage("55%");
+        languages.add(lang);
+        ld.printLanguage(languages);
     }
 
     /**
